@@ -4,7 +4,6 @@ import React from 'react';
 function Logo(params) {
 
     const mystyle = {
-        marginLeft: params.marginLeft,
         width: params.width
       };
 

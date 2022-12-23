@@ -1,0 +1,15 @@
+.title {
+    
+
+    font-family: 'Arial';
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 18px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    text-transform: uppercase;
+
+    color: #929292;
+    font-variation-settings: 'slnt' -1;
+}
