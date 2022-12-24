@@ -1,10 +1,11 @@
-import mmr_logo from "../../Assets/Media/mmR.jpg";
+import mmr_logo from "../../Assets/Media/mmR.png";
 import React from 'react';
 
 function Logo(params) {
 
     const mystyle = {
-        width: params.width
+        marginLeft: "" + (100 - params.width)/2 + "%",
+        width: "" + params.width + "%"
       };
 
     return (

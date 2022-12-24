@@ -11,7 +11,7 @@ function Home() {
   return (
     <>
     <div style={{alignItems: "center"}}>
-      <Logo width={"100%"}/>
+      <Logo width={100}/>
       <Button text={"scan"} />
     
       <Text marginTop={"50px"} text={"do you own a museum / gallaty?"} />
