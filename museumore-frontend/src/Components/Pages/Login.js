@@ -5,7 +5,6 @@ import ReturnButton from "../Layouts/ReturnButton";
 import Link from "../Layouts/Link";
 
 import React from "react";
-import PasswordField from "../Layouts/PasswordField";
 
 function Login() {
   return (
@@ -13,7 +12,7 @@ function Login() {
       <ReturnButton />
       <div style={{ alignItems: "center", marginTop: "180px" }}>
         <Input text="username" />
-        <PasswordField text="password" />
+        <Input type={"password"} text="password" />
         <div style={{ marginTop: "30px" }} />
         <Link text="forgot password" />
         <div style={{ marginTop: "80px" }} />

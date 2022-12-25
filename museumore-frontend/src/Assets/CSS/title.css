@@ -18,6 +18,7 @@
 }
 
 .big-blue-title {
+    position: relative;
     color: #2AADB6;
     font-family: 'Arial';
     font-weight: 600;
@@ -27,5 +28,4 @@
     text-align: center;
     text-transform: uppercase;
     text-shadow: 1px 1px 6px #929292;
-    display: inline-block;
 }
