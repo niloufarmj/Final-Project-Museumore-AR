@@ -33,3 +33,16 @@
     /* Note: backdrop-filter has minimal browser support */
 
 }
+
+.round-button {
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    display: inline-block;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
