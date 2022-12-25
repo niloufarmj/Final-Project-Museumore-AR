@@ -8,13 +8,14 @@ import Signup from "./Components/Pages/Signup";
 import Dashboard from "./Components/Layouts/Dashboard";
 import AddItem from "./Components/Pages/AddItem";
 import AdditionalInfo from "./Components/Pages/AdditionalInfo";
+import Library from "./Components/Pages/Library";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Dashboard />}>
-          <Route index element={<AdditionalInfo />} />
+          <Route index element={<Library />} />
           <Route path="aboutus" element={<AboutUs />} />
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<Signup />} />
