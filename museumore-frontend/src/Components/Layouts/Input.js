@@ -3,7 +3,7 @@ import '../../Assets/CSS/input.css'
 
 function Input(params) {
     return(
-        <input placeholder={params.text} className="input"/>
+        <input type={params.type} placeholder={params.text} className="input"/>
         
     )
 }
