@@ -1,0 +1,16 @@
+.round {
+  position: absolute;
+  width: 70%;
+  height: 150px;
+  left: 15%;
+  
+  border-radius: 50%;
+}
+
+.rectangle {
+  position: absolute;
+  width: 70%;
+  height: 240px;
+  left: 15%;
+  
+}
