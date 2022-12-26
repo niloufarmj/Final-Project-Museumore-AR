@@ -1,29 +1,27 @@
-import Button from '../Layouts/Button';
-import Input from '../Layouts/Input';
-import Text from '../Layouts/Text';
-import ReturnButton from '../Layouts/ReturnButton';
-import Link from '../Layouts/Link';
+import Button from "../Layouts/Button";
+import Input from "../Layouts/Input";
+import Text from "../Layouts/Text";
+import ReturnButton from "../Layouts/ReturnButton";
+import Link from "../Layouts/Link";
 
-import React from 'react';
+import React from "react";
 
 function Signup() {
-    return(
-        <>
-        
-        <ReturnButton />
-        <div  style={{alignItems: "center", marginTop: "80px"}}>
-            <Input text="Museum/Gallary name" />
-            <Input text="username" />
-            <Input text="email" />
-            <Input type="password" text="password" />
-            <div style={{marginTop: "80px"}} />
-            <Button text="signup" />
-            <Text marginTop={"50px"} text={"Already have an account?"} />
-            <Link text="click here to login" />
-        </div>
-        
-        </>  
-    )
+  return (
+    <>
+      <ReturnButton />
+      <div style={{ alignItems: "center", marginTop: "80px" }}>
+        <Input text="Museum/Gallary name" />
+        <Input text="username" />
+        <Input text="email" />
+        <Input type="password" text="password" />
+        <div style={{ marginTop: "80px" }} />
+        <Button text="signup" />
+        <Text marginTop={"50px"} text={"Already have an account?"} />
+        <Link text="Click here to login" path="/login" />
+      </div>
+    </>
+  );
 }
 
 export default Signup;
