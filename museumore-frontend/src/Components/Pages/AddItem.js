@@ -4,7 +4,9 @@ import Text from "../Layouts/Text";
 import ReturnButton from "../Layouts/ReturnButton";
 import UploadAudio from "../Layouts/UploadAudio";
 
-import React from "react";
+import React, { Fragment } from "react";
+import AddFileButton from "../Layouts/AddFileButton";
+import TextArea from "../Layouts/TextArea";
 
 function AddItem() {
   return (
@@ -12,9 +14,12 @@ function AddItem() {
       <ReturnButton />
       <div style={{ alignItems: "center", marginTop: "180px" }}>
         <Input text="Title" />
-        <div style={{ marginTop: "30px" }} />
-        <UploadAudio />
+        <AddFileButton text="Add Audio File" />
+        <AddFileButton text="Add Augmented Video" />
+        <TextArea text="Description" />
+        <div style={{ marginTop: "30px" }}></div>
         <Button text="Done" />
+        <div style={{ marginTop: "30px" }}></div>
       </div>
     </>
   );
