@@ -34,11 +34,7 @@
 
 }
 
-.round-button {
-    border-radius: 50%;
-    width: 35%;
-    
-    margin-left: 32%;
+.add-image-button {
     display: inline-block;
     background: rgba(217, 217, 217, 0.75);
     border: 3px solid #FFFFFF;
@@ -62,6 +58,11 @@
 .dummy {
     margin-top: 110%;
 }
+
+.round {
+    border-radius: 50%;
+}
+
 
 .center {
     display: flex;
