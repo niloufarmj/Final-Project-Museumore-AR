@@ -1,9 +1,7 @@
-import Text from '../Layouts/Text';
-import ReturnButton from '../Layouts/ReturnButton';
+import AddImageButton from '../Layouts/AddImageButton';
 import Title from '../Layouts/Title';
 import Input from '../Layouts/Input';
 import '../../Assets/CSS/button.css'
-import AddImageCircleButton from '../Layouts/AddImageCircleButton';
 
 import React from 'react';
 import TextArea from '../Layouts/TextArea';
@@ -16,7 +14,7 @@ function AdditionalInfo() {
         <Title text="additional info" />
 
         <div style={{marginTop: "30px"}} />
-        <AddImageCircleButton text="add image" />
+        <AddImageButton shape="round" width="35%" marginLeft="32%" text="add image" />
 
         <div style={{marginTop: "30px"}} />
         <TextArea text="address" />
