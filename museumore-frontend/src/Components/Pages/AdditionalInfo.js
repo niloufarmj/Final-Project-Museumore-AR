@@ -1,4 +1,3 @@
-
 import Text from '../Layouts/Text';
 import ReturnButton from '../Layouts/ReturnButton';
 import Title from '../Layouts/Title';
@@ -15,6 +14,7 @@ function AdditionalInfo() {
         <ReturnButton />
         <div className='center'>
             <Title text="additional info" />
+            
             <div style={{width: "100%"}} />
             <div className='center'>
                 <AddImageCircleButton text="add image" />

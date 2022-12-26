@@ -7,6 +7,8 @@ import Login from "./Components/Pages/Login";
 import Signup from "./Components/Pages/Signup";
 import Dashboard from "./Components/Layouts/Dashboard";
 import AddItem from "./Components/Pages/AddItem";
+import AdditionalInfo from "./Components/Pages/AdditionalInfo";
+import Image from "./Components/Layouts/Image";
 
 function App() {
   return (
@@ -14,7 +16,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Dashboard />}>
           <Route index element={<Home />} />
-          <Route path="aboutus" element={<AboutUs />} />
+          <Route path="aboutus" element={<Image shape="rectangle" />} />
           <Route path="login" element={<Login />} />
           <Route path="signup" element={<Signup />} />
           <Route path="additem" element={<AddItem />} />

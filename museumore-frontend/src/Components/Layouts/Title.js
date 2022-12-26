@@ -3,7 +3,7 @@ import '../../Assets/CSS/title.css'
 
 function Title(params) {
     return(
-        <div className='big-blue-title'>{params.text}</div>
+        <h3 className='big-blue-title'>{params.text}</h3>
     )
 }
 
