@@ -1,10 +1,17 @@
-import React from 'react';
-import '../../Assets/CSS/link.css'
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import "../../Assets/CSS/link.css";
 
 function Link(params) {
-    return(
-        <p className='link'>{params.text}</p>
-    )
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate(params.path);
+  }
+  return (
+    <p className="link" onClick={handleClick}>
+      {params.text}
+    </p>
+  );
 }
 
 export default Link;
