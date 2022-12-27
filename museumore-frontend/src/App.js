@@ -16,13 +16,11 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<EditInfo />}>
-          <Route index element={<AdditionalInfo />} />
-          <Route path="aboutus" element={<AboutUs />} />
-          <Route path="login" element={<Login />} />
-          <Route path="signup" element={<Signup />} />
-          <Route path="additem" element={<AddItem />} />
-        </Route>
+        <Route path="/" element={<AddItem />} />
+        <Route path="aboutus" element={<AboutUs />} />
+        <Route path="login" element={<Login />} />
+        <Route path="signup" element={<Signup />} />
+        <Route path="additem" element={<AddItem />} />
       </Routes>
     </BrowserRouter>
   );
