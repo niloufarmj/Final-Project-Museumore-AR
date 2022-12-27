@@ -10,12 +10,13 @@ import AddItem from "./Components/Pages/AddItem";
 import AdditionalInfo from "./Components/Pages/AdditionalInfo";
 import Image from "./Components/Layouts/Image";
 import Library from "./Components/Pages/Library";
+import EditInfo from "./Components/Pages/EditInfo";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Library />}>
+        <Route path="/" element={<EditInfo />}>
           <Route index element={<AdditionalInfo />} />
           <Route path="aboutus" element={<AboutUs />} />
           <Route path="login" element={<Login />} />
