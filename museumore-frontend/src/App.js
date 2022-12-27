@@ -17,7 +17,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<MuseumInfo />}>
+        <Route path="/" element={<AddItem />}>
           <Route index element={<AdditionalInfo />} />
           <Route path="aboutus" element={<AboutUs />} />
           <Route path="login" element={<Login />} />
