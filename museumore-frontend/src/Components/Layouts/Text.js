@@ -1,12 +1,15 @@
-import React from 'react';
-import '../../Assets/CSS/text.css'
+import React from "react";
+import "../../Assets/CSS/text.css";
 
 function Text(params) {
-    return(
-        
-        <p className='text' style={{marginTop: params.marginTop, width: params.width}}>{params.text}</p>
-        
-    )
+  return (
+    <p
+      className="text"
+      style={{ marginTop: params.marginTop, width: params.width }}
+    >
+      {params.text}
+    </p>
+  );
 }
 
 export default Text;

@@ -28,15 +28,15 @@
   color: #ffffff;
   font-variation-settings: "slnt" -1;
 
-  backdrop-filter: blur(2px);
+  
   /* Note: backdrop-filter has minimal browser support */
 }
 
 .add-image-button {
-    display: inline-block;
-    background: rgba(217, 217, 217, 0.75);
-    border: 3px solid #FFFFFF;
-    box-shadow: 0px 4px 13px rgba(90, 90, 90, 0.25);
+  display: inline-block;
+  background: rgba(217, 217, 217, 0.75);
+  border: 3px solid #ffffff;
+  box-shadow: 0px 4px 13px rgba(90, 90, 90, 0.25);
 
   font-family: "Arial";
   font-style: normal;
@@ -59,18 +59,17 @@
 }
 
 .hide {
-    overflow: hidden;
-    width: 0.1px;
-	height: 0.1px;
-	opacity: 0;
-	position: absolute;
-	z-index: -1;
+  overflow: hidden;
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  position: absolute;
+  z-index: -1;
 }
 
 .round {
-    border-radius: 50%;
+  border-radius: 50%;
 }
-
 
 .center {
   display: flex;
@@ -85,27 +84,25 @@
   padding: 10px 10px 10px 10px;
   gap: 10px;
   margin-top: 30px;
-  
+
   width: 70%;
   height: 70px;
   margin-left: 15%;
 
-  background: #FFFFFF;
+  background: #ffffff;
   mix-blend-mode: darken;
-  border: 3px solid #2AADB6;
+  border: 3px solid #2aadb6;
   box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.1);
   border-radius: 15px;
 
-  font-family: 'Arial';
+  font-family: "Arial";
   font-weight: 657;
   font-size: 13px;
   line-height: 16px;
-  display: flex;
+
   align-items: center;
   text-transform: uppercase;
 
-  color: #2AADB6;
-  font-variation-settings: 'slnt' -1;
-
-  backdrop-filter: blur(2px);
+  color: #2aadb6;
+  font-variation-settings: "slnt" -1;
 }

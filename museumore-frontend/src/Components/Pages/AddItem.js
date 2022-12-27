@@ -1,10 +1,8 @@
 import Button from "../Layouts/Button";
 import Input from "../Layouts/Input";
-import Text from "../Layouts/Text";
 import ReturnButton from "../Layouts/ReturnButton";
-import UploadAudio from "../Layouts/UploadAudio";
 
-import React, { Fragment } from "react";
+import React from "react";
 import AddFileButton from "../Layouts/AddFileButton";
 import TextArea from "../Layouts/TextArea";
 import AddImageButton from "../Layouts/AddImageButton";
@@ -13,16 +11,23 @@ function AddItem() {
   return (
     <>
       <ReturnButton />
-      <div style={{ alignItems: "center", marginTop: "40px" }}>
-        <AddImageButton text="add image" width="65%" marginLeft="18%"/>
+      <div style={{ alignItems: "center", marginTop: "3%" }}>
+        <AddImageButton width="70%" marginLeft="15%" text="add image" />
+        <div style={{ marginTop: "3%" }}></div>
         <Input text="Title" />
-        <AddFileButton text="Add Audio File" />
-        <AddFileButton text="Add Augmented Video" />
+        <div style={{ marginTop: "3%" }}></div>
+        <AddFileButton text="add main audio" />
+        <div style={{ marginTop: "1%" }}></div>
+        <AddFileButton text="add augmented video" />
+        <div style={{ marginTop: "3%" }}></div>
         <TextArea text="Description" />
-        <AddFileButton text="Add related video" />
-        <div style={{ marginTop: "70px" }}></div>
+        <div style={{ marginTop: "3%" }}></div>
+        <AddFileButton text="add extra audio" />
+        <div style={{ marginTop: "1%" }}></div>
+        <AddFileButton text="add extra augmented video" />
+        <div style={{ marginTop: "5%" }}></div>
         <Button text="Done" />
-        <div style={{ marginTop: "30px" }}></div>
+        <div style={{ marginTop: "5%" }}></div>
       </div>
     </>
   );
