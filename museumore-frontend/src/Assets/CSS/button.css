@@ -51,6 +51,7 @@
 
   justify-content: center;
   align-items: center;
+  border-radius: 5%;
 }
 
 .dummy {
@@ -88,21 +89,22 @@
   height: 70px;
   margin-left: 15%;
 
-  background: #ffffff;
+  background: #FFFFFF;
   mix-blend-mode: darken;
-  border: 3px solid #2aadb6;
+  border: 3px solid #2AADB6;
   box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.1);
   border-radius: 15px;
 
-  font-family: "Arial";
+  font-family: 'Arial';
   font-weight: 657;
   font-size: 13px;
-  line-height: 24px;
-
+  line-height: 16px;
+  display: flex;
+  align-items: center;
   text-transform: uppercase;
 
-  color: #2aadb6;
-  font-variation-settings: "slnt" -1;
+  color: #2AADB6;
+  font-variation-settings: 'slnt' -1;
 
   backdrop-filter: blur(2px);
 }

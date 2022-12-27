@@ -11,6 +11,8 @@ import AdditionalInfo from "./Components/Pages/AdditionalInfo";
 import Image from "./Components/Layouts/Image";
 import Library from "./Components/Pages/Library";
 import EditInfo from "./Components/Pages/EditInfo";
+import MuseumInfo from "./Components/Pages/MuseumInfo";
+import ItemInfo from "./Components/Pages/ItemInfo";
 
 function App() {
   return (
