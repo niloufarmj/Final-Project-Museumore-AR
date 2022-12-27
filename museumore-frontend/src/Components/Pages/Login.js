@@ -14,11 +14,11 @@ function Login() {
         <Input text="username" />
         <Input type={"password"} text="password" />
         <div style={{ marginTop: "30px" }} />
-        <Link text="forgot password" />
+        <Link text="forgot password?" />
         <div style={{ marginTop: "80px" }} />
         <Button text="login" />
         <Text marginTop={"50px"} text={"don't have an account?"} />
-        <Link text="click here to signup" />
+        <Link text="click here to signup" path="/signup"/>
       </div>
     </>
   );

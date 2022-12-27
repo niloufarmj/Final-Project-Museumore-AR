@@ -1,10 +1,8 @@
 import Image from "../Layouts/Image";
 import Title from "../Layouts/Title";
-import Input from "../Layouts/Input";
 import "../../Assets/CSS/button.css";
 
 import React from "react";
-import TextArea from "../Layouts/TextArea";
 import Button from "../Layouts/Button";
 
 function Dashboard() {
@@ -18,13 +16,13 @@ function Dashboard() {
 
       <div style={{ marginTop: "100px" }} />
 
-      <Button text="add new item" />
+      <Button text="add new item" path="/additem" />
       <div style={{ marginTop: "30px" }} />
-      <Button text="edit information" />
+      <Button text="edit information" path="/editinfo" />
       <div style={{ marginTop: "30px" }} />
-      <Button text="library" />
+      <Button text="library" path="/library" />
       <div style={{ marginTop: "30px" }} />
-      <Button text="logout" />
+      <Button text="logout" path="/login" />
     </>
   );
 }

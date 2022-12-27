@@ -18,11 +18,17 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<AddItem />} />
-        <Route path="aboutus" element={<AboutUs />} />
-        <Route path="login" element={<Login />} />
-        <Route path="signup" element={<Signup />} />
-        <Route path="additem" element={<AddItem />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/aboutus" element={<AboutUs />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/additem" element={<AddItem />} />
+        <Route path="/editinfo" element={<AddItem />} />
+        <Route path="/library" element={<Library />} />
+        <Route path="/additionalinfo" element={<AdditionalInfo />} />
+        <Route path="/iteminfo" element={<ItemInfo />} />
+        <Route path="/museuminfo" element={<MuseumInfo />} />
       </Routes>
     </BrowserRouter>
   );

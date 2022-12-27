@@ -6,7 +6,7 @@ function ImageButton(params) {
   const navigate = useNavigate();
   const handleClick = () => {
     navigate(params.path);
-  }
+  };
   return (
     <>
       <div style={{ display: "inline-block", alignItems: "center" }}>
