@@ -24,7 +24,7 @@ function AddItem() {
         <div style={{ marginTop: "3%" }}></div>
         <AddFileButton text="add extra audio" />
         <div style={{ marginTop: "1%" }}></div>
-        <AddFileButton text="add extra augmented video" />
+        <AddFileButton text="add extra video" />
         <div style={{ marginTop: "5%" }}></div>
         <Button text="Done" />
         <div style={{ marginTop: "5%" }}></div>
