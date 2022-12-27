@@ -12,12 +12,13 @@ import Image from "./Components/Layouts/Image";
 import Library from "./Components/Pages/Library";
 import EditInfo from "./Components/Pages/EditInfo";
 import MuseumInfo from "./Components/Pages/MuseumInfo";
+import ItemInfo from "./Components/Pages/ItemInfo";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<AddItem />}>
+        <Route path="/" element={<ItemInfo />}>
           <Route index element={<AdditionalInfo />} />
           <Route path="aboutus" element={<AboutUs />} />
           <Route path="login" element={<Login />} />

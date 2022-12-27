@@ -20,8 +20,7 @@ function AddItem() {
         <AddFileButton text="Add Augmented Video" />
         <TextArea text="Description" />
         <AddFileButton text="Add related video" />
-        <AddFileButton text="Add additional audio" />
-        <div style={{ marginTop: "30px" }}></div>
+        <div style={{ marginTop: "70px" }}></div>
         <Button text="Done" />
         <div style={{ marginTop: "30px" }}></div>
       </div>
