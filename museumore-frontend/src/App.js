@@ -5,7 +5,7 @@ import AboutUs from "./Components/Pages/AboutUs";
 import Home from "./Components/Pages/Home";
 import Login from "./Components/Pages/Login";
 import Signup from "./Components/Pages/Signup";
-import Dashboard from "./Components/Layouts/Dashboard";
+import Dashboard from "./Components/Pages/Dashboard";
 import AddItem from "./Components/Pages/AddItem";
 import AdditionalInfo from "./Components/Pages/AdditionalInfo";
 import Image from "./Components/Layouts/Image";
@@ -15,7 +15,7 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<AdditionalInfo />}>
+        <Route path="/" element={<Library />}>
           <Route index element={<AdditionalInfo />} />
           <Route path="aboutus" element={<AboutUs />} />
           <Route path="login" element={<Login />} />

@@ -7,9 +7,9 @@ function ItemCard(params) {
     return(
         <>
          <div className='card'>
-            <Image width="28%" height="90px"/>
+            <Image width="37%" height="90px" left="2%"/>
             
-            <div style={{marginLeft: "20%", marginTop: "40px"}}>
+            <div style={{marginLeft: "20%", marginTop: "-75px"}}>
                 <Text text={params.title} />
             </div>
             

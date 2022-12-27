@@ -11,6 +11,7 @@ import Button from '../Layouts/Button';
 function AdditionalInfo() {
     return(
         <>
+        <div style={{marginTop: "50px"}} />
         <Title text="additional info" />
 
         <div style={{marginTop: "30px"}} />

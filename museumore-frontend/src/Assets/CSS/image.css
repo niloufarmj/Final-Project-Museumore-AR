@@ -3,7 +3,7 @@
 }
 
 .image {
-  position: absolute;
+  position: relative;
   /* width: 70%;
   height: 150px; */
   left: 15%;
