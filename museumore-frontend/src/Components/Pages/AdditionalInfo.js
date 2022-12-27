@@ -14,7 +14,7 @@ function AdditionalInfo() {
         <Title text="additional info" />
 
         <div style={{marginTop: "30px"}} />
-        <AddImageButton shape="round-button" width="35%" marginLeft="32%" text="add image" />
+        <AddImageButton shape="round" width="35%" marginLeft="32%" text="add image" />
 
         <div style={{marginTop: "30px"}} />
         <TextArea text="address" />

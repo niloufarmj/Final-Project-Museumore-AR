@@ -7,13 +7,27 @@ function AddImageButton(params) {
         width: params.width,
         marginLeft: params.marginLeft
     }
+
+    const hiddenFileInput = React.useRef(null);
+    
+    const handleClick = event => {
+        hiddenFileInput.current.click();
+    };
+    
     
     return(
-        <button className={'add-image-button ' + params.shape} style={style}>
+        <>
+        <button className={'add-image-button ' + params.shape} style={style} onClick={handleClick}>
             <div className='dummy' />
             {params.text}
         </button>
-    )
+        
+        <input  type="file" 
+            ref={hiddenFileInput}
+            style={{display: 'none'}} />
+    
+        </>
+        )
 }
 
 export default AddImageButton;
