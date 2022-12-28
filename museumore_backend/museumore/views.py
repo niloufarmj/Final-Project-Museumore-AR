@@ -1,8 +1,11 @@
 from django.shortcuts import render
+from rest_framework import viewsets
+from .serializers import GallarySerializer
+from .models import Gallary
 
 # Create your views here.
 
-def add_gallary(request):
-    if request.method == 'POST':
-        # nemidunam
-
+class GallaryView(viewsets.ModelViewSet):
+    serializer_class = GallarySerializer
+    queryset = Gallary.objects.all()
+    

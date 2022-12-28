@@ -15,6 +15,7 @@ class Item(models.Model):
     title = models.CharField(max_length=50)
     description = models.TextField()
     audio = models.FileField(upload_to='audios/')
-    video = models.FileField(upload_to='videos/')
-    augmented_video = models.FileField()
-    gallary_id = models.IntegerField()
+    augmented_video = models.FileField(upload_to='augmented_videos/')
+    # extra_audio = models.FileField(upload_to='extra_audios/')
+    # extra_video = models.FileField(upload_to='extra_videos/')
+    
