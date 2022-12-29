@@ -4,19 +4,34 @@ import Text from "../Layouts/Text";
 import ReturnButton from "../Layouts/ReturnButton";
 import Link from "../Layouts/Link";
 
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 
 function Signup() {
+  const [name, setName] = useState("");
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = () => {
+    const item = {
+      name: name,
+      username: username,
+      email: email,
+      password: password,
+    };
+    axios.post("/api/gallaries/", item);
+  };
   return (
     <>
       <ReturnButton />
       <div style={{ alignItems: "center", marginTop: "80px" }}>
-        <Input text="Museum/Gallary name" />
-        <Input text="username" />
-        <Input text="email" />
-        <Input type="password" text="password" />
+        <Input text="Museum/Gallary name" stateChanger={setName} />
+        <Input text="username" stateChanger={setUsername} />
+        <Input text="email" stateChanger={setEmail} />
+        <Input type="password" text="password" stateChanger={setPassword} />
         <div style={{ marginTop: "80px" }} />
-        <Button text="signup" />
+        <Button text="signup" stateChanger={handleSubmit} />
         <Text marginTop={"50px"} text={"Already have an account?"} />
         <Link text="Click here to login" path="/login" />
       </div>

@@ -19,7 +19,7 @@ from rest_framework import routers
 from museumore import views
 
 router = routers.DefaultRouter()
-router.register(r'Gallaries', views.GallaryView, 'gallary')
+router.register(r'gallaries', views.GallaryView, 'gallary')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
