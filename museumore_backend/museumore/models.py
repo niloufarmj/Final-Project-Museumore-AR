@@ -1,10 +1,10 @@
 from django.db import models
 
 class Gallary(models.Model):
-    username = models.CharField(max_length=50)
+    username = models.CharField(max_length=50, unique=True)
     password = models.CharField(max_length=20)
     name = models.CharField(max_length=50)
-    email = models.EmailField()
+    email = models.EmailField(unique=True)
     image = models.ImageField(null=True)
     address = models.TextField(null=True)
     contact = models.IntegerField(null=True)

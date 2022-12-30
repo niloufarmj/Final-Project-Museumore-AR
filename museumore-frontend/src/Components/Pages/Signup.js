@@ -13,14 +13,20 @@ function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = () => {
-    const item = {
-      name: name,
-      username: username,
-      email: email,
-      password: password,
-    };
-    axios.post("/api/gallaries/", item);
+  const handleSubmit = async () => {
+    if (name == "" || username == "" || email == "" || password == "") {
+      alert("You should fill all fields!");
+    } else {
+      const item = {
+        name: name,
+        username: username,
+        email: email,
+        password: password,
+      };
+      await axios
+        .post("/api/gallaries/", item)
+        .then((response) => console.log(response.data));
+    }
   };
   return (
     <>
@@ -32,6 +38,8 @@ function Signup() {
         <Input type="password" text="password" stateChanger={setPassword} />
         <div style={{ marginTop: "80px" }} />
         <Button text="signup" stateChanger={handleSubmit} />
+        
+
         <Text marginTop={"50px"} text={"Already have an account?"} />
         <Link text="Click here to login" path="/login" />
       </div>
