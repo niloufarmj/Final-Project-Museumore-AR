@@ -9,7 +9,7 @@ function Input(params) {
     <input
       type={params.type}
       placeholder={params.text}
-      className="input"
+      className={"input " + params.border}
       onChange={handleChange}
     />
   );

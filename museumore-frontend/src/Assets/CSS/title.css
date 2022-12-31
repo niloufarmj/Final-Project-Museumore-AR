@@ -1,0 +1,29 @@
+.title {
+  font-family: "Arial";
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 18px;
+  align-items: center;
+  text-align: center;
+  text-transform: uppercase;
+
+  color: #929292;
+  font-variation-settings: "slnt" -1;
+}
+
+.blue {
+  color: #2aadb6 !important;
+}
+
+.big-blue-title {
+  position: relative;
+  color: #2aadb6;
+  font-family: "Arial";
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 18px;
+  align-items: center;
+  text-align: center;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 6px #929292;
+}

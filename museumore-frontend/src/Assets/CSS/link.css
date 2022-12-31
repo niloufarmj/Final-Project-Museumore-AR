@@ -1,0 +1,12 @@
+.link {
+  font-family: "Arial";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 17px;
+  align-items: center;
+  text-align: center;
+  text-transform: uppercase;
+
+  color: rgba(42, 173, 182, 0.87);
+}
