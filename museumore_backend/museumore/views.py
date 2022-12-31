@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework import viewsets
 from .serializers import GallarySerializer
-from .models import Gallary
+from .models import *
 
 # Create your views here.
 
