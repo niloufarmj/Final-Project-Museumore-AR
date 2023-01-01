@@ -96,7 +96,7 @@ function Signup() {
           border={errorPassword}
         />
 
-        {error != "" && <Text marginTop={"25px"} color={"blue"} text={error} />}
+        {error != "" && <Text marginTop={"25px"} color={"red-text"} text={error} />}
 
         <div style={{ marginTop: margin }} />
         <Button text="signup" stateChanger={handleSubmit} />

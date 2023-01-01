@@ -23,22 +23,25 @@
   line-height: 16px;
   display: flex;
   align-items: center;
-  text-transform: uppercase;
+  
 }
 
 ::placeholder {
   color: #b5b5b5;
   opacity: 1; /* Firefox */
+  text-transform: uppercase;
 }
 
 :-ms-input-placeholder {
   /* Internet Explorer 10-11 */
   color: #b5b5b5;
+  text-transform: uppercase;
 }
 
 ::-ms-input-placeholder {
   /* Microsoft Edge */
   color: #b5b5b5;
+  text-transform: uppercase;
 }
 
 .text-area {

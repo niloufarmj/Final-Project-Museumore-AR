@@ -11,6 +11,7 @@
   color: rgba(0, 0, 0, 0.42);
 }
 
-.blue {
-  color: rgba(42, 173, 182, 0.87);
+.red-text {
+  color: rgba(175, 53, 53, 0.765);
+  font-weight: 560;
 }
