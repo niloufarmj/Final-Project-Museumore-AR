@@ -13,6 +13,12 @@ function AddImageButton(params) {
     hiddenFileInput.current.click();
   };
 
+  const handleChange = (event) => {
+    if (event.target.files) {
+      params.stateChanger(event.target.files[0]);
+    }
+  };
+
   return (
     <>
       <button
@@ -24,7 +30,12 @@ function AddImageButton(params) {
         {params.text}
       </button>
 
-      <input type="file" ref={hiddenFileInput} style={{ display: "none" }} />
+      <input
+        type="file"
+        ref={hiddenFileInput}
+        style={{ display: "none" }}
+        onClick={handleChange}
+      />
     </>
   );
 }

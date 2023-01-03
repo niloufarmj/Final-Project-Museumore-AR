@@ -8,6 +8,7 @@ function Button(params) {
 
   const handleClick = () => {
     navigate(params.path);
+    // if this button is login or signup it hanldles navigating by itself and its params doesn't have path and it has statechanger
     stateChanger();
   };
   

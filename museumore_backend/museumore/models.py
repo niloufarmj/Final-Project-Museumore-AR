@@ -17,11 +17,12 @@ class Gallary(models.Model):
     email = models.EmailField(unique=True)
     image = models.ImageField(null=True)
     address = models.TextField(null=True)
-    contact = models.IntegerField(null=True)
+    contact = models.TextField(null=True)
     description = models.TextField(null=True)
 
 
 class Item(models.Model):
+    gallary = models.ForeignKey(Gallary, on_delete=models.CASCADE, related_name='item_gallary')
     title = models.CharField(max_length=50)
     description = models.TextField()
     audio = models.FileField(upload_to='audios/')

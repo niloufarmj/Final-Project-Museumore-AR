@@ -6,8 +6,10 @@ import Link from "../Layouts/Link";
 
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Signup() {
+  const navigate = useNavigate();
   const [name, setName] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -34,10 +36,11 @@ function Signup() {
         email: email,
         password: password,
       };
-      await axios
-        .post("/api/gallaries/", item)
+      axios
+        .post("http://localhost:8000/api/gallaries/", item)
         .then((response) => {
-          console.log(response.data);
+          localStorage.setItem("user", JSON.stringify(response.data));
+          navigate("/additionalinfo");
           setError("");
           setErrorName("");
           setErrorUserName("");
@@ -96,7 +99,9 @@ function Signup() {
           border={errorPassword}
         />
 
-        {error != "" && <Text marginTop={"25px"} color={"red-text"} text={error} />}
+        {error != "" && (
+          <Text marginTop={"25px"} color={"red-text"} text={error} />
+        )}
 
         <div style={{ marginTop: margin }} />
         <Button text="signup" stateChanger={handleSubmit} />
