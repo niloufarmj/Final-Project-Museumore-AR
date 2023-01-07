@@ -16,16 +16,16 @@ class Gallary(models.Model):
     name = models.CharField(max_length=50)
     email = models.EmailField(unique=True)
     image = models.ImageField(null=True)
-    address = models.TextField(null=True)
-    contact = models.TextField(null=True)
-    description = models.TextField(null=True)
-
+    address = models.TextField(blank=True)
+    contact = models.TextField(blank=True)
+    description = models.TextField(blank=True)
 
 class Item(models.Model):
-    gallary = models.ForeignKey(Gallary, on_delete=models.CASCADE, related_name='item_gallary')
+    gallary = models.ForeignKey(Gallary, on_delete=models.CASCADE, related_name='items', default=1)
+    target_image = models.FileField(upload_to='target_images/', null=True)
     title = models.CharField(max_length=50)
-    description = models.TextField()
-    audio = models.FileField(upload_to='audios/')
-    augmented_video = models.FileField(upload_to='augmented_videos/')
-    extra_video = models.FileField(upload_to='extra_videos/')
+    description = models.TextField(blank=True)
+    audio = models.FileField(upload_to='audios/', null=True)
+    augmented_video = models.FileField(upload_to='augmented_images_or_videos/', null=True)
+    extra_video = models.FileField(upload_to='extra_videos/', null=True)
     

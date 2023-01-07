@@ -7,6 +7,7 @@ function TextArea(params) {
   };
   return (
     <textarea
+      value={params.initText}
       placeholder={params.text}
       className="input text-area"
       onChange={handleChange}

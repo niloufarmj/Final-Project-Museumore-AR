@@ -11,6 +11,7 @@ function AddFileButton(params) {
     if (!fileUploaded) {
       return;
     }
+    params.stateChanger(event.target.files[0]);
     event.target.value = null;
   };
   return (
@@ -18,7 +19,7 @@ function AddFileButton(params) {
       <button className="add-file" onClick={handleClick}>
         {params.text}
       </button>
-      
+
       <input
         type="file"
         ref={hiddenFileInput}

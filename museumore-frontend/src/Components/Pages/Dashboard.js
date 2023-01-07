@@ -6,13 +6,21 @@ import React from "react";
 import Button from "../Layouts/Button";
 
 function Dashboard() {
+  const gallary = JSON.parse(localStorage.getItem("user"));
+
   return (
     <>
       <div style={{ marginTop: "50px" }} />
-      <Image shape="round" width="35%" height="125px" left="32%" />
+      <Image
+        shape="round"
+        width="35%"
+        height="125px"
+        left="32%"
+        src={gallary.image}
+      />
 
       <div style={{ marginTop: "20px" }} />
-      <Title text="Name" />
+      <Title text={gallary.name} />
 
       <div style={{ marginTop: "100px" }} />
 

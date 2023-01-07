@@ -9,7 +9,7 @@ function Image(params) {
     left: params.left,
   };
 
-  return <img src={img} className={"image " + params.shape} style={style} />;
+  return <img src={params.src} className={"image " + params.shape} style={style} />;
 }
 
 export default Image;
