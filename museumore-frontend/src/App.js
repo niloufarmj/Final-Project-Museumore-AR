@@ -8,7 +8,6 @@ import Signup from "./Components/Pages/Signup";
 import Dashboard from "./Components/Pages/Dashboard";
 import AddItem from "./Components/Pages/AddItem";
 import AdditionalInfo from "./Components/Pages/AdditionalInfo";
-import Image from "./Components/Layouts/Image";
 import Library from "./Components/Pages/Library";
 import EditInfo from "./Components/Pages/EditInfo";
 import MuseumInfo from "./Components/Pages/MuseumInfo";

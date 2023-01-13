@@ -1,5 +1,4 @@
 import React from "react";
-import img from "../../Assets/Media/sample-image.png";
 import "../../Assets/CSS/image.css";
 
 function Image(params) {

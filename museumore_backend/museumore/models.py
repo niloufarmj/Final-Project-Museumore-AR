@@ -9,7 +9,6 @@ def numberValidator(password):
     if not contains_number(password):
             raise ValidationError("Your password must contain at least 1 digit")
 
-
 class Gallary(models.Model):
     username = models.CharField(max_length=50, unique=True)
     password = models.CharField(max_length=20, validators=[numberValidator, MinLengthValidator(8)])
@@ -21,7 +20,8 @@ class Gallary(models.Model):
     description = models.TextField(blank=True)
 
 class Item(models.Model):
-    gallary = models.ForeignKey(Gallary, on_delete=models.CASCADE, related_name='items', default=1)
+    # gallary = models.ForeignKey(Gallary, on_delete=models.CASCADE, related_name='items', default=1)
+    gallary_id = models.IntegerField(default=0)
     target_image = models.FileField(upload_to='target_images/', null=True)
     title = models.CharField(max_length=50)
     description = models.TextField(blank=True)

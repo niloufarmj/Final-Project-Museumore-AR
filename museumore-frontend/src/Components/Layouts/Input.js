@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "../../Assets/CSS/input.css";
 
 function Input(params) {
