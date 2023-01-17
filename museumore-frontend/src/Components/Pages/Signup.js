@@ -17,7 +17,7 @@ function Signup() {
 
   const [error, setError] = useState("");
 
-  const [margin, setMargin] = useState("100px");
+  const [margin, setMargin] = useState("40px");
 
   const [errorName, setErrorName] = useState("");
   const [errorUserName, setErrorUserName] = useState("");
