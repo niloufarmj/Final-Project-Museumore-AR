@@ -14,10 +14,10 @@ class Gallary(models.Model):
     password = models.CharField(max_length=20, validators=[numberValidator, MinLengthValidator(8)])
     name = models.CharField(max_length=50)
     email = models.EmailField(unique=True)
-    image = models.ImageField(null=True)
-    address = models.TextField(blank=True)
-    contact = models.TextField(blank=True)
-    description = models.TextField(blank=True)
+    image = models.ImageField(null=True, upload_to='gallary_profile/')
+    address = models.TextField(blank=True, default="")
+    contact = models.TextField(blank=True, default="")
+    description = models.TextField(blank=True, default="")
 
 class Item(models.Model):
     # gallary = models.ForeignKey(Gallary, on_delete=models.CASCADE, related_name='items', default=1)
