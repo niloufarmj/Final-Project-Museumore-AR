@@ -49,7 +49,7 @@ function Login() {
   };
   return (
     <>
-      <ReturnButton />
+      <ReturnButton path="/"/>
       <div style={{ alignItems: "center", marginTop: "180px" }}>
         <Input text="username" stateChanger={setUsername} />
         <Input type={"password"} text="password" stateChanger={setPassword} />

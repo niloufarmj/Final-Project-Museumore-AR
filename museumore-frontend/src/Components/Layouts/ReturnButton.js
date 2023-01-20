@@ -2,10 +2,12 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import return_img from "../../Assets/Media/return.png";
 
-function ReturnButton() {
+function ReturnButton(params) {
   const navigate = useNavigate();
   const handleClick = () => {
-    navigate(-1);
+    if (params.path) {
+      navigate(params.path);
+    } else navigate(-1);
   };
   return (
     <img

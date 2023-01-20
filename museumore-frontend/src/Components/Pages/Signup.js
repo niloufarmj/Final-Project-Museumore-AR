@@ -80,7 +80,7 @@ function Signup() {
 
   return (
     <>
-      <ReturnButton />
+      <ReturnButton path="/"/>
       <div style={{ alignItems: "center", marginTop: "60px" }}>
         <Input
           text="Museum/Gallary name"

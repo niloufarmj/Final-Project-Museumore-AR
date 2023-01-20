@@ -7,10 +7,14 @@ function Button(params) {
   const stateChanger = params.stateChanger;
 
   const handleClick = () => {
-    navigate(params.path);
-    // if this button is login or signup it hanldles navigating by itself and its params doesn't have path and it has statechanger
-    if (stateChanger) {
-      stateChanger();
+    if (params.redirectPath) {
+      window.location.replace(params.redirectPath);
+    } else {
+      navigate(params.path);
+      // if this button is login or signup it hanldles navigating by itself and its params doesn't have path and it has statechanger
+      if (stateChanger) {
+        stateChanger();
+      }
     }
   };
 
