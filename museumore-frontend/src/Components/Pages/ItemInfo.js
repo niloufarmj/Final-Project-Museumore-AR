@@ -24,6 +24,8 @@ function ItemInfo() {
         for (const i of data) {
           if (i.target_index == index) {
             setItem(i);
+            localStorage.setItem("item_index", index);
+            localStorage.setItem("gallary_id", i.gallary_id);
           }
         }
       })
@@ -47,7 +49,7 @@ function ItemInfo() {
 
       <div style={{ marginTop: "50px" }} />
 
-      <PlayAudioButton text="play main audio" src={item.audio}/>
+      <PlayAudioButton text="play main audio" src={item.audio} />
 
       <div style={{ marginTop: "50px" }} />
 
