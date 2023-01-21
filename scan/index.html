@@ -10,18 +10,32 @@
 
     <body>
         <img
-            style="width: 10%; padding: 10px "
-            src="Assets/return.png"
-            id="return-img">
-
+        style="width: 10%; padding: 10px "
+        src="Assets/return.png"
+        id="return-img"/>
         <a-scene mindar-image="imageTargetSrc: ./targets.mind;"
             vr-mode-ui="enabled: false"
-            device-orientation-permission-ui="enabled: false">
+            device-orientation-permission-ui="enabled: false"
+            >
 
             <a-camera position="0 0 0" look-controls="enabled: false"
                 cursor="fuse: false; rayOrigin: mouse;" raycaster="far:
                 ${customFields.libVersion}; objects: .clickable"></a-camera>
+            <!-- <a-entity>
+                    <img
+                        style="width: 10%; padding: 10px "
+                        src="Assets/return.png"
+                        id="return-img"/>
+                </a-entity> -->
             <a-entity mindar-image-target="targetIndex: 0">
+                <a-image id="play-btn0" class="clickable"
+                    src="./Assets/play_btn.png"
+                    width="0.2" height="0.2" position="0.3 0 0"></a-image>
+                <a-image id="info-btn0" class="clickable"
+                    src="./Assets/info_btn.png"
+                    width="0.2" height="0.2" position="-0.3 0 0"></a-image>
+            </a-entity>
+            <a-entity mindar-image-target="targetIndex: 1">
                 <a-image id="play-btn1" class="clickable"
                     src="./Assets/play_btn.png"
                     width="0.2" height="0.2" position="0.3 0 0"></a-image>
@@ -29,7 +43,7 @@
                     src="./Assets/info_btn.png"
                     width="0.2" height="0.2" position="-0.3 0 0"></a-image>
             </a-entity>
-            <a-entity mindar-image-target="targetIndex: 1">
+            <a-entity mindar-image-target="targetIndex: 2">
                 <a-image id="play-btn2" class="clickable"
                     src="./Assets/play_btn.png"
                     width="0.2" height="0.2" position="0.3 0 0"></a-image>
@@ -37,17 +51,8 @@
                     src="./Assets/info_btn.png"
                     width="0.2" height="0.2" position="-0.3 0 0"></a-image>
             </a-entity>
-            <a-entity mindar-image-target="targetIndex: 2">
-                <a-image id="play-btn3" class="clickable"
-                    src="./Assets/play_btn.png"
-                    width="0.2" height="0.2" position="0.3 0 0"></a-image>
-                <a-image id="info-btn3" class="clickable"
-                    src="./Assets/info_btn.png"
-                    width="0.2" height="0.2" position="-0.3 0 0"></a-image>
-            </a-entity>
 
         </a-scene>
-
 
     </body>
     <script src="main.js"></script>

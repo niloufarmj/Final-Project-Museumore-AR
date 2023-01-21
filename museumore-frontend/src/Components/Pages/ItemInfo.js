@@ -4,32 +4,50 @@ import Text from "../Layouts/Text";
 import "../../Assets/CSS/button.css";
 import Title from "../Layouts/Title";
 
-import React from "react";
-import TextArea from "../Layouts/TextArea";
+import React, { useEffect, useState } from "react";
 import Button from "../Layouts/Button";
-import AddImageButton from "../Layouts/AddImageButton";
 import ReturnButton from "../Layouts/ReturnButton";
 import PlayAudioButton from "../Layouts/PlayAudioButton";
 import VideoArea from "../Layouts/VideoArea";
+import { useParams } from "react-router-dom";
 
 function ItemInfo() {
+  const { index } = useParams();
+  const [items, setItems] = useState([]);
+  const [item, setItem] = useState();
+
+  useEffect(() => {
+    fetch("http://localhost:8000/api/items/")
+      .then((res) => res.json())
+      .then((data) => {
+        setItems(data);
+        for (const i of data) {
+          if (i.target_index == index) {
+            setItem(i);
+          }
+        }
+      })
+      .catch((err) => console.error(err));
+  }, []);
+
+  if (!item) {
+    return <div>Loading...</div>;
+  }
   return (
     <>
-      <ReturnButton />
+      <ReturnButton redirectPath={"http://127.0.0.1:5500/scan/index.html"} />
       <div style={{ marginTop: "30px" }} />
-      <Image width="65%" height="225px" left="16%" />
+      <Image width="65%" height="225px" left="16%" src={item.target_image} />
       <div style={{ marginTop: "30px" }} />
-      <Title text="Title" />
+      <Title text={item.title} />
 
       <div style={{ marginTop: "70px" }} />
       <Link text="description" />
-      <Text text="blah blah blah blah blah" />
-      <Text text="blah blah blah blah blah" />
-      <Text text="blah blah blah blah blah" />
+      <Text text={item.description} />
 
       <div style={{ marginTop: "50px" }} />
 
-      <PlayAudioButton text="play main audio" />
+      <PlayAudioButton text="play main audio" src={item.audio}/>
 
       <div style={{ marginTop: "50px" }} />
 

@@ -35,7 +35,6 @@ function AdditionalInfo() {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         localStorage.setItem("user", JSON.stringify(data));
         navigate("/dashboard");
       })
