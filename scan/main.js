@@ -15,63 +15,98 @@ var info_btn2 = document.querySelector("#info-btn2");
 
 // let target_index = 0;
 
+var items = [];
+fetch("http://localhost:8000/api/items/")
+  .then((res) => res.json())
+  .then((data) => {
+    items = data;
+  })
+  .catch((err) => console.error(err));
+
+var playing_audio;
+var playing_audio_item_index = -1;
+var is_audio_playing = false;
+
 if (play_btn0 && info_btn0) {
   play_btn0.addEventListener("click", () => {
-    // console.log(
-    //   play_btn1.parentElement.getAttribute("mindar-image-target").targetIndex
-    // );
+    for (const item of items) {
+      if (item.target_index == 0) {
+        if (!is_audio_playing) {
+          playing_audio = new Audio(item.audio);
+          playing_audio.play();
+          is_audio_playing = true;
+          playing_audio_item_index = 0;
+        } else {
+          playing_audio.pause();
+          is_audio_playing = false;
+          if (playing_audio_item_index != 0) {
+            playing_audio = new Audio(item.audio);
+            playing_audio.play();
+            is_audio_playing = true;
+            playing_audio_item_index = 0;
+          }
+        }
+      }
+    }
   });
   info_btn0.addEventListener("click", () => {
-    // target_index = info_btn1.parentElement.getAttribute("mindar-image-target").targetIndex;
+    // target_index = info_btn0.parentElement.getAttribute("mindar-image-target").targetIndex;
     window.location.replace("http://localhost:3000/iteminfo/0");
   });
 }
 
 if (play_btn1 && info_btn1) {
   play_btn1.addEventListener("click", () => {
-    // console.log(
-    //   play_btn2.parentElement.getAttribute("mindar-image-target").targetIndex
-    // );
+    for (const item of items) {
+      if (item.target_index == 1) {
+        if (!is_audio_playing) {
+          playing_audio = new Audio(item.audio);
+          playing_audio.play();
+          is_audio_playing = true;
+          playing_audio_item_index = 1;
+        } else {
+          playing_audio.pause();
+          is_audio_playing = false;
+          if (playing_audio_item_index != 1) {
+            playing_audio = new Audio(item.audio);
+            playing_audio.play();
+            is_audio_playing = true;
+            playing_audio_item_index = 1;
+          }
+        }
+      }
+    }
   });
   info_btn1.addEventListener("click", () => {
-    // target_index = info_btn2.parentElement.getAttribute("mindar-image-target").targetIndex;
+    // target_index = info_btn1.parentElement.getAttribute("mindar-image-target").targetIndex;
     window.location.replace("http://localhost:3000/iteminfo/1");
   });
 }
 
 if (play_btn2 && info_btn2) {
   play_btn2.addEventListener("click", () => {
-    // console.log(
-    //   play_btn1.parentElement.getAttribute("mindar-image-target").targetIndex
-    // );
+    for (const item of items) {
+      if (item.target_index == 2) {
+        if (!is_audio_playing) {
+          playing_audio = new Audio(item.audio);
+          playing_audio.play();
+          is_audio_playing = true;
+          playing_audio_item_index = 2;
+        } else {
+          playing_audio.pause();
+          is_audio_playing = false;
+          if (playing_audio_item_index != 2) {
+            playing_audio = new Audio(item.audio);
+            playing_audio.play();
+            is_audio_playing = true;
+            playing_audio_item_index = 2;
+          }
+        }
+      }
+    }
   });
   info_btn2.addEventListener("click", () => {
-    // target_index = info_btn3.parentElement.getAttribute("mindar-image-target").targetIndex;
+    // target_index = info_btn2.parentElement.getAttribute("mindar-image-target").targetIndex;
     window.location.replace("http://localhost:3000/iteminfo/2");
   });
 }
-
-// var images = new Array();
-
-// const image0 = new Image();
-// image0.src = "./target_images/0.jpg";
-// images.push(image0);
-
-// const image1 = new Image();
-// image1.src = "./target_images/1.jpg";
-// images.push(image1);
-
-// const image2 = new Image();
-// image2.src = "./target_images/2.jpg";
-// images.push(image2);
-
-// const compiler = new window.MINDAR.Compiler();
-// async function myFunction() {
-//   const dataList = await compiler.compileImageTargets(images, (progress) => {
-//     // images is an array of HTML image object
-//     console.log("progress", progress);
-//   });
-//   const exportedBuffer = await compiler.exportData(); // export the compiled data into buffer for download (e.g. the .mind file)
-// }
-
-// myFunction();
