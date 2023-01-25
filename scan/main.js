@@ -1,112 +1,94 @@
-// var return_btn = document.querySelector("#return-img");
-// if (return_btn) {
-//   return_btn.addEventListener("click", () => {
-//     console.log("here");
-//     window.location.replace("http://localhost:3000/");
-//   });
-// }
-
-var play_btn0 = document.querySelector("#play-btn0");
-var info_btn0 = document.querySelector("#info-btn0");
-var play_btn1 = document.querySelector("#play-btn1");
-var info_btn1 = document.querySelector("#info-btn1");
-var play_btn2 = document.querySelector("#play-btn2");
-var info_btn2 = document.querySelector("#info-btn2");
-
-// let target_index = 0;
-
 var items = [];
-fetch("http://localhost:8000/api/items/")
-  .then((res) => res.json())
-  .then((data) => {
-    items = data;
-  })
-  .catch((err) => console.error(err));
 
-var playing_audio;
-var playing_audio_item_index = -1;
-var is_audio_playing = false;
+async function fetchItems() {
+  return fetch("http://localhost:8000/api/items/")
+    .then((res) => {
+      return res.json();
+    })
+    .then((data) => {
+      items = data;
+      mainFunction();
+    })
+    .catch((err) => console.error(err));
+}
+const insertAfter = (element, htmlString) =>
+  element.insertAdjacentHTML("afterend", htmlString);
 
-if (play_btn0 && info_btn0) {
-  play_btn0.addEventListener("click", () => {
-    for (const item of items) {
-      if (item.target_index == 0) {
-        if (!is_audio_playing) {
-          playing_audio = new Audio(item.audio);
-          playing_audio.play();
-          is_audio_playing = true;
-          playing_audio_item_index = 0;
-        } else {
-          playing_audio.pause();
-          is_audio_playing = false;
-          if (playing_audio_item_index != 0) {
-            playing_audio = new Audio(item.audio);
-            playing_audio.play();
-            is_audio_playing = true;
-            playing_audio_item_index = 0;
+function mainFunction() {
+  const camera = document.getElementsByTagName("a-camera")[0];
+  let result = ``;
+  for (let i = 0; i < items.length; i++) {
+    let play_btn_id = "play-btn" + i;
+    let info_btn_id = "info-btn" + i;
+    result =
+      result +
+      `
+      <a-entity mindar-image-target="targetIndex: ${i}">
+        <a-image id="${play_btn_id}" class="clickable"
+          src="./Assets/play_btn.png"
+          width="0.2" height="0.2" position="0.3 0 0"></a-image>
+        <a-image id="${info_btn_id}" class="clickable"
+          src="./Assets/info_btn.png"
+          width="0.2" height="0.2" position="-0.3 0 0"></a-image>
+      </a-entity>
+    `;
+  }
+
+  insertAfter(camera, result);
+  var play_btn = new Array();
+  var info_btn = new Array();
+
+  // var play_btn0 = document.querySelector("#play-btn0");
+  // var info_btn0 = document.querySelector("#info-btn0");
+
+  for (let i = 0; i < items.length; i++) {
+    let play_btn_query = "#play-btn" + i;
+    let info_btn_query = "#info-btn" + i;
+    play_btn.push(document.querySelector(play_btn_query));
+    info_btn.push(document.querySelector(info_btn_query));
+  }
+
+  // let target_index = info_btn[i].parentElement.getAttribute("mindar-image-target").targetIndex;
+
+  var playing_audio;
+  var playing_audio_item_index = -1;
+  var is_audio_playing = false;
+  for (let i = 0; i < items.length; i++) {
+    if (play_btn[i] && info_btn[i]) {
+      play_btn[i].addEventListener("click", () => {
+        for (const item of items) {
+          if (item.target_index == i) {
+            if (!is_audio_playing) {
+              playing_audio = new Audio(item.audio);
+              playing_audio.play();
+              is_audio_playing = true;
+              playing_audio_item_index = i;
+            } else {
+              playing_audio.pause();
+              is_audio_playing = false;
+              if (playing_audio_item_index != i) {
+                playing_audio = new Audio(item.audio);
+                playing_audio.play();
+                is_audio_playing = true;
+                playing_audio_item_index = i;
+              }
+            }
           }
         }
-      }
+      });
+      info_btn[i].addEventListener("click", () => {
+        window.location.replace(`http://localhost:3000/iteminfo/${i}`);
+      });
     }
-  });
-  info_btn0.addEventListener("click", () => {
-    // target_index = info_btn0.parentElement.getAttribute("mindar-image-target").targetIndex;
-    window.location.replace("http://localhost:3000/iteminfo/0");
-  });
+  }
+  //console.log(document.body.innerHTML);
+  // var return_btn = document.querySelector("#return-img");
+  // if (return_btn) {
+  //   return_btn.addEventListener("click", () => {
+  //     console.log("here");
+  //     window.location.replace("http://localhost:3000/");
+  //   });
+  // }
 }
 
-if (play_btn1 && info_btn1) {
-  play_btn1.addEventListener("click", () => {
-    for (const item of items) {
-      if (item.target_index == 1) {
-        if (!is_audio_playing) {
-          playing_audio = new Audio(item.audio);
-          playing_audio.play();
-          is_audio_playing = true;
-          playing_audio_item_index = 1;
-        } else {
-          playing_audio.pause();
-          is_audio_playing = false;
-          if (playing_audio_item_index != 1) {
-            playing_audio = new Audio(item.audio);
-            playing_audio.play();
-            is_audio_playing = true;
-            playing_audio_item_index = 1;
-          }
-        }
-      }
-    }
-  });
-  info_btn1.addEventListener("click", () => {
-    // target_index = info_btn1.parentElement.getAttribute("mindar-image-target").targetIndex;
-    window.location.replace("http://localhost:3000/iteminfo/1");
-  });
-}
-
-if (play_btn2 && info_btn2) {
-  play_btn2.addEventListener("click", () => {
-    for (const item of items) {
-      if (item.target_index == 2) {
-        if (!is_audio_playing) {
-          playing_audio = new Audio(item.audio);
-          playing_audio.play();
-          is_audio_playing = true;
-          playing_audio_item_index = 2;
-        } else {
-          playing_audio.pause();
-          is_audio_playing = false;
-          if (playing_audio_item_index != 2) {
-            playing_audio = new Audio(item.audio);
-            playing_audio.play();
-            is_audio_playing = true;
-            playing_audio_item_index = 2;
-          }
-        }
-      }
-    }
-  });
-  info_btn2.addEventListener("click", () => {
-    // target_index = info_btn2.parentElement.getAttribute("mindar-image-target").targetIndex;
-    window.location.replace("http://localhost:3000/iteminfo/2");
-  });
-}
+fetchItems();
