@@ -12,7 +12,7 @@ function Home() {
     <>
       <div style={{ alignItems: "center" }}>
         <Logo width={100} />
-        <Button text={"scan"} redirectPath={"http://127.0.0.1:5500/museumore-scan-frontend/index.html"} />
+        <Button text={"scan"} redirectPath={"http://127.0.0.1:5500/scan/index.html"} />
 
         <Text marginTop={"50px"} text={"Do you own a museum / gallary?"} />
         <Link text="Click here to signup" path="/signup" />

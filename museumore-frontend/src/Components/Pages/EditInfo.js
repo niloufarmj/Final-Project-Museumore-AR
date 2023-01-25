@@ -6,8 +6,8 @@ import TextArea from "../Layouts/TextArea";
 import Button from "../Layouts/Button";
 import AddImageButton from "../Layouts/AddImageButton";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import Text from "../Layouts/Text";
+import ReturnButton from "../Layouts/ReturnButton";
 
 function EditInfo() {
   const gallary = JSON.parse(localStorage.getItem("user"));
@@ -31,39 +31,43 @@ function EditInfo() {
       setError("You should fill password!");
       return;
     } else {
-      
-      const item = {
-        username: gallary.username,
-        password: password,
-        name: name,
-        email: gallary.email,
-        image: null,
-        address: address,
-        contact: contact,
-        description: description,
-        items: gallary.items,
-      };
-      
-      axios
-        .put(`http://localhost:8000/api/gallaries/${gallary.id}/`, item)
-        .then((response) => {
-          localStorage.setItem("user", JSON.stringify(response.data));
+      const data = new FormData();
+      data.append("username", gallary.username);
+      data.append("password", password);
+      data.append("name", name);
+      data.append("email", gallary.email);
+      if (image != null) {
+        data.append("image", image);
+      } else {
+        data.append("image", "");
+      }
+      data.append("address", address);
+      data.append("contact", contact);
+      data.append("description", description);
+
+      fetch(`http://localhost:8000/api/gallaries/${gallary.id}/`, {
+        method: "PUT",
+        body: data,
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          localStorage.setItem("user", JSON.stringify(data));
           navigate("/dashboard");
         })
-        .catch((error) => {
-          console.log(error);
-        });
+        .catch((err) => console.error(err));
     }
   };
 
   return (
     <>
-      <div style={{ marginTop: "50px" }} />
+      <ReturnButton path={"/dashboard"} />
+      <div style={{ marginTop: "30px" }} />
       <AddImageButton
         shape="round"
         width="35%"
         marginLeft="32%"
-        text="add image"
+        text="change or set profile image"
+        stateChanger={setImage}
       />
 
       <div style={{ marginTop: "40px" }} />

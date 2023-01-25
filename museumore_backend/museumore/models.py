@@ -22,7 +22,8 @@ class Gallary(models.Model):
 class Item(models.Model):
     # gallary = models.ForeignKey(Gallary, on_delete=models.CASCADE, related_name='items', default=1)
     gallary_id = models.IntegerField(default=0)
-    target_image = models.FileField(upload_to='target_images/', null=True)
+    target_index = models.IntegerField(default=0)
+    target_image = models.ImageField(upload_to='target_images/', null=True)
     title = models.CharField(max_length=50)
     description = models.TextField(blank=True)
     audio = models.FileField(upload_to='audios/', null=True)

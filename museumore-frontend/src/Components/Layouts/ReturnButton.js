@@ -5,7 +5,9 @@ import return_img from "../../Assets/Media/return.png";
 function ReturnButton(params) {
   const navigate = useNavigate();
   const handleClick = () => {
-    if (params.path) {
+    if (params.redirectPath) {
+      window.location.replace(params.redirectPath);
+    } else if (params.path) {
       navigate(params.path);
     } else navigate(-1);
   };
