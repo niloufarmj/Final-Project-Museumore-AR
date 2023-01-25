@@ -1,5 +1,8 @@
 {
   "dependencies": {
+    "@msgpack/msgpack": "^1.12.2",
+    "@tensorflow/tfjs": "^2.8.6",
+    "selenium-webdriver": "^4.8.0",
     "three": "^0.145.0"
   }
 }
