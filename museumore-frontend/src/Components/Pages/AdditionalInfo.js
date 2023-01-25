@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 function AdditionalInfo() {
   const gallary = JSON.parse(localStorage.getItem("user"));
 
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState('');
   const [description, setDescription] = useState("");
   const [address, setAddress] = useState("");
   const [contact, setContact] = useState("");
@@ -19,6 +19,7 @@ function AdditionalInfo() {
   const navigate = useNavigate();
 
   const handleSubmit = async () => {
+    
     const data = new FormData();
     data.append("name", gallary.name);
     data.append("username", gallary.username);
