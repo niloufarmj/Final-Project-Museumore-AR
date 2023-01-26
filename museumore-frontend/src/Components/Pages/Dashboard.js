@@ -5,8 +5,12 @@ import "../../Assets/CSS/button.css";
 import React from "react";
 import Button from "../Layouts/Button";
 
+import { useTranslation } from 'react-i18next';
+
 function Dashboard() {
   const gallary = JSON.parse(localStorage.getItem("user"));
+
+  const {t, i18n} = useTranslation(['dashboard']);
 
   return (
     <>
@@ -24,13 +28,13 @@ function Dashboard() {
 
       <div style={{ marginTop: "100px" }} />
 
-      <Button text="add new item" path="/additem" />
+      <Button text={t("add new item")} path="/additem" />
       <div style={{ marginTop: "30px" }} />
-      <Button text="edit information" path="/editinfo" />
+      <Button text={t("edit information")} path="/editinfo" />
       <div style={{ marginTop: "30px" }} />
-      <Button text="library" path="/library" />
+      <Button text={t("library")} path="/library" />
       <div style={{ marginTop: "30px" }} />
-      <Button text="logout" path="/login" />
+      <Button text={t("logout")} path="/login" />
     </>
   );
 }

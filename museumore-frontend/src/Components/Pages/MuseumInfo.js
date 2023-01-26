@@ -7,10 +7,14 @@ import Title from "../Layouts/Title";
 import React, { useState, useEffect } from "react";
 import ReturnButton from "../Layouts/ReturnButton";
 
+import { useTranslation } from 'react-i18next';
+
 function MuseumInfo() {
   const index = localStorage.getItem("item_index");
   const [gallary, setGallary] = useState();
   const gallary_id = localStorage.getItem("gallary_id");
+
+  const {t, i18n} = useTranslation(['gallaryinfo']);
 
   useEffect(() => {
     fetch(`http://localhost:8000/api/gallaries/${gallary_id}/`)
@@ -40,19 +44,19 @@ function MuseumInfo() {
       <Title text={gallary.name} />
 
       <div style={{ marginTop: "70px" }} />
-      <Link text="description" />
+      <Link text={t("description")} />
       <Text text={gallary.description} />
 
       <div style={{ marginTop: "50px" }} />
-      <Link text="address" />
+      <Link text={t("address")} />
       <Text text={gallary.address} />
 
       <div style={{ marginTop: "50px" }} />
-      <Link text="phone" />
+      <Link text={t("phone")} />
       <Text text={gallary.contact} />
 
       <div style={{ marginTop: "50px" }} />
-      <Link text="email" />
+      <Link text={t("email")} />
       <Text text={gallary.email} />
 
       <div style={{ marginTop: "50px" }} />

@@ -8,6 +8,8 @@ import TextArea from "../Layouts/TextArea";
 import Button from "../Layouts/Button";
 import { useNavigate } from "react-router-dom";
 
+import { useTranslation } from 'react-i18next';
+
 function AdditionalInfo() {
   const gallary = JSON.parse(localStorage.getItem("user"));
 
@@ -15,6 +17,8 @@ function AdditionalInfo() {
   const [description, setDescription] = useState("");
   const [address, setAddress] = useState("");
   const [contact, setContact] = useState("");
+
+  const {t, i18n} = useTranslation(['gallaryinfo']);
 
   const navigate = useNavigate();
 
@@ -45,24 +49,24 @@ function AdditionalInfo() {
   return (
     <>
       <div style={{ marginTop: "50px" }} />
-      <Title text="additional info" />
+      <Title text={t("additional info")} />
 
       <div style={{ marginTop: "30px" }} />
       <AddImageButton
         shape="round"
         width="35%"
         marginLeft="32%"
-        text="add image"
+        text={t("add image")}
         stateChanger={setImage}
       />
 
       <div style={{ marginTop: "30px" }} />
-      <TextArea text="description" stateChanger={setDescription} />
-      <TextArea text="address" stateChanger={setAddress} />
-      <Input type={"number"} text={"phone/contact"} stateChanger={setContact} />
+      <TextArea text={t("description")} stateChanger={setDescription} />
+      <TextArea text={t("address")} stateChanger={setAddress} />
+      <Input type={"number"} text={t("phone/contact")} stateChanger={setContact} />
 
       <div style={{ marginTop: "50px" }} />
-      <Button text="next" stateChanger={handleSubmit} />
+      <Button text={t("next")} stateChanger={handleSubmit} />
       <div style={{ marginTop: "50px" }} />
     </>
   );

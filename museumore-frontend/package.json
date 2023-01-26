@@ -15,6 +15,7 @@
     "mind-ar": "^1.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-i18next": "^12.1.4",
     "react-scripts": "^2.1.3",
     "react-webcam": "^7.0.1",
     "reactstrap": "^8.9.0",

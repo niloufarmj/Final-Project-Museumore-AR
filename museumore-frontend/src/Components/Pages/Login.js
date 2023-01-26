@@ -7,6 +7,8 @@ import Link from "../Layouts/Link";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { useTranslation } from 'react-i18next';
+
 function Login() {
   const navigate = useNavigate();
 
@@ -17,6 +19,8 @@ function Login() {
   const [gallaries, setGallaries] = useState([]);
 
   const [error, setError] = useState("");
+
+  const {t, i18n} = useTranslation(['login']);
 
   useEffect(() => {
     fetch("http://localhost:8000/api/gallaries/")
@@ -37,33 +41,33 @@ function Login() {
           navigate("/dashboard");
           return;
         } else {
-          setError("Password is not correct!");
+          setError(t("Password is not correct!"));
           return;
         }
       }
     }
 
     if (!provedUsername) {
-      setError("There is no gallary with this username!");
+      setError(t("There is no gallary with this username!"));
     }
   };
   return (
     <>
       <ReturnButton path="/"/>
       <div style={{ alignItems: "center", marginTop: "180px" }}>
-        <Input text="username" stateChanger={setUsername} />
-        <Input type={"password"} text="password" stateChanger={setPassword} />
+        <Input text={t("username")} stateChanger={setUsername} />
+        <Input type={"password"} text={t("password")} stateChanger={setPassword} />
         <div style={{ marginTop: "30px" }} />
-        <Link text="forgot password?" />
+        <Link text={t("forgot password?")} />
 
         {error != "" && (
           <Text marginTop={"25px"} color={"red-text"} text={error} />
         )}
 
         <div style={{ marginTop: "50px" }} />
-        <Button text="login" stateChanger={handleLogin} />
-        <Text marginTop={"50px"} text={"don't have an account?"} />
-        <Link text="click here to signup" path="/signup" />
+        <Button text={t("login")} stateChanger={handleLogin} />
+        <Text marginTop={"50px"} text={t("don't have an account?")} />
+        <Link text={t("click here to signup")} path="/signup" />
       </div>
     </>
   );

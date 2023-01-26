@@ -8,6 +8,8 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+import { useTranslation } from 'react-i18next';
+
 function Signup() {
   const navigate = useNavigate();
   const [name, setName] = useState("");
@@ -24,9 +26,11 @@ function Signup() {
   const [errorPassword, setErrorPassword] = useState("");
   const [errorEmail, setErrorEmail] = useState("");
 
+  const {t, i18n} = useTranslation(['gallaryinfo']);
+
   const handleSubmit = async () => {
     if (name == "" || username == "" || email == "" || password == "") {
-      setError("You should fill all fields!");
+      setError(t("You should fill all fields!"));
       setMargin("58px");
       return;
     } else {
@@ -83,19 +87,19 @@ function Signup() {
       <ReturnButton path="/"/>
       <div style={{ alignItems: "center", marginTop: "60px" }}>
         <Input
-          text="Museum/Gallary name"
+          text={t("Museum / Gallary name")}
           stateChanger={setName}
           border={errorName}
         />
         <Input
-          text="username"
+          text={t("username")}
           stateChanger={setUsername}
           border={errorUserName}
         />
-        <Input text="email" stateChanger={setEmail} border={errorEmail} />
+        <Input text={t("email")} stateChanger={setEmail} border={errorEmail} />
         <Input
           type="password"
-          text="password"
+          text={t("password")}
           stateChanger={setPassword}
           border={errorPassword}
         />
@@ -105,10 +109,10 @@ function Signup() {
         )}
 
         <div style={{ marginTop: margin }} />
-        <Button text="signup" stateChanger={handleSubmit} />
+        <Button text={t("signup")} stateChanger={handleSubmit} />
 
-        <Text marginTop={"40px"} text={"Already have an account?"} />
-        <Link text="Click here to login" path="/login" />
+        <Text marginTop={"40px"} text={t("Already have an account?")} />
+        <Link text={t("Click here to login")} path="/login" />
 
         <div style={{ marginTop: "60px" }} />
       </div>

@@ -9,6 +9,8 @@ import AddImageButton from "../Layouts/AddImageButton";
 import { useNavigate } from "react-router-dom";
 import Text from "../Layouts/Text";
 
+import { useTranslation } from 'react-i18next';
+
 function AddItem() {
   const gallary = JSON.parse(localStorage.getItem("user"));
   const navigate = useNavigate();
@@ -25,6 +27,8 @@ function AddItem() {
 
   const [margin, setMargin] = useState("100px");
 
+  const {t, i18n} = useTranslation(['additem']);
+
   useEffect(() => {
     fetch("http://localhost:8000/api/items/")
       .then((res) => res.json())
@@ -36,11 +40,11 @@ function AddItem() {
 
   const handleAddItem = async () => {
     if (title == "") {
-      setError("You should fill title!");
+      setError(t("You should fill title!"));
       // setMargin("58px");
       return;
     } else if (image == null) {
-      setError("You should choose a target image!");
+      setError(t("You should choose a target image!"));
       // setMargin("58px");
       return;
     } else {
@@ -76,27 +80,27 @@ function AddItem() {
         <AddImageButton
           width="70%"
           marginLeft="15%"
-          text="add target image"
+          text={t("add target image")}
           stateChanger={setImage}
         />
         <div style={{ marginTop: "3%" }}></div>
-        <Input text="Title" stateChanger={setTitle} />
+        <Input text={t("Title")} stateChanger={setTitle} />
         <div style={{ marginTop: "3%" }}></div>
-        <AddFileButton text="add main audio" stateChanger={setAudio} />
+        <AddFileButton text={t("add main audio")} stateChanger={setAudio} />
         <div style={{ marginTop: "1%" }}></div>
         <AddFileButton
-          text="add augmented image or video"
+          text={t("add augmented image or video")}
           stateChanger={setAugmentedVideoOrImage}
         />
         <div style={{ marginTop: "3%" }}></div>
-        <TextArea text="Description" stateChanger={setDescription} />
+        <TextArea text={t("Description")} stateChanger={setDescription} />
         <div style={{ marginTop: "1%" }}></div>
-        <AddFileButton text="add extra video" stateChanger={setExtraVideo} />
+        <AddFileButton text={t("add extra video")} stateChanger={setExtraVideo} />
         <div style={{ marginTop: "5%" }}></div>
         {error != "" && (
           <Text marginTop={"25px"} color={"red-text"} text={error} />
         )}
-        <Button text="Done" stateChanger={handleAddItem} />
+        <Button text={t("Done")} stateChanger={handleAddItem} />
         <div style={{ marginTop: "5%" }}></div>
       </div>
     </>

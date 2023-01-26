@@ -11,10 +11,14 @@ import PlayAudioButton from "../Layouts/PlayAudioButton";
 import VideoArea from "../Layouts/VideoArea";
 import { useParams } from "react-router-dom";
 
+import { useTranslation } from 'react-i18next';
+
 function ItemInfo() {
   const { index } = useParams();
   const [items, setItems] = useState([]);
   const [item, setItem] = useState();
+
+  const {t, i18n} = useTranslation(['iteminfo']);
 
   useEffect(() => {
     fetch("http://localhost:8000/api/items/")
@@ -44,12 +48,12 @@ function ItemInfo() {
       <Title text={item.title} />
 
       <div style={{ marginTop: "70px" }} />
-      <Link text="description" />
+      <Link text={t("description")} />
       <Text text={item.description} />
 
       <div style={{ marginTop: "50px" }} />
 
-      <PlayAudioButton text="play main audio" src={item.audio} />
+      <PlayAudioButton text={t("play main audio")} src={item.audio} />
 
       <div style={{ marginTop: "50px" }} />
 
@@ -57,7 +61,7 @@ function ItemInfo() {
 
       <div style={{ marginTop: "70px" }} />
 
-      <Button text="view museum info" path="/museuminfo" />
+      <Button text={t("view museum / gallary info")} path="/museuminfo" />
 
       <div style={{ marginTop: "50px" }} />
     </>

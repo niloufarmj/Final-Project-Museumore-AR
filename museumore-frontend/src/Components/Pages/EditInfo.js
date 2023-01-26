@@ -9,6 +9,8 @@ import { useNavigate } from "react-router-dom";
 import Text from "../Layouts/Text";
 import ReturnButton from "../Layouts/ReturnButton";
 
+import { useTranslation } from 'react-i18next';
+
 function EditInfo() {
   const gallary = JSON.parse(localStorage.getItem("user"));
 
@@ -19,16 +21,18 @@ function EditInfo() {
   const [address, setAddress] = useState(gallary.address);
   const [password, setPassword] = useState(gallary.password);
 
+  const {t, i18n} = useTranslation(['gallaryinfo']);
+
   const navigate = useNavigate();
 
   const [error, setError] = useState("");
 
   const handleEdit = async () => {
     if (name == "") {
-      setError("You should fill name!");
+      setError(t("You should fill name!"));
       return;
     } else if (password == "") {
-      setError("You should fill password!");
+      setError(t("You should fill password!"));
       return;
     } else {
       const data = new FormData();
@@ -66,34 +70,34 @@ function EditInfo() {
         shape="round"
         width="35%"
         marginLeft="32%"
-        text="change or set profile image"
+        text={t("change or set profile image")}
         stateChanger={setImage}
       />
 
       <div style={{ marginTop: "40px" }} />
       <Input
-        text="Museum/Gallary name"
+        text={t("Museum / Gallary name")}
         stateChanger={setName}
         initText={name}
       />
       <TextArea
-        text="description"
+        text={t("description")}
         stateChanger={setDescription}
         initText={description}
       />
       <Input
         type="number"
-        text="phone/contact"
+        text={t("phone/contact")}
         stateChanger={setContact}
         initText={contact}
       />
-      <TextArea text="address" stateChanger={setAddress} initText={address} />
-      <Input text="password" stateChanger={setPassword} initText={password} />
+      <TextArea text={t("address")} stateChanger={setAddress} initText={address} />
+      <Input text={t("password")} stateChanger={setPassword} initText={password} />
       {error != "" && (
         <Text marginTop={"25px"} color={"red-text"} text={error} />
       )}
       <div style={{ marginTop: "40px" }} />
-      <Button text="done" stateChanger={handleEdit} />
+      <Button text={t("done")} stateChanger={handleEdit} />
 
       <div style={{ marginTop: "50px" }} />
     </>
