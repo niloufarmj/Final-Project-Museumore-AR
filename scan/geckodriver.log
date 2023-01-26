@@ -241,3 +241,36 @@ console.warn: SearchSettings: "get: No settings file exists, new profile?" (new 
 DevTools listening on ws://127.0.0.1:49451/devtools/browser/5e20717c-9958-4f38-9654-024b2e46f654
 1674680303531	Marionette	INFO	Stopped listening on port 44109
 console.warn: TopSitesFeed: Failed to fetch data from Contile server: NetworkError when attempting to fetch resource.
+1674707347932	geckodriver	INFO	Listening on 127.0.0.1:40143
+1674707348428	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "39195" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileQGgz8D"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+ATTENTION: default value of option mesa_glthread overridden by environment.
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1674707349301	Marionette	INFO	Marionette enabled
+1674707349305	Marionette	INFO	Listening on port 45275
+Read port: 45275
+ATTENTION: default value of option mesa_glthread overridden by environment.
+WebDriver BiDi listening on ws://127.0.0.1:39195
+1674707349798	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.error: ({})
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofileQGgz8D/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:39195/devtools/browser/2eca4fef-bdfa-4854-9ba0-1573b572dce0
+JavaScript error: , line 0: NotFoundError: No such JSWindowActor 'DevToolsFrame'
+1674707518543	geckodriver	INFO	Listening on 127.0.0.1:35557
+1674707518552	mozrunner::runner	INFO	Running command: "/usr/bin/firefox" "--marionette" "--remote-debugging-port" "43525" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofilei2Kbtg"
+console.warn: services.settings: Ignoring preference override of remote settings server
+console.warn: services.settings: Allow by setting MOZ_REMOTE_SETTINGS_DEVTOOLS=1 in the environment
+ATTENTION: default value of option mesa_glthread overridden by environment.
+ATTENTION: default value of option mesa_glthread overridden by environment.
+1674707519164	Marionette	INFO	Marionette enabled
+1674707519167	Marionette	INFO	Listening on port 39593
+Read port: 39593
+ATTENTION: default value of option mesa_glthread overridden by environment.
+WebDriver BiDi listening on ws://127.0.0.1:43525
+1674707519608	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.error: ({})
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at /tmp/rust_mozprofilei2Kbtg/search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:43525/devtools/browser/ad1e9802-8e7a-45f6-a697-bbcb8596904b
+1674707574741	Marionette	INFO	Stopped listening on port 45275
+console.warn: TopSitesFeed: Failed to fetch data from Contile server: NetworkError when attempting to fetch resource.

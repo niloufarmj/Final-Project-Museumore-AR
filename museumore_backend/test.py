@@ -20,17 +20,15 @@ driver = webdriver.Firefox(firefox_profile=profile)
 
 #launch URL
 driver.get("https://hiukim.github.io/mind-ar-js-doc/tools/compile/")
-chooseFile = driver.find_element(By.CLASS_NAME, "dz-hidden-input")
 
-files = ""
+
+files = []
 for path in os.listdir("/home/nanami/Documents/final project/museumore_backend/media"):
     # check if current path is a file
     if os.path.isfile(os.path.join("/home/nanami/Documents/final project/museumore_backend/media", path)):
-        files = files + ("/home/nanami/Documents/final project/museumore_backend/media/" + path + "\n")
+        chooseFile = driver.find_element(By.CLASS_NAME, "dz-hidden-input")
+        chooseFile.send_keys("/home/nanami/Documents/final project/museumore_backend/media/" + path)
 
-print(files)
-
-chooseFile.send_keys(files)
 
 time.sleep(0.5)
 
