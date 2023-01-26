@@ -274,3 +274,5 @@ console.warn: SearchSettings: "get: No settings file exists, new profile?" (new 
 DevTools listening on ws://127.0.0.1:43525/devtools/browser/ad1e9802-8e7a-45f6-a697-bbcb8596904b
 1674707574741	Marionette	INFO	Stopped listening on port 45275
 console.warn: TopSitesFeed: Failed to fetch data from Contile server: NetworkError when attempting to fetch resource.
+1674710033423	Marionette	INFO	Stopped listening on port 39593
+console.warn: TopSitesFeed: Failed to fetch data from Contile server: NetworkError when attempting to fetch resource.

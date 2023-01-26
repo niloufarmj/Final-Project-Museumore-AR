@@ -53,7 +53,7 @@ function ItemInfo() {
 
       <div style={{ marginTop: "50px" }} />
 
-      <VideoArea />
+      <VideoArea src={item.extra_video}/>
 
       <div style={{ marginTop: "70px" }} />
 

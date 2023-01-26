@@ -18,12 +18,12 @@ function mainFunction() {
   const camera = document.getElementsByTagName("a-camera")[0];
   let result = ``;
   for (let i = 0; i < items.length; i++) {
-    let play_btn_id = "play-btn" + i;
-    let info_btn_id = "info-btn" + i;
+    let play_btn_id = "play-btn" + items[i].target_index;
+    let info_btn_id = "info-btn" + items[i].target_index;
     result =
       result +
       `
-      <a-entity mindar-image-target="targetIndex: ${i}">
+      <a-entity mindar-image-target="targetIndex: ${items[i].target_index}">
         <a-image id="${play_btn_id}" class="clickable"
           src="./Assets/play_btn.png"
           width="0.2" height="0.2" position="0.3 0 0"></a-image>

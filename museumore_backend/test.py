@@ -7,7 +7,7 @@ import time
 
 
 if os.path.exists("/home/nanami/Documents/final project/scan/targets.mind"):
-  os.remove("demofile.txt")
+  os.remove("/home/nanami/Documents/final project/scan/targets.mind")
 
 profile = webdriver.FirefoxProfile()
 profile.set_preference("browser.download.folderList", 2)
@@ -21,14 +21,25 @@ driver = webdriver.Firefox(firefox_profile=profile)
 #launch URL
 driver.get("https://hiukim.github.io/mind-ar-js-doc/tools/compile/")
 
+count = 0
+dir_path = "/home/nanami/Documents/final project/museumore_backend/media/target_images"
+for path in os.scandir(dir_path):
+    if path.is_file():
+        count += 1
 
-files = []
-for path in os.listdir("/home/nanami/Documents/final project/museumore_backend/media"):
+files = [""] * count
+
+for path in os.listdir(dir_path):
     # check if current path is a file
-    if os.path.isfile(os.path.join("/home/nanami/Documents/final project/museumore_backend/media", path)):
-        chooseFile = driver.find_element(By.CLASS_NAME, "dz-hidden-input")
-        chooseFile.send_keys("/home/nanami/Documents/final project/museumore_backend/media/" + path)
+    if os.path.isfile(os.path.join(dir_path, path)):
+        files[int(path[0])] = dir_path + "/" + path
+        
 
+for i in range(0, count):
+    file_address = files[i]
+    chooseFile = driver.find_element(By.CLASS_NAME, "dz-hidden-input")
+    chooseFile.send_keys(file_address)
+    time.sleep(0.1)
 
 time.sleep(0.5)
 
@@ -46,3 +57,4 @@ while flag == True:
 
 driver.find_element(By.CLASS_NAME, "startButton_OY2G").click()
 
+driver.close()

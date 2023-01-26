@@ -45,8 +45,11 @@ function AddItem() {
       return;
     } else {
       const data = new FormData();
+
+      const new_image = new File([image], items.length + ".jpg")
+
       data.append("gallary_id", gallary.id);
-      data.append("target_image", image);
+      data.append("target_image", new_image);
       data.append("target_index", items.length);
       data.append("title", title);
       data.append("description", description);
