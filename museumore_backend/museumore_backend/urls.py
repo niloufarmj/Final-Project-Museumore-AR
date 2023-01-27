@@ -5,6 +5,7 @@ from museumore.views import *
 from django.conf import settings
 from django.conf.urls.static import static
 
+
 # router = routers.DefaultRouter()
 # router.register(r'gallaries', views.GallaryView, 'gallary')
 # router.register(r'items', views.ItemView, 'item')
@@ -20,4 +21,5 @@ urlpatterns = [
       re_path(r'^api/gallaries/(?P<pk>\d+)/$', GallaryView.as_view()),
       re_path(r'^api/items/$', ItemListView.as_view()),
       re_path(r'^api/items/(?P<pk>\d+)/$', ItemView.as_view()), 
+      re_path(r'^compile/$', MyView.as_view())
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -11,7 +11,7 @@ import Text from "../Layouts/Text";
 import Image from "../Layouts/Image";
 import RemoveButton from "../Layouts/RemoveButton";
 
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 import VideoArea from "../Layouts/VideoArea";
 
 function AddItem() {
@@ -20,27 +20,31 @@ function AddItem() {
 
   const [items, setItems] = useState([]);
   const [image, setImage] = useState(null);
-  const [shownImage, setShownImage] = useState(null)
+  const [shownImage, setShownImage] = useState(null);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [audio, setAudio] = useState("");
   const [augmentedVideoOrImage, setAugmentedVideoOrImage] = useState("");
   const [extraVideo, setExtraVideo] = useState(null);
-  const [shownVideo, setShownVideo] = useState("")
+  const [shownVideo, setShownVideo] = useState("");
 
   const [error, setError] = useState("");
 
   const [margin, setMargin] = useState("100px");
 
-  const {t, i18n} = useTranslation(['additem']);
+  const { t, i18n } = useTranslation(["additem"]);
 
-  useEffect(() => {
+  const fetchItems = () => {
     fetch("http://localhost:8000/api/items/")
       .then((res) => res.json())
       .then((data) => {
         setItems(data);
       })
       .catch((err) => console.error(err));
+  }
+
+  useEffect(() => {
+    fetchItems();
   }, []);
 
   const handleAddItem = async () => {
@@ -53,10 +57,11 @@ function AddItem() {
       // setMargin("58px");
       return;
     } else {
+      fetchItems()
+
       const data = new FormData();
 
-      const new_image = new File([image], items.length + ".jpg")
-      if (extraVideo == null) setExtraVideo("");
+      const new_image = new File([image], items.length + ".jpg");
 
       data.append("gallary_id", gallary.id);
       data.append("target_image", new_image);
@@ -65,7 +70,11 @@ function AddItem() {
       data.append("description", description);
       data.append("audio", audio);
       data.append("augmented_video", augmentedVideoOrImage);
-      data.append("extra_video", extraVideo);
+      if (extraVideo != null) {
+        data.append("extra_video", image);
+      } else {
+        data.append("extra_video", "");
+      }
 
       fetch("http://localhost:8000/api/items/", {
         method: "POST",
@@ -73,45 +82,50 @@ function AddItem() {
       })
         .then((res) => res.json())
         .then((data) => {
-          navigate("/dashboard");
+          compile();
         })
         .catch((err) => console.error(err));
     }
   };
 
+  const compile = () => {
+    fetch("http://localhost:8000/compile", {
+      method: "GET",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        navigate("/dashboard");
+      })
+      .catch((err) => console.error(err));
+  };
+
   const imageChange = (obj) => {
     setImage(obj);
-    if (obj != null)
-      setShownImage(URL.createObjectURL(obj));   
-  }
+    if (obj != null) setShownImage(URL.createObjectURL(obj));
+  };
 
   const videoChange = (obj) => {
     setExtraVideo(obj);
-    if (obj != null)
-      setShownVideo(URL.createObjectURL(obj))
-  }
+    if (obj != null) setShownVideo(URL.createObjectURL(obj));
+  };
 
   return (
     <>
       <ReturnButton />
       <div style={{ alignItems: "center", marginTop: "3%" }}>
-        
-        {image == null ? 
-        <AddImageButton
-          width="70%"
-          marginLeft="15%"
-          text={t("add target image")}
-          stateChanger={imageChange}
-        /> : 
-        <>
-          <Image
-            width="65%"
-            left="16%"
-            src={shownImage}
+        {image == null ? (
+          <AddImageButton
+            width="70%"
+            marginLeft="15%"
+            text={t("add target image")}
+            stateChanger={imageChange}
           />
-          <RemoveButton stateChanger={imageChange}/>
-        </>
-        }
+        ) : (
+          <>
+            <Image width="65%" left="16%" src={shownImage} />
+            <RemoveButton stateChanger={imageChange} />
+          </>
+        )}
 
         <div style={{ marginTop: "3%" }}></div>
 
@@ -135,19 +149,18 @@ function AddItem() {
 
         <div style={{ marginTop: "1%" }}></div>
 
-        
-        {extraVideo == null ? 
-        <AddFileButton text={t("add extra video")} stateChanger={videoChange} /> : 
-        <>
-          <div style={{ marginTop: "3%" }}></div>
-          <VideoArea
-            width="65%"
-            left="16%"
-            src={shownVideo}
+        {extraVideo == null ? (
+          <AddFileButton
+            text={t("add extra video")}
+            stateChanger={videoChange}
           />
-          <RemoveButton stateChanger={videoChange}/>
-        </>
-        }
+        ) : (
+          <>
+            <div style={{ marginTop: "3%" }}></div>
+            <VideoArea width="65%" left="16%" src={shownVideo} />
+            <RemoveButton stateChanger={videoChange} />
+          </>
+        )}
 
         <div style={{ marginTop: "5%" }}></div>
 
