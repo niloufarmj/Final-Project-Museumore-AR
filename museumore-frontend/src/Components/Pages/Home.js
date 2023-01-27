@@ -16,7 +16,7 @@ function Home() {
     <>
       <div style={{ alignItems: "center" }}>
         <Logo width={100} />
-        <Button text={"scan"} redirectPath={"http://127.0.0.1:5500/scan/index.html"} />
+        <Button text={"scan"} redirectPath={"http://127.0.0.1:8080"} />
 
         <Text marginTop={"50px"} text={t("Do you own a museum / gallary?")} />
         <Link text={t("Click here to signup")} path="/signup" />

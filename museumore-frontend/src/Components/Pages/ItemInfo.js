@@ -41,7 +41,7 @@ function ItemInfo() {
   }
   return (
     <>
-      <ReturnButton redirectPath={"http://127.0.0.1:5500/scan/index.html"} />
+      <ReturnButton path="/" />
       <div style={{ marginTop: "30px" }} />
       <Image width="65%" left="16%" src={item.target_image} />
       <div style={{ marginTop: "30px" }} />
