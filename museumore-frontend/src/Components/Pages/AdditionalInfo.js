@@ -7,13 +7,16 @@ import React, { useState } from "react";
 import TextArea from "../Layouts/TextArea";
 import Button from "../Layouts/Button";
 import { useNavigate } from "react-router-dom";
+import Image from "../Layouts/Image";
+import RemoveButton from "../Layouts/RemoveButton";
 
 import { useTranslation } from 'react-i18next';
 
 function AdditionalInfo() {
   const gallary = JSON.parse(localStorage.getItem("user"));
 
-  const [image, setImage] = useState('');
+  const [image, setImage] = useState(null);
+  const [shownImage, setShownImage] = useState(null)
   const [description, setDescription] = useState("");
   const [address, setAddress] = useState("");
   const [contact, setContact] = useState("");
@@ -29,7 +32,11 @@ function AdditionalInfo() {
     data.append("username", gallary.username);
     data.append("email", gallary.email);
     data.append("password", gallary.password);
-    data.append("image", image);
+    if (image != null) {
+      data.append("image", image);
+    } else {
+      data.append("image", "");
+    }
     data.append("address", address);
     data.append("contact", contact);
     data.append("description", description);
@@ -46,19 +53,38 @@ function AdditionalInfo() {
       .catch((err) => console.error(err));
   };
 
+  const imageChange = (obj) => {
+    setImage(obj);
+    if (obj != null)
+      setShownImage(URL.createObjectURL(obj))     
+  }
+
   return (
     <>
       <div style={{ marginTop: "50px" }} />
       <Title text={t("additional info")} />
 
       <div style={{ marginTop: "30px" }} />
+
+      {image == null ? 
       <AddImageButton
         shape="round"
         width="35%"
         marginLeft="32%"
         text={t("add image")}
-        stateChanger={setImage}
-      />
+        stateChanger={imageChange}
+      /> : 
+      <>
+        <Image
+          shape="round"
+          width="35%"
+          height="125px"
+          left="32%"
+          src={shownImage}
+        />
+        <RemoveButton stateChanger={imageChange}/>
+      </>
+      }
 
       <div style={{ marginTop: "30px" }} />
       <TextArea text={t("description")} stateChanger={setDescription} />

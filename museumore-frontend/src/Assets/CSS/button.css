@@ -106,3 +106,29 @@
   color: #2aadb6;
   font-variation-settings: "slnt" -1;
 }
+
+.remove-button {
+  display: inline-block;
+  flex-direction: row;
+  align-items: flex-start;
+
+  width: 20%;
+  height: 30px;
+  margin-left: 4%;
+
+  background: #ffffff !important;
+  mix-blend-mode: darken;
+  border: 3px solid rgb(244, 85, 85);
+  border-radius: 15px;
+
+  font-family: "Arial";
+  font-weight: 657;
+  font-size: 11px;
+  line-height: 16px;
+
+  align-items: center;
+  text-transform: uppercase;
+
+  color: rgb(244, 85, 85);
+  font-variation-settings: "slnt" -1;
+}

@@ -8,6 +8,8 @@ import TextArea from "../Layouts/TextArea";
 import AddImageButton from "../Layouts/AddImageButton";
 import { useNavigate } from "react-router-dom";
 import Text from "../Layouts/Text";
+import Image from "../Layouts/Image";
+import RemoveButton from "../Layouts/RemoveButton";
 
 import { useTranslation } from 'react-i18next';
 
@@ -17,6 +19,7 @@ function AddItem() {
 
   const [items, setItems] = useState([]);
   const [image, setImage] = useState(null);
+  const [shownImage, setShownImage] = useState(null)
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [audio, setAudio] = useState("");
@@ -73,16 +76,34 @@ function AddItem() {
     }
   };
 
+  const imageChange = (obj) => {
+    setImage(obj);
+    if (obj != null)
+      setShownImage(URL.createObjectURL(obj))     
+  }
+
   return (
     <>
       <ReturnButton />
       <div style={{ alignItems: "center", marginTop: "3%" }}>
+        
+
+        {image == null ? 
         <AddImageButton
           width="70%"
           marginLeft="15%"
           text={t("add target image")}
-          stateChanger={setImage}
-        />
+          stateChanger={imageChange}
+        /> : 
+        <>
+          <Image
+            width="65%"
+            left="16%"
+            src={shownImage}
+          />
+          <RemoveButton stateChanger={imageChange}/>
+        </>
+        }
         <div style={{ marginTop: "3%" }}></div>
         <Input text={t("Title")} stateChanger={setTitle} />
         <div style={{ marginTop: "3%" }}></div>

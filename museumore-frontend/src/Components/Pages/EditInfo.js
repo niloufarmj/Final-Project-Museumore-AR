@@ -8,13 +8,16 @@ import AddImageButton from "../Layouts/AddImageButton";
 import { useNavigate } from "react-router-dom";
 import Text from "../Layouts/Text";
 import ReturnButton from "../Layouts/ReturnButton";
+import Image from "../Layouts/Image";
 
 import { useTranslation } from 'react-i18next';
+import RemoveButton from "../Layouts/RemoveButton";
 
 function EditInfo() {
   const gallary = JSON.parse(localStorage.getItem("user"));
 
   const [image, setImage] = useState(gallary.image);
+  const [shownImage, setShownImage] = useState(gallary.image)
   const [name, setName] = useState(gallary.name);
   const [description, setDescription] = useState(gallary.description);
   const [contact, setContact] = useState(gallary.contact);
@@ -62,17 +65,36 @@ function EditInfo() {
     }
   };
 
+  const imageChange = (obj) => {
+    setImage(obj);
+    if (obj != null)
+      setShownImage(URL.createObjectURL(obj))     
+  }
+
   return (
     <>
       <ReturnButton path={"/dashboard"} />
       <div style={{ marginTop: "30px" }} />
+      {image == null ? 
       <AddImageButton
         shape="round"
         width="35%"
         marginLeft="32%"
         text={t("change or set profile image")}
-        stateChanger={setImage}
-      />
+        stateChanger={imageChange}
+      /> : 
+      <>
+        <Image
+          shape="round"
+          width="35%"
+          height="125px"
+          left="32%"
+          src={shownImage}
+        />
+        <RemoveButton stateChanger={imageChange}/>
+      </>
+      }
+      
 
       <div style={{ marginTop: "40px" }} />
       <Input
