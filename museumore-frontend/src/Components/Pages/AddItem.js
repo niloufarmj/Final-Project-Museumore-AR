@@ -12,6 +12,7 @@ import Image from "../Layouts/Image";
 import RemoveButton from "../Layouts/RemoveButton";
 
 import { useTranslation } from 'react-i18next';
+import VideoArea from "../Layouts/VideoArea";
 
 function AddItem() {
   const gallary = JSON.parse(localStorage.getItem("user"));
@@ -24,7 +25,8 @@ function AddItem() {
   const [description, setDescription] = useState("");
   const [audio, setAudio] = useState("");
   const [augmentedVideoOrImage, setAugmentedVideoOrImage] = useState("");
-  const [extraVideo, setExtraVideo] = useState("");
+  const [extraVideo, setExtraVideo] = useState(null);
+  const [shownVideo, setShownVideo] = useState("")
 
   const [error, setError] = useState("");
 
@@ -54,6 +56,7 @@ function AddItem() {
       const data = new FormData();
 
       const new_image = new File([image], items.length + ".jpg")
+      if (extraVideo == null) setExtraVideo("");
 
       data.append("gallary_id", gallary.id);
       data.append("target_image", new_image);
@@ -79,7 +82,13 @@ function AddItem() {
   const imageChange = (obj) => {
     setImage(obj);
     if (obj != null)
-      setShownImage(URL.createObjectURL(obj))     
+      setShownImage(URL.createObjectURL(obj));   
+  }
+
+  const videoChange = (obj) => {
+    setExtraVideo(obj);
+    if (obj != null)
+      setShownVideo(URL.createObjectURL(obj))
   }
 
   return (
@@ -87,7 +96,6 @@ function AddItem() {
       <ReturnButton />
       <div style={{ alignItems: "center", marginTop: "3%" }}>
         
-
         {image == null ? 
         <AddImageButton
           width="70%"
@@ -104,24 +112,52 @@ function AddItem() {
           <RemoveButton stateChanger={imageChange}/>
         </>
         }
+
         <div style={{ marginTop: "3%" }}></div>
+
         <Input text={t("Title")} stateChanger={setTitle} />
+
         <div style={{ marginTop: "3%" }}></div>
+
         <AddFileButton text={t("add main audio")} stateChanger={setAudio} />
+
         <div style={{ marginTop: "1%" }}></div>
+
         <AddFileButton
           text={t("add augmented image or video")}
+          class={"disabled"}
           stateChanger={setAugmentedVideoOrImage}
         />
+
         <div style={{ marginTop: "3%" }}></div>
+
         <TextArea text={t("Description")} stateChanger={setDescription} />
+
         <div style={{ marginTop: "1%" }}></div>
-        <AddFileButton text={t("add extra video")} stateChanger={setExtraVideo} />
+
+        
+        {extraVideo == null ? 
+        <AddFileButton text={t("add extra video")} stateChanger={videoChange} /> : 
+        <>
+          <div style={{ marginTop: "3%" }}></div>
+          <VideoArea
+            width="65%"
+            left="16%"
+            src={shownVideo}
+          />
+          <RemoveButton stateChanger={videoChange}/>
+        </>
+        }
+
         <div style={{ marginTop: "5%" }}></div>
+
         {error != "" && (
           <Text marginTop={"25px"} color={"red-text"} text={error} />
         )}
+        <div style={{ marginTop: "10%" }}></div>
+
         <Button text={t("Done")} stateChanger={handleAddItem} />
+
         <div style={{ marginTop: "5%" }}></div>
       </div>
     </>

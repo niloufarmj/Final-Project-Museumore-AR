@@ -107,6 +107,11 @@
   font-variation-settings: "slnt" -1;
 }
 
+.disabled {
+  border: 3px solid #a2a0a0 !important;
+  color: #a2a0a0 !important;
+}
+
 .remove-button {
   display: inline-block;
   flex-direction: row;

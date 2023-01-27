@@ -4,6 +4,8 @@ function AddFileButton(params) {
   const hiddenFileInput = React.useRef(null);
 
   const handleClick = () => {
+    if (params.class == "disabled")
+      return;
     hiddenFileInput.current.click();
   };
   const handleChange = (event) => {
@@ -16,7 +18,7 @@ function AddFileButton(params) {
   };
   return (
     <>
-      <button className="add-file" onClick={handleClick}>
+      <button className={"add-file " + params.class} onClick={handleClick}>
         {params.text}
       </button>
 

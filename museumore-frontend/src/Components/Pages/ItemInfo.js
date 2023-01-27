@@ -37,7 +37,7 @@ function ItemInfo() {
   }, []);
 
   if (!item) {
-    return <div>Loading...</div>;
+    return <div>{t("Loading...")}</div>;
   }
   return (
     <>
@@ -53,11 +53,11 @@ function ItemInfo() {
 
       <div style={{ marginTop: "50px" }} />
 
-      <PlayAudioButton text={t("play main audio")} src={item.audio} />
+      {item.audio && <PlayAudioButton text={t("play main audio")} src={item.audio} />}
 
       <div style={{ marginTop: "50px" }} />
 
-      <VideoArea src={item.extra_video}/>
+      {item.extra_video && <VideoArea src={item.extra_video}/>}
 
       <div style={{ marginTop: "70px" }} />
 
