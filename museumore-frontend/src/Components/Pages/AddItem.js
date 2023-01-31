@@ -13,6 +13,7 @@ import RemoveButton from "../Layouts/RemoveButton";
 
 import { useTranslation } from "react-i18next";
 import VideoArea from "../Layouts/VideoArea";
+import CustomLoadingButton from "../Layouts/CustumLoadingButton";
 
 function AddItem() {
   const gallary = JSON.parse(localStorage.getItem("user"));
@@ -27,6 +28,7 @@ function AddItem() {
   const [augmentedVideoOrImage, setAugmentedVideoOrImage] = useState("");
   const [extraVideo, setExtraVideo] = useState(null);
   const [shownVideo, setShownVideo] = useState("");
+  const [pending, setPending] = useState(false)
 
   const [error, setError] = useState("");
 
@@ -57,10 +59,12 @@ function AddItem() {
       // setMargin("58px");
       return;
     } else {
+      setPending(true)
+
       fetchItems()
 
       const data = new FormData();
-
+    
       const new_image = new File([image], items.length + ".jpg");
 
       data.append("gallary_id", gallary.id);
@@ -169,7 +173,8 @@ function AddItem() {
         )}
         <div style={{ marginTop: "10%" }}></div>
 
-        <Button text={t("Done")} stateChanger={handleAddItem} />
+        {!pending && <Button text={t("Done")} stateChanger={handleAddItem} />}
+        {pending && <CustomLoadingButton text={true} />}
 
         <div style={{ marginTop: "5%" }}></div>
       </div>

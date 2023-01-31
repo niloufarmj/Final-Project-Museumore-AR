@@ -36,3 +36,31 @@
     transform: rotate(360deg);
   }
 }
+
+.lang-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: 30%;
+  margin-top: 10px;
+  height: 50px;
+
+  background: #828181;
+  mix-blend-mode: darken;
+  border: 3px solid #ffffff;
+  box-shadow: 0px 2px 30px rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+
+  font-family: "Arial";
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  text-transform: uppercase;
+
+  color: #ffffff;
+  font-variation-settings: "slnt" -1;
+}

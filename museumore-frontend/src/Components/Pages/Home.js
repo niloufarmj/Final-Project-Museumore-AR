@@ -8,15 +8,17 @@ import about_us_img from "../../Assets/Media/about-us.png";
 import how_to_img from "../../Assets/Media/how-to.png";
 
 import { useTranslation } from 'react-i18next';
+import ReturnButton from "../Layouts/ReturnButton";
 
 function Home() {
   const {t, i18n} = useTranslation(['home']);
   
   return (
     <>
+    <ReturnButton notHasReturn={true} />
       <div style={{ alignItems: "center" }}>
         <Logo width={100} />
-        <Button text={"scan"} redirectPath={"http://127.0.0.1:8080"} />
+        <Button text={t("scan")} redirectPath={"http://127.0.0.1:8080"} />
 
         <Text marginTop={"50px"} text={t("Do you own a museum / gallary?")} />
         <Link text={t("Click here to signup")} path="/signup" />
@@ -33,9 +35,8 @@ function Home() {
         <ImageButton image={how_to_img} text={t("How to Use")} />
       </div>
 
-      {/* <div style={{marginTop: "50px"}}>
-        <p onClick={changeLang}>{t("Change to Persian")}</p>
-      </div> */}
+      <div style={{marginTop: "50px"}}>
+      </div>
     </>
   );
 }

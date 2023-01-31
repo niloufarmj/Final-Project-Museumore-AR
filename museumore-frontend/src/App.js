@@ -12,24 +12,16 @@ import Library from "./Components/Pages/Library";
 import EditInfo from "./Components/Pages/EditInfo";
 import MuseumInfo from "./Components/Pages/MuseumInfo";
 import ItemInfo from "./Components/Pages/ItemInfo";
-import i18next from 'i18next';
 import './locale.js';
 
 
 function App() {
 
-  const [lang, setLang] = useState("fa_IR");
-
-  const changeLang = () => {
-    i18next.changeLanguage(lang);
-    if (lang == "en_US") 
-      setLang("fa_IR")
-    else setLang("en_US")
-    
-  }
+  
   
   return (
     <>
+    
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
@@ -45,12 +37,9 @@ function App() {
         <Route path="/museuminfo" element={<MuseumInfo />} />
       </Routes>
     </BrowserRouter>
-    <div style={{marginTop: "50px"}}>
-      <p onClick={changeLang}>{lang}</p>
-    </div>
+    
     </>
     
-
   );
 }
 

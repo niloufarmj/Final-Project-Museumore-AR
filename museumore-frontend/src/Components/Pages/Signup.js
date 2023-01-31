@@ -9,6 +9,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 import { useTranslation } from 'react-i18next';
+import CustomLoadingButton from "../Layouts/CustumLoadingButton";
 
 function Signup() {
   const navigate = useNavigate();
@@ -25,6 +26,7 @@ function Signup() {
   const [errorUserName, setErrorUserName] = useState("");
   const [errorPassword, setErrorPassword] = useState("");
   const [errorEmail, setErrorEmail] = useState("");
+  const [pending, setPending] = useState(false);
 
   const {t, i18n} = useTranslation(['gallaryinfo']);
 
@@ -34,6 +36,8 @@ function Signup() {
       setMargin("58px");
       return;
     } else {
+      setPending(true);
+      
       const item = {
         name: name,
         username: username,
@@ -109,7 +113,8 @@ function Signup() {
         )}
 
         <div style={{ marginTop: margin }} />
-        <Button text={t("signup")} stateChanger={handleSubmit} />
+        {!pending && <Button text={t("signup")} stateChanger={handleSubmit} />}
+        {pending && <CustomLoadingButton />}
 
         <Text marginTop={"40px"} text={t("Already have an account?")} />
         <Link text={t("Click here to login")} path="/login" />

@@ -39,7 +39,8 @@ export default {
         'You should fill name!': 'باید نام را پر کنید!',
         'You should fill password!': 'باید رمز عبور را پر کنید!',
         'change or set profile image': 'اضافه کردن یا تغییر دادن عکس',
-        'done': 'تمام'
+        'done': 'تمام',
+        'remove': 'حذف'
       },
 
       login: {
@@ -68,14 +69,16 @@ export default {
         'password': 'رمز عبور',
         'login': 'ورود',
         "don't have an account?": 'حساب کاربری ندارید؟',
-        'click here to signup': 'برای ثبت نام کلیک کنید'
+        'click here to signup': 'برای ثبت نام کلیک کنید',
+        'remove': 'حذف'
       },
 
       iteminfo: {
         'description': 'توضیحات',
         'play main audio': 'پخش فایل صوتی اصلی',
         'view museum / gallary info': 'مشاهده اطلاعات موزه / گالری',
-        'Loading...': 'در حال بررسی'
+        'Loading...': 'در حال بررسی',
+        'stop playing': 'توقف پخش'
       },
 
       additem: {
@@ -87,7 +90,8 @@ export default {
         'add target image': 'اضافه کردن عکس هدف',
         'Description': 'توضیحات',
         'add extra video': 'اضافه کردن ویدیوی تکمیلی',
-        'Done': 'تمام'
+        'Done': 'تمام',
+        'remove': 'حذف'
       }
     },
     // add other language to the object

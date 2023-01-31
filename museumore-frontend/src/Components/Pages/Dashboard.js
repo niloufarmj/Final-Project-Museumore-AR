@@ -4,6 +4,7 @@ import "../../Assets/CSS/button.css";
 
 import React from "react";
 import Button from "../Layouts/Button";
+import ReturnButton from "../Layouts/ReturnButton";
 
 import { useTranslation } from 'react-i18next';
 
@@ -14,6 +15,7 @@ function Dashboard() {
 
   return (
     <>
+      <ReturnButton notHasReturn={true} />
       <div style={{ marginTop: "50px" }} />
       <Image
         shape="round"
@@ -35,6 +37,7 @@ function Dashboard() {
       <Button text={t("library")} path="/library" />
       <div style={{ marginTop: "30px" }} />
       <Button text={t("logout")} path="/login" />
+      <div style={{ marginTop: "50px" }} />
     </>
   );
 }

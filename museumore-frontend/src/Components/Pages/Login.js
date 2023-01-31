@@ -8,6 +8,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { useTranslation } from 'react-i18next';
+import CustomLoadingButton from "../Layouts/CustumLoadingButton";
 
 function Login() {
   const navigate = useNavigate();
@@ -17,21 +18,28 @@ function Login() {
   const [password, setPassword] = useState("");
   const [provedPassword, setProvedPassword] = useState(false);
   const [gallaries, setGallaries] = useState([]);
+  const [pending, setPending] = useState(false)
 
   const [error, setError] = useState("");
 
   const {t, i18n} = useTranslation(['login']);
 
-  useEffect(() => {
+  const fetchGallaries = () => {
     fetch("http://localhost:8000/api/gallaries/")
       .then((res) => res.json())
       .then((data) => {
         setGallaries(data);
       })
       .catch((err) => console.error(err));
+  }
+
+  useEffect(() => {
+    fetchGallaries();
   }, []);
 
   const handleLogin = () => {
+    setPending(true);
+
     for (const gallary of gallaries) {
       if (username == gallary.username) {
         setProvedUsername(true);
@@ -65,7 +73,8 @@ function Login() {
         )}
 
         <div style={{ marginTop: "50px" }} />
-        <Button text={t("login")} stateChanger={handleLogin} />
+        {!pending && <Button text={t("login")} stateChanger={handleLogin} />}
+        {pending && <CustomLoadingButton />}
         <Text marginTop={"50px"} text={t("don't have an account?")} />
         <Link text={t("click here to signup")} path="/signup" />
       </div>

@@ -1,10 +1,14 @@
 import React, { useState, useRef } from "react";
 import "../../Assets/CSS/button.css";
 
+import { useTranslation } from 'react-i18next';
+
 function PlayAudioButton(params) {
-  const [buttonText, setButtonText] = useState(params.text);
+  //const [buttonText, setButtonText] = useState(params.text);
   const [isPlay, setIsPlay] = useState(false);
   const myRef = useRef();
+
+  const {t, i18n} = useTranslation(['iteminfo']);
 
   const playOrstop = () => {
     if (params.src) {
@@ -12,11 +16,9 @@ function PlayAudioButton(params) {
       if (!isPlay) {
         myRef.current.play();
         setIsPlay(true);
-        setButtonText("stop playing");
       } else {
         myRef.current.pause();
         setIsPlay(false);
-        setButtonText(params.text);
       }
     }
   };
@@ -29,7 +31,8 @@ function PlayAudioButton(params) {
         style={{ width: "40%", marginLeft: "30%" }}
         onClick={playOrstop}
       >
-        {buttonText}
+        {isPlay && t('stop playing')}
+        {!isPlay && t('play main audio')}
       </button>
     </>
   );

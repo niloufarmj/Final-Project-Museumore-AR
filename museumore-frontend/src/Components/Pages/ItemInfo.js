@@ -52,8 +52,7 @@ function ItemInfo() {
       <Text text={item.description} />
 
       <div style={{ marginTop: "50px" }} />
-
-      {item.audio && <PlayAudioButton text={t("play main audio")} src={item.audio} />}
+      {item.audio && <PlayAudioButton src={item.audio} />}
 
       <div style={{ marginTop: "50px" }} />
 

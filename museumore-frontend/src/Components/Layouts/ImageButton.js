@@ -15,7 +15,7 @@ function ImageButton(params) {
           src={params.image}
           onClick={handleClick}
         />
-        <div className="title">{params.text}</div>
+        <div className="title" style={{marginLeft: "-12px"}}>{params.text}</div>
       </div>
     </>
   );
