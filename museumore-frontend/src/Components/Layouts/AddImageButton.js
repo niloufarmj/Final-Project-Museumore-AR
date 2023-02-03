@@ -1,3 +1,14 @@
+/**
+ * AddImageButton.js
+ * 
+ * @summary This file contains the AddImageButton component.
+ * 
+ * @description This component renders a button which, when clicked, opens a file picker for the user to select an image. 
+ * It passes an onChange callback to the FilePicker component which is called with the selected file's data.
+ * 
+ * @author Niloufar Moradi Jam - Kimia Sedighi
+ */
+
 import React from "react";
 import "../../Assets/CSS/button.css";
 
