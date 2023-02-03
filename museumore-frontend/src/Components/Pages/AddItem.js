@@ -60,7 +60,7 @@ function AddItem() {
       return;
     } else {
       setPending(true)
-
+      setError("");
       fetchItems()
 
       const data = new FormData();
