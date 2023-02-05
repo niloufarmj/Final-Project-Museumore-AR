@@ -43,7 +43,6 @@ function Signup() {
         username: username,
         email: email,
         password: password
-        // items: []
       };
       axios
         .post("http://localhost:8000/api/gallaries/", item)

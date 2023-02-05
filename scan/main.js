@@ -11,6 +11,9 @@ async function fetchItems() {
     })
     .catch((err) => console.error(err));
 }
+
+fetchItems();
+
 const insertAfter = (element, htmlString) =>
   element.insertAdjacentHTML("afterend", htmlString);
 
@@ -38,17 +41,12 @@ function mainFunction() {
   var play_btn = new Array();
   var info_btn = new Array();
 
-  // var play_btn0 = document.querySelector("#play-btn0");
-  // var info_btn0 = document.querySelector("#info-btn0");
-
   for (let i = 0; i < items.length; i++) {
     let play_btn_query = "#play-btn" + i;
     let info_btn_query = "#info-btn" + i;
     play_btn.push(document.querySelector(play_btn_query));
     info_btn.push(document.querySelector(info_btn_query));
   }
-
-  // let target_index = info_btn[i].parentElement.getAttribute("mindar-image-target").targetIndex;
 
   var playing_audio;
   var playing_audio_item_index = -1;
@@ -81,14 +79,4 @@ function mainFunction() {
       });
     }
   }
-  //console.log(document.body.innerHTML);
-  // var return_btn = document.querySelector("#return-img");
-  // if (return_btn) {
-  //   return_btn.addEventListener("click", () => {
-  //     console.log("here");
-  //     window.location.replace("http://localhost:3000/");
-  //   });
-  // }
 }
-
-fetchItems();

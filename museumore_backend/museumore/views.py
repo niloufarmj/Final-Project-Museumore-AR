@@ -42,13 +42,16 @@ class MyView(APIView):
         return Response(data="done", status=200)
 
 def compileTargets():
-    if os.path.exists("/home/nanami/Documents/final project/scan/targets.mind"):
-        os.remove("/home/nanami/Documents/final project/scan/targets.mind")
+    # if os.path.exists("/home/nanami/Documents/final project/scan/targets.mind"):
+    #     os.remove("/home/nanami/Documents/final project/scan/targets.mind")
+    if os.path.exists("E:/university-5to9/University-term9/museumore-ar-project/scan/targets.mind"):
+        os.remove("E:/university-5to9/University-term9/museumore-ar-project/scan/targets.mind")
 
     profile = webdriver.FirefoxProfile()
     profile.set_preference("browser.download.folderList", 2)
     profile.set_preference("browser.download.manager.showWhenStarting", False)
-    profile.set_preference("browser.download.dir", "/home/nanami/Documents/final project/scan")
+    # profile.set_preference("browser.download.dir", "/home/nanami/Documents/final project/scan")
+    profile.set_preference("browser.download.dir", "E:/university-5to9/University-term9/museumore-ar-project/scan")
     profile.set_preference("browser.helperApps.neverAsk.saveToDisk", "application/x-gzip")
 
 
@@ -67,7 +70,8 @@ def compileTargets():
     
 
     count = 0
-    dir_path = "/home/nanami/Documents/final project/museumore_backend/media/target_images"
+    # dir_path = "/home/nanami/Documents/final project/museumore_backend/media/target_images"
+    dir_path = "E:/university-5to9/University-term9/museumore-ar-project/museumore_backend/media/target_images"
     for path in os.scandir(dir_path):
         if path.is_file():
             count += 1
@@ -87,9 +91,13 @@ def compileTargets():
 
     for i in range(0, count):
         file_address = files[i]
+        print("here1")
         print(file_address)
+        print("here2")
         chooseFile = driver.find_element(By.CLASS_NAME, "dz-hidden-input")
+        print("here3")
         chooseFile.send_keys(file_address)
+        print("here4")
         time.sleep(0.1)
 
     time.sleep(0.5)

@@ -24,8 +24,7 @@ function ReturnButton(params) {
   };
 
   const marginLeft = params.notHasReturn == true ? "65%" : "40%";
-  console.log(params.notHasReturn)
-
+  
   return (
     <>
       <div style={{ marginTop: "20px", display: "flex" }}>

@@ -17,8 +17,6 @@ import './locale.js';
 
 function App() {
 
-  
-  
   return (
     <>
     
