@@ -59,7 +59,7 @@ def compileTargets():
     # options.add_argument('--headless')
 
     driver = webdriver.Firefox(firefox_profile=profile)
-    driver.set_page_load_timeout(10)
+    # driver.set_page_load_timeout(10)
 
     #launch URL
     # try: 

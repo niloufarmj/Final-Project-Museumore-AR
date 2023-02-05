@@ -49,13 +49,16 @@ function Login() {
           navigate("/dashboard");
           return;
         } else {
+          setPending(false)
           setError(t("Password is not correct!"));
+         
           return;
         }
       }
     }
 
     if (!provedUsername) {
+      setPending(false)
       setError(t("There is no gallary with this username!"));
     }
   };

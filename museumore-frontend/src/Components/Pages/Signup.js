@@ -36,7 +36,7 @@ function Signup() {
       setMargin("58px");
       return;
     } else {
-      setPending(true);
+      
       
       const item = {
         name: name,
@@ -47,6 +47,7 @@ function Signup() {
       axios
         .post("http://localhost:8000/api/gallaries/", item)
         .then((response) => {
+          setPending(true);
           localStorage.setItem("user", JSON.stringify(response.data));
           navigate("/additionalinfo");
           setError("");
