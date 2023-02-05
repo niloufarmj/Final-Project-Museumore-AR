@@ -24,7 +24,7 @@ class Item(models.Model):
     gallary_id = models.IntegerField(default=0)
     target_index = models.IntegerField(default=0)
     target_image = models.ImageField(upload_to='target_images/', null=True)
-    title = models.CharField(max_length=50)
+    title = models.TextField()
     description = models.TextField(blank=True)
     audio = models.FileField(upload_to='audios/', null=True)
     augmented_video = models.FileField(upload_to='augmented_images_or_videos/', null=True)

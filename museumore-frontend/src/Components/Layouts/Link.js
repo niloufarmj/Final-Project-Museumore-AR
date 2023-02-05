@@ -8,7 +8,7 @@ function Link(params) {
     navigate(params.path);
   }
   return (
-    <p className="link" onClick={handleClick}>
+    <p className="link" onClick={handleClick} style={{ color: params.color}}>
       {params.text}
     </p>
   );

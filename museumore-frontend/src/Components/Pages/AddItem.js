@@ -1,6 +1,7 @@
 import Button from "../Layouts/Button";
 import Input from "../Layouts/Input";
 import ReturnButton from "../Layouts/ReturnButton";
+import Link from "../Layouts/Link";
 
 import React, { useState, useEffect } from "react";
 import AddFileButton from "../Layouts/AddFileButton";
@@ -28,7 +29,8 @@ function AddItem() {
   const [augmentedVideoOrImage, setAugmentedVideoOrImage] = useState("");
   const [extraVideo, setExtraVideo] = useState(null);
   const [shownVideo, setShownVideo] = useState("");
-  const [pending, setPending] = useState(false)
+  const [pending, setPending] = useState(false);
+  const [isImageBig, setIsImageBig] = useState(false);
 
   const [error, setError] = useState("");
 
@@ -104,6 +106,11 @@ function AddItem() {
   };
 
   const imageChange = (obj) => {
+    if (obj != null && obj.size/1024 > 350) {
+      setIsImageBig(true);
+      return;
+    }
+    setIsImageBig(false)
     setImage(obj);
     if (obj != null) setShownImage(URL.createObjectURL(obj));
   };
@@ -118,12 +125,17 @@ function AddItem() {
       <ReturnButton />
       <div style={{ alignItems: "center", marginTop: "3%" }}>
         {image == null ? (
+          <>
           <AddImageButton
             width="70%"
             marginLeft="15%"
             text={t("add target image")}
             stateChanger={imageChange}
           />
+          {isImageBig ? <Link text={t("Your image size must be less than 350KBs") } color={"red"}/> : 
+          <Link text={t("Your image size must be less than 350KBs") }/>}
+          </>
+          
         ) : (
           <>
             <Image width="65%" left="16%" src={shownImage} />
