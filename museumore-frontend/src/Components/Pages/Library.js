@@ -24,12 +24,21 @@ function Library(params) {
       .catch((err) => console.error(err));
   }, []);
 
+
   return (
     <>
       <ReturnButton path="/dashboard" />
       <div>
         {itemsList.map((item) => (
-          <ItemCard image={item.target_image} title={item.title} />
+          <ItemCard
+            image={item.target_image}
+            title={item.title}
+            onClick={() =>
+              window.location.replace(
+                `http://localhost:3000/libraryiteminfo/${item.target_index}`
+              )
+            }
+          />
         ))}
       </div>
     </>

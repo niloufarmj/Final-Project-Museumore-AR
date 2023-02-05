@@ -12,6 +12,8 @@ import Library from "./Components/Pages/Library";
 import EditInfo from "./Components/Pages/EditInfo";
 import MuseumInfo from "./Components/Pages/MuseumInfo";
 import ItemInfo from "./Components/Pages/ItemInfo";
+import LibraryItemInfo from "./Components/Pages/LibraryItemInfo";
+
 import './locale.js';
 
 
@@ -30,6 +32,7 @@ function App() {
         <Route path="/additem" element={<AddItem />} />
         <Route path="/editinfo" element={<EditInfo />} />
         <Route path="/library" element={<Library />} />
+        <Route path="/libraryiteminfo/:index" element={<LibraryItemInfo />} />
         <Route path="/additionalinfo" element={<AdditionalInfo />} />
         <Route path="/iteminfo/:index" element={<ItemInfo />} />
         <Route path="/museuminfo" element={<MuseumInfo />} />

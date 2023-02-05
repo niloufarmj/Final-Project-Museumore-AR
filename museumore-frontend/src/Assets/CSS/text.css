@@ -7,11 +7,13 @@
   align-items: center;
   text-align: center;
   text-transform: uppercase;
-
   color: rgba(0, 0, 0, 0.42);
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .red-text {
   color: rgba(175, 53, 53, 0.765);
   font-weight: 560;
 }
+

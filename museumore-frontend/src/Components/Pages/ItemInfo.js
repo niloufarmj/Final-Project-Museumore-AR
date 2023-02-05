@@ -45,11 +45,11 @@ function ItemInfo() {
       <div style={{ marginTop: "30px" }} />
       <Image width="65%" left="16%" src={item.target_image} />
       <div style={{ marginTop: "30px" }} />
-      <Title text={item.title} />
+      <Title text={item.title} width="70%"/>
 
       <div style={{ marginTop: "70px" }} />
       <Link text={t("description")} />
-      <Text text={item.description} />
+      <Text text={item.description}  width="80%"/>
 
       <div style={{ marginTop: "50px" }} />
       {item.audio && <PlayAudioButton src={item.audio} />}

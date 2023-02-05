@@ -27,7 +27,6 @@ function AddImageButton(params) {
   const handleChange = async (event) => {
     if (event.target.files) {
       await params.stateChanger(event.target.files[0]);
-      console.log(event.target.files[0])
     }
   };
 
