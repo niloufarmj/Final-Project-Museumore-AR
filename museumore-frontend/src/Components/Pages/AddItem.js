@@ -77,7 +77,7 @@ function AddItem() {
       data.append("audio", audio);
       data.append("augmented_video", augmentedVideoOrImage);
       if (extraVideo != null) {
-        data.append("extra_video", image);
+        data.append("extra_video", extraVideo);
       } else {
         data.append("extra_video", "");
       }
@@ -89,6 +89,7 @@ function AddItem() {
         .then((res) => res.json())
         .then((data) => {
           compile();
+          //navigate("/dashboard"); //delete it
         })
         .catch((err) => console.error(err));
     }
@@ -106,7 +107,7 @@ function AddItem() {
   };
 
   const imageChange = (obj) => {
-    if (obj != null && obj.size/1024 > 350) {
+    if (obj != null && obj.size/1024 > 400) {
       setIsImageBig(true);
       return;
     }
@@ -132,8 +133,8 @@ function AddItem() {
             text={t("add target image")}
             stateChanger={imageChange}
           />
-          {isImageBig ? <Link text={t("Your image size must be less than 350KBs") } color={"red"}/> : 
-          <Link text={t("Your image size must be less than 350KBs") }/>}
+          {isImageBig ? <Link text={t("Your image size must be less than 400KBs") } color={"red"}/> : 
+          <Link text={t("Your image size must be less than 400KBs") }/>}
           </>
           
         ) : (

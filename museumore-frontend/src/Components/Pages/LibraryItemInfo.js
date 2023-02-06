@@ -60,7 +60,7 @@ function LibraryItemInfo() {
 
       <div style={{ marginTop: "70px" }} />
 
-      <Button text={t("Done")} path="/library" />
+      {/* <Button text={t("Done")} path="/library" /> */}
 
       <div style={{ marginTop: "50px" }} />
     </>
