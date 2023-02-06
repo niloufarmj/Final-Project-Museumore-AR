@@ -89,6 +89,9 @@ Today, every field has been directly or indirectly affected by technology and it
 ## Pages <a name = "pages"></a>
 
 - ## Home <a name = "home"></a>
+<p align="center">
+  <img src="https://github.com/niloufarmj/museumore-ar-project/blob/main/readme%20assets/Home.png"></img>
+ </p>
 
     Overview: The Museumore Home Page serves as the first page for users of the Museumore website. Common users are led to the "scan" page while gallery owners are leaded to the "signup/login" page. The name and logo of the project is Museumore. 
 
@@ -118,8 +121,17 @@ Today, every field has been directly or indirectly affected by technology and it
 
   
 - ## Scan <a name = "scan"></a>
+<p align="center">
+  <img src="https://github.com/niloufarmj/museumore-ar-project/blob/main/readme%20assets/Scan1.png"></img>
+ </p>
+<p align="center">
+  <img src="https://github.com/niloufarmj/museumore-ar-project/blob/main/readme%20assets/Scan2.png"></img>
+ </p>
      
 - ## Item Information <a name = "item_info"></a>
+<p align="center">
+  <img src="https://github.com/niloufarmj/museumore-ar-project/blob/main/readme%20assets/ItemInfo.png"></img>
+ </p>
     1. PURPOSE
 
     This design document is for the webAR project which can detect paintings and provide information about it. The purpose of this design document is to provide a detailed description of the features, user interface, and design considerations of the project. 
@@ -162,8 +174,25 @@ Today, every field has been directly or indirectly affected by technology and it
 
 
 - ## Gallary / Museum Signup <a name = "signup"></a>
+<p align="center">
+  <img src="https://github.com/niloufarmj/museumore-ar-project/blob/main/readme%20assets/Signup.png"></img>
 
+ </p>
+
+<p align="center">
+  <img src="https://github.com/niloufarmj/museumore-ar-project/blob/main/readme%20assets/AdditionalInfo1.png"></img>
+
+ </p>
+
+
+<p align="center">
+  <img src="https://github.com/niloufarmj/museumore-ar-project/blob/main/readme%20assets/AdditionalInfo2.png"></img>
+ </p>
 - ## Gallary / Museum Login <a name = "login"></a>
+<p align="center">
+  <img src="https://github.com/niloufarmj/museumore-ar-project/blob/main/readme%20assets/Login.png"></img>
+ </p>
+
     Objective:
     The objective of this login page is to provide a secure and easy way for gallary owners to access their account.
 
@@ -181,6 +210,11 @@ Today, every field has been directly or indirectly affected by technology and it
 
 
 - ## Dashboard <a name = "dashboard"></a>
+
+<p align="center">
+  <img src="https://github.com/niloufarmj/museumore-ar-project/blob/main/readme%20assets/Dashboard.png"></img>
+ </p>
+
     Objective: 
     The objective of the code is to create a dashboard page for the user with a profile image, the user's name, and options to add a new item, edit information, view the library, and logout.
 
@@ -198,6 +232,11 @@ Today, every field has been directly or indirectly affected by technology and it
 
 
 - ## Add New Item <a name = "add_item"></a>
+
+<p align="center">
+  <img src="https://github.com/niloufarmj/museumore-ar-project/blob/main/readme%20assets/AddItem.png"></img>
+ </p>
+
     This code is for a gallery page that allows users to add a new item, such as a painting, to the program. The page utilizes React, a popular JavaScript library for creating user interfaces, to create a form for the user to fill out.
 
     The page starts by importing the necessary components such as Button, Input, ReturnButton, AddFileButton, TextArea, AddImageButton, Text, Image, RemoveButton, VideoArea, and CustomLoadingButton. The page also imports the useNavigate hook from the react-router-dom library. The page then imports the useTranslation hook from the react-i18n library, allowing for translations of the page.
@@ -212,6 +251,11 @@ Today, every field has been directly or indirectly affected by technology and it
 
 
 - ## Library <a name = "library"></a>
+
+<p align="center">
+  <img src="https://github.com/niloufarmj/museumore-ar-project/blob/main/readme%20assets/Library.png"></img>
+ </p>
+
     Objective
     The Library page allows the gallery owner to view and manage the items they have added to the gallery.
 
