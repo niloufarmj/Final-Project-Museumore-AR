@@ -1,0 +1,106 @@
+<html>
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.2/min/dropzone.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.2/dropzone.min.css"
+    />
+    <script src="dist/mindar.prod.js"></script>
+
+    <script>
+      Dropzone.autoDiscover = false;
+      const compiler = new MINDAR.Compiler([]);
+
+      // fetch('http://localhost:8000/api/dataList/0', {
+      //     method: 'GET'
+      // })
+      //   .then(response => response.json())
+      //   .then(data => compiler = new MINDAR.Compiler(data))
+
+      const download = (buffer) => {
+        var blob = new Blob([buffer]);
+        var aLink = window.document.createElement("a");
+        aLink.download = "targets.mind";
+        aLink.href = window.URL.createObjectURL(blob);
+        aLink.click();
+        window.URL.revokeObjectURL(aLink.href);
+      };
+
+      const loadImage = async (file) => {
+        const img = new Image();
+
+        return new Promise((resolve, reject) => {
+          let img = new Image();
+          img.onload = () => resolve(img);
+          img.onerror = reject;
+          img.src = URL.createObjectURL(file);
+        });
+      };
+
+      const compileFiles = async (files) => {
+        const images = [];
+        for (let i = 0; i < files.length; i++) {
+          images.push(await loadImage(files[i]));
+        }
+        let _start = new Date().getTime();
+        const datalist = await compiler.compileImageTargets(
+          images,
+          (progress) => {
+            document.getElementById("progress").innerHTML =
+              "progress: " + progress.toFixed(2) + "%";
+          }
+        );
+
+        console.log(datalist);
+        console.log("exec time compile: ", new Date().getTime() - _start);
+        savePrevData(datalist);
+
+        const exportedBuffer = await compiler.exportData();
+
+        download(exportedBuffer);
+      };
+
+      document.addEventListener("DOMContentLoaded", function (event) {
+        const myDropzone = new Dropzone("#dropzone", {
+          url: "#",
+          autoProcessQueue: false,
+          addRemoveLinks: true,
+        });
+        myDropzone.on("addedfile", function (file) {});
+
+        document
+          .getElementById("startButton")
+          .addEventListener("click", function () {
+            const files = myDropzone.files;
+            console.log(files);
+            if (files.length === 0) return;
+            compileFiles(files);
+          });
+      });
+
+      const savePrevData = (dataList) => {
+        fetch("http://localhost:8000/api/dataList/0", {
+          method: "PUT",
+          body: { data: dataList },
+        })
+          .then((response) => response.json())
+          .then((response) => console.log(JSON.stringify(response)));
+      };
+    </script>
+
+    <style>
+      #container {
+        display: flex;
+        flex-direction: column;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="startButton">Start</button>
+    <span id="progress"></span>
+    <div id="dropzone" class="dropzone"></div>
+
+    <!-- Change /upload-target to your upload address -->
+    <div id="container"></div>
+  </body>
+</html>
