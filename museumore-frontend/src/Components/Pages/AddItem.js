@@ -7,7 +7,7 @@ import React, { useState, useEffect } from "react";
 import AddFileButton from "../Layouts/AddFileButton";
 import TextArea from "../Layouts/TextArea";
 import AddImageButton from "../Layouts/AddImageButton";
-import { useNavigate } from "react-router-dom";
+import { json, useNavigate } from "react-router-dom";
 import Text from "../Layouts/Text";
 import Image from "../Layouts/Image";
 import RemoveButton from "../Layouts/RemoveButton";
@@ -15,6 +15,7 @@ import RemoveButton from "../Layouts/RemoveButton";
 import { useTranslation } from "react-i18next";
 import VideoArea from "../Layouts/VideoArea";
 import CustomLoadingButton from "../Layouts/CustumLoadingButton";
+import { Compiler } from "../../dist/mindar-image.prod";
 
 function AddItem() {
   const gallary = JSON.parse(localStorage.getItem("user"));
@@ -45,8 +46,55 @@ function AddItem() {
         setItems(data);
       })
       .catch((err) => console.error(err));
-  }
+  };
 
+  const compiler = new Compiler();
+
+  const download = (buffer) => {
+    var blob = new Blob([buffer]);
+    var aLink = window.document.createElement("a");
+    aLink.download = "targets.mind";
+    aLink.href = window.URL.createObjectURL(blob);
+    aLink.click();
+    window.URL.revokeObjectURL(aLink.href);
+  };
+
+  const makeTargetFile = async (image) => {
+    var dataList;
+    for (var i = 0; i < items.length; i++) {
+      dataList.push(JSON.parse(items[i].target_data))
+    }
+    const tempData = compileFile(image); // give currenct image
+    dataList.push(...tempData); // join two arrays
+    const exportedBuffer = await compiler.exportData(dataList); //make final buffer
+    download(exportedBuffer);
+  };
+
+  const loadImage = async (file) => {
+    const img = new Image();
+
+    return new Promise((resolve, reject) => {
+      let img = new Image();
+      img.onload = () => resolve(img);
+      img.onerror = reject;
+      img.src = URL.createObjectURL(file);
+    });
+  };
+
+  const compileFile = async (file) => {
+    const images = [];
+    images.push(await loadImage(file));
+
+    let _start = new Date().getTime();
+    const dataList = await compiler.compileImageTargets(images, (progress) => {
+      console.log("progress: " + progress.toFixed(2) + "%")
+    });
+    console.log("exec time compile: ", new Date().getTime() - _start);
+
+    return dataList;
+  };
+
+  
   useEffect(() => {
     fetchItems();
   }, []);
@@ -61,12 +109,12 @@ function AddItem() {
       // setMargin("58px");
       return;
     } else {
-      setPending(true)
+      setPending(true);
       setError("");
-      fetchItems()
+      fetchItems();
 
       const data = new FormData();
-    
+
       const new_image = new File([image], items.length + ".jpg");
 
       data.append("gallary_id", gallary.id);
@@ -88,7 +136,7 @@ function AddItem() {
       })
         .then((res) => res.json())
         .then((data) => {
-          compile();
+          makeTargetFile(new_image)
           //navigate("/dashboard"); //delete it
         })
         .catch((err) => console.error(err));
@@ -107,11 +155,11 @@ function AddItem() {
   };
 
   const imageChange = (obj) => {
-    if (obj != null && obj.size/1024 > 400) {
+    if (obj != null && obj.size / 1024 > 400) {
       setIsImageBig(true);
       return;
     }
-    setIsImageBig(false)
+    setIsImageBig(false);
     setImage(obj);
     if (obj != null) setShownImage(URL.createObjectURL(obj));
   };
@@ -127,16 +175,21 @@ function AddItem() {
       <div style={{ alignItems: "center", marginTop: "3%" }}>
         {image == null ? (
           <>
-          <AddImageButton
-            width="70%"
-            marginLeft="15%"
-            text={t("add target image")}
-            stateChanger={imageChange}
-          />
-          {isImageBig ? <Link text={t("Your image size must be less than 400KBs") } color={"red"}/> : 
-          <Link text={t("Your image size must be less than 400KBs") }/>}
+            <AddImageButton
+              width="70%"
+              marginLeft="15%"
+              text={t("add target image")}
+              stateChanger={imageChange}
+            />
+            {isImageBig ? (
+              <Link
+                text={t("Your image size must be less than 400KBs")}
+                color={"red"}
+              />
+            ) : (
+              <Link text={t("Your image size must be less than 400KBs")} />
+            )}
           </>
-          
         ) : (
           <>
             <Image width="65%" left="16%" src={shownImage} />

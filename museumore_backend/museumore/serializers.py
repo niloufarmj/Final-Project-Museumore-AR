@@ -5,7 +5,7 @@ class ItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = Item
         # fields = ('id', 'gallary', 'target_image','title', 'description', 'audio', 'augmented_video', 'extra_video')
-        fields = ('id', 'gallary_id','target_index', 'target_image','title', 'description', 'audio', 'augmented_video', 'extra_video')
+        fields = ('id', 'gallary_id','target_index', 'target_image', 'target_data', 'title', 'description', 'audio', 'augmented_video', 'extra_video')
 
 class GallarySerializer(serializers.ModelSerializer):
     # items = ItemSerializer(many=True)

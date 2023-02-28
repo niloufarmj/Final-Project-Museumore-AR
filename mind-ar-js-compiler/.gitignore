@@ -1,5 +1,0 @@
-node_modules
-tests
-*.swp
-dist-dev
-dist/*.LICENSE.txt
