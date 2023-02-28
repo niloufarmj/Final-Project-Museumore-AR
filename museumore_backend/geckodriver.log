@@ -5135,3 +5135,49 @@ console.warn: SearchSettings: "get: No settings file exists, new profile?" (new 
 DevTools listening on ws://127.0.0.1:10508/devtools/browser/765e6102-e8a6-40d4-887a-1792c3737c1b
 1675709911885	Marionette	INFO	Stopped listening on port 10517
 Dynamically enable window occlusion 1
+1675747755262	geckodriver	INFO	Listening on 127.0.0.1:3845
+1675747758348	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "3846" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\DEARUS~1\\AppData\\Local\\Temp\\rust_mozprofile6vTzLo"
+1675747758909	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1675747758917	Marionette	INFO	Listening on port 3857
+Read port: 3857
+WebDriver BiDi listening on ws://127.0.0.1:3846
+1675747759122	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\DEARUS~1\\AppData\\Local\\Temp\\rust_mozprofile6vTzLo\\search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:3846/devtools/browser/84720447-9079-4ab2-9340-1451bd912eca
+1675747860969	Marionette	INFO	Stopped listening on port 3857
+Dynamically enable window occlusion 1
+1675869941396	geckodriver	INFO	Listening on 127.0.0.1:12982
+1675869944608	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "12983" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\DEARUS~1\\AppData\\Local\\Temp\\rust_mozprofile5XNHoY"
+1675869945199	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1675869945209	Marionette	INFO	Listening on port 12997
+Read port: 12997
+WebDriver BiDi listening on ws://127.0.0.1:12983
+1675869945446	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\DEARUS~1\\AppData\\Local\\Temp\\rust_mozprofile5XNHoY\\search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:12983/devtools/browser/2fdb6eec-376b-41db-b9c2-9028a47aba84
+1675870055057	Marionette	INFO	Stopped listening on port 12997
+Dynamically enable window occlusion 1
+1676148360094	geckodriver	INFO	Listening on 127.0.0.1:9208
+1676148363295	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "9209" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\DEARUS~1\\AppData\\Local\\Temp\\rust_mozprofilePBRiL6"
+1676148364054	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1676148364063	Marionette	INFO	Listening on port 9239
+Read port: 9239
+WebDriver BiDi listening on ws://127.0.0.1:9209
+1676148364321	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\DEARUS~1\\AppData\\Local\\Temp\\rust_mozprofilePBRiL6\\search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:9209/devtools/browser/c44d8508-3ed8-492b-bae0-c7b7573b655b
+1676148478886	Marionette	INFO	Stopped listening on port 9239
+Dynamically enable window occlusion 1
+1676212932730	geckodriver	INFO	Listening on 127.0.0.1:10466
+1676212935853	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "10467" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\DEARUS~1\\AppData\\Local\\Temp\\rust_mozprofileG34Wqz"
+1676212936966	Marionette	INFO	Marionette enabled
+Dynamically enable window occlusion 0
+1676212936976	Marionette	INFO	Listening on port 10476
+Read port: 10476
+WebDriver BiDi listening on ws://127.0.0.1:10467
+1676212937317	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\DEARUS~1\\AppData\\Local\\Temp\\rust_mozprofileG34Wqz\\search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:10467/devtools/browser/3f0b8ad0-051c-4984-a517-9e53aedeba45
