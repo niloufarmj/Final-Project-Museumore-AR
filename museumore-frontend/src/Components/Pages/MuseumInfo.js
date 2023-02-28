@@ -21,7 +21,6 @@ function MuseumInfo() {
       .then((res) => res.json())
       .then((data) => {
         setGallary(data);
-        console.log(data);
       })
       .catch((err) => console.error(err));
   }, []);
