@@ -14,6 +14,13 @@ class GallarySerializer(serializers.ModelSerializer):
         # fields = ('id', 'username', 'password', 'name', 'email', 'image', 'address', 'contact', 'description', 'items')
         fields = ('id', 'username', 'password', 'name', 'email', 'image', 'address', 'contact', 'description')
 
+class TargetFileSerializer(serializers.ModelSerializer):
+    # items = ItemSerializer(many=True)
+    class Meta:
+        model = TargetFile
+        # fields = ('id', 'username', 'password', 'name', 'email', 'image', 'address', 'contact', 'description', 'items')
+        fields = ('id', 'file')
+
     # def create(self, validated_data):
     #     items_data = validated_data.pop('items')
     #     gallary = Gallary.objects.create(**validated_data)

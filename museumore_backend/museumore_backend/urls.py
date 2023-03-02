@@ -19,6 +19,8 @@ urlpatterns = [
       #path('api/items/<int:item_id>/', views.ItemDetailApiView.as_view()),
       re_path(r'^api/gallaries/$', GallaryListView.as_view()),
       re_path(r'^api/gallaries/(?P<pk>\d+)/$', GallaryView.as_view()),
+      re_path(r'^api/targetfiles/$', TargetFileListView.as_view()),
+      re_path(r'^api/targetfiles/(?P<pk>\d+)/$', TargetFileView.as_view()),
       re_path(r'^api/items/$', ItemListView.as_view()),
       re_path(r'^api/items/(?P<pk>\d+)/$', ItemView.as_view()), 
       re_path(r'^compile/$', MyView.as_view())

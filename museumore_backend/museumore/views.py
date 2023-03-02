@@ -36,6 +36,14 @@ class ItemView(RetrieveUpdateDestroyAPIView):
     serializer_class = ItemSerializer
     queryset = Item.objects.all()
 
+class TargetFileView(RetrieveUpdateDestroyAPIView):
+    serializer_class = TargetFileSerializer
+    queryset = TargetFile.objects.all()
+
+class TargetFileListView(ListCreateAPIView):
+    queryset = TargetFile.objects.all()
+    serializer_class = TargetFileSerializer
+
 class MyView(APIView):
     def get(self, request, *args, **kwargs):
         localCompileTargets()

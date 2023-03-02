@@ -46,6 +46,7 @@ function EditInfo() {
     }
     return new File([u8arr], filename, { type: mime });
   }
+
   useEffect(() => {
     if (gallary.image != null) {
       toDataURL(gallary.image).then((dataUrl) => {
@@ -72,7 +73,6 @@ function EditInfo() {
     if (image != null) {
       data.append("image", image);
     } else {
-      console.log("here");
       data.append("image", "");
     }
     data.append("address", address);

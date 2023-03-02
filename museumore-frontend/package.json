@@ -10,6 +10,7 @@
     "@testing-library/user-event": "^13.5.0",
     "aframe": "^1.4.1",
     "axios": "^0.21.1",
+    "babel": "^6.23.0",
     "bootstrap": "^4.6.0",
     "file-saver": "^2.0.5",
     "html-to-react": "^1.5.0",
@@ -26,9 +27,18 @@
     "three": "^0.148.0",
     "web-vitals": "^2.1.4"
   },
+  "resolutions": {
+    "@babel/core": "7.19.6",
+    "@babel/generator": "7.19.6",
+    "@babel/compat-data": "7.19.4",
+    "@babel/helper-compilation-targets": "7.19.3",
+    "@babel/helper-create-class-features-plugin": "7.19.0",
+    "@babel/helper-module-transforms": "7.19.6",
+    "babel-loader": "8.2.5"
+  },
   "scripts": {
     "build": "react-scripts build",
-    "start": "react-scripts start",
+    "start": "react-scripts --openssl-legacy-provider start",
     "start2": "react-scripts start",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

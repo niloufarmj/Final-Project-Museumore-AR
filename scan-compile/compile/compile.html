@@ -1,0 +1,123 @@
+<html>
+  <head>
+    <script type="module">
+      import { Compiler } from "../compile/dist/mindar-image.prod.js";
+
+      let dataList = [],
+        first = false, mindId;
+      const compiler = new Compiler();
+
+      const fetchItems = () => {
+        fetch("http://localhost:8000/api/items/")
+          .then((res) => res.json())
+          .then((data) => {
+            makeTargetFile(data[data.length - 1].target_image);
+          })
+          .catch((err) => console.log(err));
+      };
+
+      const loadMindFile = async (file) => {
+        var reader = new FileReader();
+        reader.onload = function () {
+          dataList = compiler.importData(this.result);
+        };
+        reader.readAsArrayBuffer(file);
+      };
+
+      const fetchMindFile = async () => {
+        fetch("http://localhost:8000/api/targetfiles/")
+          .then((res) => res.json())
+          .then(async (data) => {
+            if (data.length > 0) {
+              let blob = await fetch(data[0].file).then(r => r.blob());
+              let file = new File([blob], "targets.mind");
+              loadMindFile(file);
+              mindId = data[0].id;
+            }
+            else first = true;
+          })
+          .catch((err) => console.log(err));
+      };
+
+      fetchMindFile();
+      fetchItems();
+
+      const saveMindFile = (buffer) => {
+        var blob = new Blob([buffer]);
+        var file = new File([blob], "targets.mind");
+
+        var form_data = new FormData();
+        form_data.append("file", file);
+
+        if (first) {
+          fetch("http://localhost:8000/api/targetfiles/", {
+            method: "POST",
+            body: form_data,
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              console.log(data);
+              window.location.replace(`http://localhost:3000/dashboard`);
+              debugger
+            })
+            .catch((err) => console.error(err));
+        } else {
+          fetch(`http://localhost:8000/api/targetfiles/${mindId}/`, {
+            method: "PUT",
+            body: form_data,
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              console.log(data);
+              window.location.replace(`http://localhost:3000/dashboard`);
+              debugger
+            })
+            .catch((err) => console.error(err));
+        }
+
+      };
+
+      const makeTargetFile = async (image) => {
+        const data = await compileFile(image); // give currenct image
+        dataList.push(data); // add final data
+        const exportedBuffer = await compiler.exportData(dataList); //make final buffer
+
+        saveMindFile(exportedBuffer);
+      };
+
+      const loadImage = async (file) => {
+        const img = new Image();
+
+        return new Promise((resolve, reject) => {
+          let img = new Image();
+          img.onload = () => resolve(img);
+          img.onerror = reject;
+          img.crossOrigin = "anonymous";
+          img.src = file;
+        });
+      };
+
+      const compileFile = async (file) => {
+        const images = [];
+
+        images.push(await loadImage(file));
+
+        let _start = new Date().getTime();
+
+        const buffer = await compiler.compileImageTargets(
+          images,
+          (progress) => {
+            document.getElementById("progress").innerHTML =
+              "progress: " + progress.toFixed(2) + "%";
+          }
+        );
+        console.log("exec time compile: ", new Date().getTime() - _start);
+
+        return buffer;
+      };
+    </script>
+  </head>
+  <body>
+    <span id="progress"></span>
+  </body>
+</html>

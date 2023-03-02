@@ -1,10 +1,10 @@
-import { Detector } from './detector/detector.js';
-import { buildImageList, buildTrackingImageList } from './image-list.js';
-import { build as hierarchicalClusteringBuild } from './matching/hierarchical-clustering.js';
-import * as msgpack from '@msgpack/msgpack';
-import * as tf from '@tensorflow/tfjs';
-import { createCanvas } from 'canvas'
-import { extract } from './tracker/extract.js';
+import { Detector } from "./detector/detector.js";
+import { buildImageList, buildTrackingImageList } from "./image-list.js";
+import { build as hierarchicalClusteringBuild } from "./matching/hierarchical-clustering.js";
+import * as msgpack from "@msgpack/msgpack";
+import * as tf from "@tensorflow/tfjs";
+import { createCanvas } from "canvas";
+import { extract } from "./tracker/extract.js";
 //import CompilerWorker  from "./compiler.worker.js?worker&inline";
 
 // TODO: better compression method. now grey image saved in pixels, which could be larger than original image
@@ -14,7 +14,7 @@ const CURRENT_VERSION = 2;
 class Compiler {
   constructor(avoidWorker = false) {
     this.data = null;
-    this.avoidWorker = avoidWorker
+    this.avoidWorker = avoidWorker;
   }
 
   // input html Images
@@ -24,17 +24,31 @@ class Compiler {
       for (let i = 0; i < images.length; i++) {
         const img = images[i];
         const processCanvas = createCanvas(img.width, img.height);
-        const processContext = processCanvas.getContext('2d');
+        const processContext = processCanvas.getContext("2d");
         processContext.drawImage(img, 0, 0, img.width, img.height);
-        const processData = processContext.getImageData(0, 0, img.width, img.height);
+        const processData = processContext.getImageData(
+          0,
+          0,
+          img.width,
+          img.height
+        );
 
         const greyImageData = new Uint8Array(img.width * img.height);
 
         for (let i = 0; i < greyImageData.length; i++) {
           const offset = i * 4;
-          greyImageData[i] = Math.floor((processData.data[offset] + processData.data[offset + 1] + processData.data[offset + 2]) / 3);
+          greyImageData[i] = Math.floor(
+            (processData.data[offset] +
+              processData.data[offset + 1] +
+              processData.data[offset + 2]) /
+              3
+          );
         }
-        const targetImage = { data: greyImageData, height: img.height, width: img.width };
+        const targetImage = {
+          data: greyImageData,
+          height: img.height,
+          width: img.width,
+        };
         targetImages.push(targetImage);
       }
 
@@ -53,7 +67,7 @@ class Compiler {
         this.data.push({
           targetImage: targetImage,
           imageList: imageList,
-          matchingData: matchingData
+          matchingData: matchingData,
         });
       }
 
@@ -75,54 +89,76 @@ class Compiler {
               const percentPerAction = percentPerImage / imageList.length;
 
               //console.log("compiling tracking...", i);
-              const trackingData = _extractTrackingFeatures(imageList, (index) => {
-                //console.log("done tracking", i, index);
-                percent += percentPerAction;
-                progressCallback(50+percent);
-              });
+              const trackingData = _extractTrackingFeatures(
+                imageList,
+                (index) => {
+                  //console.log("done tracking", i, index);
+                  percent += percentPerAction;
+                  progressCallback(50 + percent);
+                }
+              );
               list.push(trackingData);
             }
             resolve(list);
           } else {
-            const worker = new Worker(new URL('./compiler.worker.js', import.meta.url));
-	    //const worker = new CompilerWorker();
+            const worker = new Worker(
+              new URL("./compiler.worker.js", import.meta.url)
+            );
+            //const worker = new CompilerWorker();
             worker.onmessage = (e) => {
-              if (e.data.type === 'progress') {
+              if (e.data.type === "progress") {
                 progressCallback(50 + e.data.percent);
-              } else if (e.data.type === 'compileDone') {
+              } else if (e.data.type === "compileDone") {
                 resolve(e.data.list);
               }
             };
-            worker.postMessage({ type: 'compile', targetImages });
+            worker.postMessage({ type: "compile", targetImages });
           }
         });
-      }
+      };
 
       const trackingDataList = await compileTrack();
       for (let i = 0; i < targetImages.length; i++) {
         this.data[i].trackingData = trackingDataList[i];
       }
-      resolve(this.data);
+
+      const dataList = [];
+      for (let i = 0; i < this.data.length; i++) {
+        dataList.push({
+          //targetImage: this.data[i].targetImage,
+          targetImage: {
+            width: this.data[i].targetImage.width,
+            height: this.data[i].targetImage.height,
+          },
+          trackingData: this.data[i].trackingData,
+          matchingData: this.data[i].matchingData,
+        });
+      }
+
+      resolve(dataList[0]);
     });
+  }
+
+  encodeData(data) {
+    const buffer = msgpack.encode({
+      v: CURRENT_VERSION,
+      data,
+    });
+    return buffer;
+  }
+
+  decodeData(buffer) {
+    const content = msgpack.decode(new Uint8Array(buffer));
+    return content;
   }
 
   // not exporting imageList because too large. rebuild this using targetImage
   exportData(givenData) {
-    const dataList = [];
-    for (let i = 0; i < givenData.length; i++) {
-      dataList.push({
-        //targetImage: this.data[i].targetImage,
-        targetImage: {
-          width: givenData.targetImage.width,
-          height: givenData.targetImage.height,
-        },
-        trackingData: givenData.trackingData,
-        matchingData: givenData.matchingData
-      });
-    }
+    const dataList = givenData;
+    
     const buffer = msgpack.encode({
       v: CURRENT_VERSION,
-      dataList
+      dataList,
     });
     return buffer;
   }
@@ -141,7 +177,7 @@ class Compiler {
       this.data.push({
         targetImage: dataList[i].targetImage,
         trackingData: dataList[i].trackingData,
-        matchingData: dataList[i].matchingData
+        matchingData: dataList[i].matchingData,
       });
     }
     return this.data;
@@ -158,14 +194,20 @@ const _extractMatchingFeatures = async (imageList, doneCallback) => {
     await tf.nextFrame();
     tf.tidy(() => {
       //const inputT = tf.tensor(image.data, [image.data.length]).reshape([image.height, image.width]);
-      const inputT = tf.tensor(image.data, [image.data.length], 'float32').reshape([image.height, image.width]);
+      const inputT = tf
+        .tensor(image.data, [image.data.length], "float32")
+        .reshape([image.height, image.width]);
       //const ps = detector.detectImageData(image.data);
       const { featurePoints: ps } = detector.detect(inputT);
 
       const maximaPoints = ps.filter((p) => p.maxima);
       const minimaPoints = ps.filter((p) => !p.maxima);
-      const maximaPointsCluster = hierarchicalClusteringBuild({ points: maximaPoints });
-      const minimaPointsCluster = hierarchicalClusteringBuild({ points: minimaPoints });
+      const maximaPointsCluster = hierarchicalClusteringBuild({
+        points: maximaPoints,
+      });
+      const minimaPointsCluster = hierarchicalClusteringBuild({
+        points: minimaPoints,
+      });
 
       keyframes.push({
         maximaPoints,
@@ -174,17 +216,15 @@ const _extractMatchingFeatures = async (imageList, doneCallback) => {
         minimaPointsCluster,
         width: image.width,
         height: image.height,
-        scale: image.scale
+        scale: image.scale,
       });
       doneCallback(i);
     });
   }
   return keyframes;
-}
+};
 
-export {
-  Compiler
-}
+export { Compiler };
 
 const _extractTrackingFeatures = (imageList, doneCallback) => {
   const featureSets = [];
@@ -204,4 +244,4 @@ const _extractTrackingFeatures = (imageList, doneCallback) => {
     doneCallback(i);
   }
   return featureSets;
-}
+};
