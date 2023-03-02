@@ -11,7 +11,7 @@
         fetch("http://localhost:8000/api/items/")
           .then((res) => res.json())
           .then((data) => {
-            makeTargetFile(data[data.length - 1].target_image);
+            compileFile(data[data.length - 1].target_image);
           })
           .catch((err) => console.log(err));
       };
@@ -35,12 +35,13 @@
               mindId = data[0].id;
             }
             else first = true;
+
+            fetchItems();
           })
           .catch((err) => console.log(err));
       };
 
       fetchMindFile();
-      fetchItems();
 
       const saveMindFile = (buffer) => {
         var blob = new Blob([buffer]);
@@ -77,13 +78,6 @@
 
       };
 
-      const makeTargetFile = async (image) => {
-        const data = await compileFile(image); // give currenct image
-        dataList.push(data); // add final data
-        const exportedBuffer = await compiler.exportData(dataList); //make final buffer
-
-        saveMindFile(exportedBuffer);
-      };
 
       const loadImage = async (file) => {
         const img = new Image();
@@ -113,7 +107,10 @@
         );
         console.log("exec time compile: ", new Date().getTime() - _start);
 
-        return buffer;
+        dataList.push(buffer); // add final data
+        const exportedBuffer = await compiler.exportData(dataList); //make final buffer
+
+        saveMindFile(exportedBuffer);
       };
     </script>
   </head>

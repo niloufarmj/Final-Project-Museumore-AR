@@ -18,7 +18,7 @@ function Home() {
     <ReturnButton notHasReturn={true} />
       <div style={{ alignItems: "center" }}>
         <Logo width={100} />
-        <Button text={t("scan")} redirectPath={"http://127.0.0.1:8080"} />
+        <Button text={t("scan")} redirectPath={"http://127.0.0.1:5501/scan-compile/scan/index.html"} />
 
         <Text marginTop={"50px"} text={t("Do you own a museum / gallary?")} />
         <Link text={t("Click here to signup")} path="/signup" />

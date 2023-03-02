@@ -8,17 +8,7 @@
             src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.5/dist/mindar-image-aframe.prod.js"></script>
     </head>
     <body>
-
-        <a-scene mindar-image="imageTargetSrc: ./targets.mind; maxTrack: 2"
-            vr-mode-ui="enabled: false"
-            device-orientation-permission-ui="enabled: false">
-
-            <a-camera position="0 0 0" look-controls="enabled: false"
-                cursor="fuse: false; rayOrigin: mouse;" raycaster="far:
-                ${customFields.libVersion}; objects: .clickable"></a-camera>
-            <!-- dynamic a-entities that are built in main.js -->
-
-        </a-scene>
+        
     </body>
     <script src="main.js"></script>
 </html>

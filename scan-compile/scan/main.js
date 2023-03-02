@@ -1,4 +1,5 @@
-var items = [];
+var items = [],
+  target_file = "";
 
 async function fetchItems() {
   return fetch("http://localhost:8000/api/items/")
@@ -7,9 +8,21 @@ async function fetchItems() {
     })
     .then((data) => {
       items = data;
-      mainFunction();
+      fetchTargetFile();
     })
     .catch((err) => console.error(err));
+}
+
+async function fetchTargetFile() {
+  fetch("http://localhost:8000/api/targetfiles/")
+    .then((res) => res.json())
+    .then(async (data) => {
+      if (data.length > 0) {
+        target_file = data[0].file;
+        mainFunction();
+      }
+    })
+    .catch((err) => console.log(err));
 }
 
 fetchItems();
@@ -18,6 +31,23 @@ const insertAfter = (element, htmlString) =>
   element.insertAdjacentHTML("afterend", htmlString);
 
 function mainFunction() {
+  const body = document.getElementsByTagName("body")[0];
+
+  body.innerHTML =
+    `<a-scene mindar-image="imageTargetSrc: ` +
+    target_file +
+    `; maxTrack: 2"
+  vr-mode-ui="enabled: false"
+  device-orientation-permission-ui="enabled: false">
+
+  <a-camera position="0 0 0" look-controls="enabled: false"
+      cursor="fuse: false; rayOrigin: mouse;" raycaster="far:` +
+    "${customFields.libVersion};" +
+    ` objects: .clickable"></a-camera>
+  <!-- dynamic a-entities that are built in main.js -->
+
+</a-scene>`;
+
   const camera = document.getElementsByTagName("a-camera")[0];
   let result = ``;
   for (let i = 0; i < items.length; i++) {
