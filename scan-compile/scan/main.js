@@ -1,3 +1,11 @@
+const returnButton = document.querySelector("#return-button");
+const controlOverlay = document.querySelector("#control-overlay");
+controlOverlay.style.display = "block";
+// returnButton.addEventListener('click', () => {
+//   window.location.replace(`http://localhost:3000/`);
+//   console.log("here");
+// });
+
 var items = [],
   target_file = "";
 
@@ -31,25 +39,32 @@ const insertAfter = (element, htmlString) =>
   element.insertAdjacentHTML("afterend", htmlString);
 
 function mainFunction() {
-  const body = document.getElementsByTagName("body")[0];
+  let result = ``;
 
-  body.innerHTML =
+  result =
     `<a-scene mindar-image="imageTargetSrc: ` +
     target_file +
-    `; maxTrack: 2"
-  vr-mode-ui="enabled: false"
-  device-orientation-permission-ui="enabled: false">
+    `; maxTrack: 2;
+      uiLoading: no; uiError: no; uiScanning: no
+    "
+    vr-mode-ui="enabled: false"
+    embedded
+    color-space="sRGB"
+ 
+    device-orientation-permission-ui="enabled: false">
 
-  <a-camera position="0 0 0" look-controls="enabled: false"
+    <a-camera position="0 0 0" look-controls="enabled: false"
       cursor="fuse: false; rayOrigin: mouse;" raycaster="far:` +
     "${customFields.libVersion};" +
     ` objects: .clickable"></a-camera>
-  <!-- dynamic a-entities that are built in main.js -->
+    </a-scene>`;
 
-</a-scene>`;
+  insertAfter(controlOverlay, result);
+  // const body = document.body;
+  // body.innerHTML = result;
 
   const camera = document.getElementsByTagName("a-camera")[0];
-  let result = ``;
+  result = ``;
   for (let i = 0; i < items.length; i++) {
     let play_btn_id = "play-btn" + items[i].target_index;
     let info_btn_id = "info-btn" + items[i].target_index;
@@ -66,6 +81,8 @@ function mainFunction() {
       </a-entity>
     `;
   }
+  // const asceneTag = document.getElementsByTagName("a-scene")[0];
+  // asceneTag.setAttribute("style", "height:10px" );
 
   insertAfter(camera, result);
   var play_btn = new Array();

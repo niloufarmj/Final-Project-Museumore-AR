@@ -1,14 +1,38 @@
 <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <style>
+            #control-overlay {
+	            background: none;
+	            height: 30px;
+                }
+            #control-overlay >div {
+	            position: absolute;
+	            left: 0;
+                }
+            /* a-scene {
+                height: 10px;
+                width: 10px;
+            } */
+            html { overflow-y: hidden; }
+        </style>
         <script
             src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.5/dist/mindar-image.prod.js"></script>
         <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
         <script
             src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.1.5/dist/mindar-image-aframe.prod.js"></script>
     </head>
-    <body>
-        
+    <body scroll="no" style="overflow: hidden" >
+        <div id="control-overlay" class="overlay">
+            <div>
+                <a href="http://localhost:3000/">
+                    <img id="return-button" src="./Assets/return.png" style="width: 13%;
+                    padding: 10px;
+                    margin-left: 20px;">
+                </a>                                          
+            </div>
+        </div>
+        <!-- dynamically generated tags    -->
     </body>
     <script src="main.js"></script>
 </html>

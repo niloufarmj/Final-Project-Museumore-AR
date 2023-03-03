@@ -10,23 +10,26 @@ import { useNavigate } from "react-router-dom";
 import Image from "../Layouts/Image";
 import RemoveButton from "../Layouts/RemoveButton";
 
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
+
+import useScreenOrientation from "react-hook-screen-orientation";
+import Landscape from "./Landscape";
 
 function AdditionalInfo() {
   const gallary = JSON.parse(localStorage.getItem("user"));
 
   const [image, setImage] = useState(null);
-  const [shownImage, setShownImage] = useState(null)
+  const [shownImage, setShownImage] = useState(null);
   const [description, setDescription] = useState("");
   const [address, setAddress] = useState("");
   const [contact, setContact] = useState("");
 
-  const {t, i18n} = useTranslation(['gallaryinfo']);
+  const { t, i18n } = useTranslation(["gallaryinfo"]);
+  const orientation = useScreenOrientation();
 
   const navigate = useNavigate();
 
   const handleSubmit = async () => {
-    
     const data = new FormData();
     data.append("name", gallary.name);
     data.append("username", gallary.username);
@@ -55,45 +58,56 @@ function AdditionalInfo() {
 
   const imageChange = (obj) => {
     setImage(obj);
-    if (obj != null)
-      setShownImage(URL.createObjectURL(obj))     
-  }
+    if (obj != null) setShownImage(URL.createObjectURL(obj));
+  };
 
   return (
     <>
-      <div style={{ marginTop: "50px" }} />
-      <Title text={t("additional info")} />
+      {orientation == "landscape-primary" ||
+      orientation == "landscape-secondary" ? (
+        <Landscape />
+      ) : (
+        <>
+          <div style={{ marginTop: "50px" }} />
+          <Title text={t("additional info")} />
 
-      <div style={{ marginTop: "30px" }} />
+          <div style={{ marginTop: "30px" }} />
 
-      {image == null ? 
-      <AddImageButton
-        shape="round"
-        width="35%"
-        marginLeft="32%"
-        text={t("add image")}
-        stateChanger={imageChange}
-      /> : 
-      <>
-        <Image
-          shape="round"
-          width="35%"
-          height="125px"
-          left="32%"
-          src={shownImage}
-        />
-        <RemoveButton stateChanger={imageChange}/>
-      </>
-      }
+          {image == null ? (
+            <AddImageButton
+              shape="round"
+              width="35%"
+              marginLeft="32%"
+              text={t("add image")}
+              stateChanger={imageChange}
+            />
+          ) : (
+            <>
+              <Image
+                shape="round"
+                width="35%"
+                height="125px"
+                left="32%"
+                src={shownImage}
+              />
+              <RemoveButton stateChanger={imageChange} />
+            </>
+          )}
 
-      <div style={{ marginTop: "30px" }} />
-      <TextArea text={t("description")} stateChanger={setDescription} />
-      <TextArea text={t("address")} stateChanger={setAddress} />
-      <Input type={"number"} text={t("phone/contact")} stateChanger={setContact} />
+          <div style={{ marginTop: "30px" }} />
+          <TextArea text={t("description")} stateChanger={setDescription} />
+          <TextArea text={t("address")} stateChanger={setAddress} />
+          <Input
+            type={"number"}
+            text={t("phone/contact")}
+            stateChanger={setContact}
+          />
 
-      <div style={{ marginTop: "50px" }} />
-      <Button text={t("next")} stateChanger={handleSubmit} />
-      <div style={{ marginTop: "50px" }} />
+          <div style={{ marginTop: "50px" }} />
+          <Button text={t("next")} stateChanger={handleSubmit} />
+          <div style={{ marginTop: "50px" }} />
+        </>
+      )}
     </>
   );
 }

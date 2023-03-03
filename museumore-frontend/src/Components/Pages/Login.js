@@ -7,8 +7,11 @@ import Link from "../Layouts/Link";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 import CustomLoadingButton from "../Layouts/CustumLoadingButton";
+
+import useScreenOrientation from "react-hook-screen-orientation";
+import Landscape from "./Landscape";
 
 function Login() {
   const navigate = useNavigate();
@@ -18,11 +21,12 @@ function Login() {
   const [password, setPassword] = useState("");
   const [provedPassword, setProvedPassword] = useState(false);
   const [gallaries, setGallaries] = useState([]);
-  const [pending, setPending] = useState(false)
+  const [pending, setPending] = useState(false);
 
   const [error, setError] = useState("");
 
-  const {t, i18n} = useTranslation(['login']);
+  const { t, i18n } = useTranslation(["login"]);
+  const orientation = useScreenOrientation();
 
   const fetchGallaries = () => {
     fetch("http://localhost:8000/api/gallaries/")
@@ -31,7 +35,7 @@ function Login() {
         setGallaries(data);
       })
       .catch((err) => console.error(err));
-  }
+  };
 
   useEffect(() => {
     fetchGallaries();
@@ -49,38 +53,51 @@ function Login() {
           navigate("/dashboard");
           return;
         } else {
-          setPending(false)
+          setPending(false);
           setError(t("Password is not correct!"));
-         
+
           return;
         }
       }
     }
 
     if (!provedUsername) {
-      setPending(false)
+      setPending(false);
       setError(t("There is no gallary with this username!"));
     }
   };
   return (
     <>
-      <ReturnButton path="/"/>
-      <div style={{ alignItems: "center", marginTop: "180px" }}>
-        <Input text={t("username")} stateChanger={setUsername} />
-        <Input type={"password"} text={t("password")} stateChanger={setPassword} />
-        <div style={{ marginTop: "30px" }} />
-        <Link text={t("forgot password?")} />
+      {orientation == "landscape-primary" ||
+      orientation == "landscape-secondary" ? (
+        <Landscape />
+      ) : (
+        <>
+          <ReturnButton path="/" />
+          <div style={{ alignItems: "center", marginTop: "180px" }}>
+            <Input text={t("username")} stateChanger={setUsername} />
+            <Input
+              type={"password"}
+              text={t("password")}
+              stateChanger={setPassword}
+            />
+            <div style={{ marginTop: "30px" }} />
+            <Link text={t("forgot password?")} />
 
-        {error != "" && (
-          <Text marginTop={"25px"} color={"red-text"} text={error} />
-        )}
+            {error != "" && (
+              <Text marginTop={"25px"} color={"red-text"} text={error} />
+            )}
 
-        <div style={{ marginTop: "50px" }} />
-        {!pending && <Button text={t("login")} stateChanger={handleLogin} />}
-        {pending && <CustomLoadingButton />}
-        <Text marginTop={"50px"} text={t("don't have an account?")} />
-        <Link text={t("click here to signup")} path="/signup" />
-      </div>
+            <div style={{ marginTop: "50px" }} />
+            {!pending && (
+              <Button text={t("login")} stateChanger={handleLogin} />
+            )}
+            {pending && <CustomLoadingButton />}
+            <Text marginTop={"50px"} text={t("don't have an account?")} />
+            <Link text={t("click here to signup")} path="/signup" />
+          </div>
+        </>
+      )}
     </>
   );
 }

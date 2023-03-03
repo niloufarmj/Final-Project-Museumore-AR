@@ -46,7 +46,8 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000",
     "http://127.0.0.1:5500",
     "http://127.0.0.1:5501",
-    'http://127.0.0.1:8080'
+    'http://127.0.0.1:8080',
+    'http://127.0.0.1:5502'
 ]
 
 ROOT_URLCONF = 'museumore_backend.urls'
@@ -126,7 +127,8 @@ CORS_ORIGIN_WHITELIST = [
      'http://localhost:3000',
      'http://127.0.0.1:5500',
      'http://127.0.0.1:5501',
-     'http://127.0.0.1:8080'
+     'http://127.0.0.1:8080',
+     'http://127.0.0.1:5502'
 ]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
