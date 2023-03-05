@@ -11,14 +11,18 @@ import PlayAudioButton from "../Layouts/PlayAudioButton";
 import VideoArea from "../Layouts/VideoArea";
 import { useParams } from "react-router-dom";
 
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
+
+import useScreenOrientation from "react-hook-screen-orientation";
+import Landscape from "./Landscape";
 
 function ItemInfo() {
   const { index } = useParams();
   const [items, setItems] = useState([]);
   const [item, setItem] = useState();
 
-  const {t, i18n} = useTranslation(['iteminfo']);
+  const { t, i18n } = useTranslation(["iteminfo"]);
+  const orientation = useScreenOrientation();
 
   useEffect(() => {
     fetch("http://localhost:8000/api/items/")
@@ -41,28 +45,35 @@ function ItemInfo() {
   }
   return (
     <>
-      <ReturnButton path="/" />
-      <div style={{ marginTop: "30px" }} />
-      <Image width="65%" left="16%" src={item.target_image} />
-      <div style={{ marginTop: "30px" }} />
-      <Title text={item.title} width="70%"/>
+      {orientation == "landscape-primary" ||
+      orientation == "landscape-secondary" ? (
+        <Landscape />
+      ) : (
+        <>
+          <ReturnButton path="/" />
+          <div style={{ marginTop: "30px" }} />
+          <Image width="65%" left="16%" src={item.target_image} />
+          <div style={{ marginTop: "30px" }} />
+          <Title text={item.title} width="70%" />
 
-      <div style={{ marginTop: "70px" }} />
-      <Link text={t("description")} />
-      <Text text={item.description}  width="80%"/>
+          <div style={{ marginTop: "70px" }} />
+          <Link text={t("description")} />
+          <Text text={item.description} width="80%" />
 
-      <div style={{ marginTop: "50px" }} />
-      {item.audio && <PlayAudioButton src={item.audio} />}
+          <div style={{ marginTop: "50px" }} />
+          {item.audio && <PlayAudioButton src={item.audio} />}
 
-      <div style={{ marginTop: "50px" }} />
+          <div style={{ marginTop: "50px" }} />
 
-      {item.extra_video && <VideoArea src={item.extra_video}/>}
+          {item.extra_video && <VideoArea src={item.extra_video} />}
 
-      <div style={{ marginTop: "70px" }} />
+          <div style={{ marginTop: "70px" }} />
 
-      <Button text={t("view museum / gallary info")} path="/museuminfo" />
+          <Button text={t("view museum / gallary info")} path="/museuminfo" />
 
-      <div style={{ marginTop: "50px" }} />
+          <div style={{ marginTop: "50px" }} />
+        </>
+      )}
     </>
   );
 }

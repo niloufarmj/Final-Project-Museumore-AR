@@ -16,6 +16,9 @@ import { useTranslation } from "react-i18next";
 import VideoArea from "../Layouts/VideoArea";
 import CustomLoadingButton from "../Layouts/CustumLoadingButton";
 
+import useScreenOrientation from "react-hook-screen-orientation";
+import Landscape from "./Landscape";
+
 function AddItem() {
   const gallary = JSON.parse(localStorage.getItem("user"));
   const navigate = useNavigate();
@@ -37,6 +40,7 @@ function AddItem() {
   const [margin, setMargin] = useState("100px");
 
   const { t, i18n } = useTranslation(["additem"]);
+  const orientation = useScreenOrientation();
 
   const fetchItems = () => {
     fetch("http://localhost:8000/api/items/")
@@ -47,7 +51,6 @@ function AddItem() {
       .catch((err) => console.error(err));
   };
 
-  
   useEffect(() => {
     fetchItems();
   }, []);
@@ -91,9 +94,12 @@ function AddItem() {
         .then((data) => {
           // we should redirect to compile html page in here
 
-          console.log("done")
+          console.log("done");
           // makeTargetFile(new_image)
-          window.location.replace(`http://127.0.0.1:5501/scan-compile/compile/compile.html`);
+          // window.location.replace(`http://127.0.0.1:8081`);
+          window.location.replace(
+            `http://127.0.0.1:5502/scan-compile/compile/index.html`
+          );
         })
         .catch((err) => console.error(err));
     }
@@ -116,79 +122,88 @@ function AddItem() {
 
   return (
     <>
-      <ReturnButton />
-      <div style={{ alignItems: "center", marginTop: "3%" }}>
-        {image == null ? (
-          <>
-            <AddImageButton
-              width="70%"
-              marginLeft="15%"
-              text={t("add target image")}
-              stateChanger={imageChange}
+      {orientation == "landscape-primary" ||
+      orientation == "landscape-secondary" ? (
+        <Landscape />
+      ) : (
+        <>
+          <ReturnButton />
+          <div style={{ alignItems: "center", marginTop: "3%" }}>
+            {image == null ? (
+              <>
+                <AddImageButton
+                  width="70%"
+                  marginLeft="15%"
+                  text={t("add target image")}
+                  stateChanger={imageChange}
+                />
+                {isImageBig ? (
+                  <Link
+                    text={t("Your image size must be less than 400KBs")}
+                    color={"red"}
+                  />
+                ) : (
+                  <Link text={t("Your image size must be less than 400KBs")} />
+                )}
+              </>
+            ) : (
+              <>
+                <Image width="65%" left="16%" src={shownImage} />
+                <RemoveButton stateChanger={imageChange} />
+              </>
+            )}
+
+            <div style={{ marginTop: "3%" }}></div>
+
+            <Input text={t("Title")} stateChanger={setTitle} />
+
+            <div style={{ marginTop: "3%" }}></div>
+
+            <AddFileButton text={t("add main audio")} stateChanger={setAudio} />
+
+            <div style={{ marginTop: "1%" }}></div>
+
+            <AddFileButton
+              text={t("add augmented image or video")}
+              class={"disabled"}
+              stateChanger={setAugmentedVideoOrImage}
             />
-            {isImageBig ? (
-              <Link
-                text={t("Your image size must be less than 400KBs")}
-                color={"red"}
+
+            <div style={{ marginTop: "3%" }}></div>
+
+            <TextArea text={t("Description")} stateChanger={setDescription} />
+
+            <div style={{ marginTop: "1%" }}></div>
+
+            {extraVideo == null ? (
+              <AddFileButton
+                text={t("add extra video")}
+                stateChanger={videoChange}
               />
             ) : (
-              <Link text={t("Your image size must be less than 400KBs")} />
+              <>
+                <div style={{ marginTop: "3%" }}></div>
+                <VideoArea width="65%" left="16%" src={shownVideo} />
+                <RemoveButton stateChanger={videoChange} />
+              </>
             )}
-          </>
-        ) : (
-          <>
-            <Image width="65%" left="16%" src={shownImage} />
-            <RemoveButton stateChanger={imageChange} />
-          </>
-        )}
 
-        <div style={{ marginTop: "3%" }}></div>
+            <div style={{ marginTop: "5%" }}></div>
 
-        <Input text={t("Title")} stateChanger={setTitle} />
+            {error != "" && (
+              <Text marginTop={"25px"} color={"red-text"} text={error} />
+            )}
+            <div style={{ marginTop: "10%" }}></div>
 
-        <div style={{ marginTop: "3%" }}></div>
+            {!pending && (
+              <Button text={t("Done")} stateChanger={handleAddItem} />
+            )}
+            {pending && <CustomLoadingButton text={true} />}
 
-        <AddFileButton text={t("add main audio")} stateChanger={setAudio} />
-
-        <div style={{ marginTop: "1%" }}></div>
-
-        <AddFileButton
-          text={t("add augmented image or video")}
-          class={"disabled"}
-          stateChanger={setAugmentedVideoOrImage}
-        />
-
-        <div style={{ marginTop: "3%" }}></div>
-
-        <TextArea text={t("Description")} stateChanger={setDescription} />
-
-        <div style={{ marginTop: "1%" }}></div>
-
-        {extraVideo == null ? (
-          <AddFileButton
-            text={t("add extra video")}
-            stateChanger={videoChange}
-          />
-        ) : (
-          <>
-            <div style={{ marginTop: "3%" }}></div>
-            <VideoArea width="65%" left="16%" src={shownVideo} />
-            <RemoveButton stateChanger={videoChange} />
-          </>
-        )}
-
-        <div style={{ marginTop: "5%" }}></div>
-
-        {error != "" && (
-          <Text marginTop={"25px"} color={"red-text"} text={error} />
-        )}
-        <div style={{ marginTop: "10%" }}></div>
-
-        {!pending && <Button text={t("Done")} stateChanger={handleAddItem} />}
-        {pending && <CustomLoadingButton text={true} />}
-
-        <div style={{ marginTop: "5%" }}></div>
-      </div>
+            <div style={{ marginTop: "5%" }}></div>
+          </div>
+        </>
+      )}
     </>
   );
 }

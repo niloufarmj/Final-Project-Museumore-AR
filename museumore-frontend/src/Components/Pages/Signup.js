@@ -8,8 +8,11 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 import CustomLoadingButton from "../Layouts/CustumLoadingButton";
+
+import useScreenOrientation from "react-hook-screen-orientation";
+import Landscape from "./Landscape";
 
 function Signup() {
   const navigate = useNavigate();
@@ -28,7 +31,8 @@ function Signup() {
   const [errorEmail, setErrorEmail] = useState("");
   const [pending, setPending] = useState(false);
 
-  const {t, i18n} = useTranslation(['gallaryinfo']);
+  const { t, i18n } = useTranslation(["gallaryinfo"]);
+  const orientation = useScreenOrientation();
 
   const handleSubmit = async () => {
     if (name == "" || username == "" || email == "" || password == "") {
@@ -36,13 +40,11 @@ function Signup() {
       setMargin("58px");
       return;
     } else {
-      
-      
       const item = {
         name: name,
         username: username,
         email: email,
-        password: password
+        password: password,
       };
       axios
         .post("http://localhost:8000/api/gallaries/", item)
@@ -88,39 +90,52 @@ function Signup() {
 
   return (
     <>
-      <ReturnButton path="/"/>
-      <div style={{ alignItems: "center", marginTop: "60px" }}>
-        <Input
-          text={t("Museum / Gallary name")}
-          stateChanger={setName}
-          border={errorName}
-        />
-        <Input
-          text={t("username")}
-          stateChanger={setUsername}
-          border={errorUserName}
-        />
-        <Input text={t("email")} stateChanger={setEmail} border={errorEmail} />
-        <Input
-          type="password"
-          text={t("password")}
-          stateChanger={setPassword}
-          border={errorPassword}
-        />
+      {orientation == "landscape-primary" ||
+      orientation == "landscape-secondary" ? (
+        <Landscape />
+      ) : (
+        <>
+          <ReturnButton path="/" />
+          <div style={{ alignItems: "center", marginTop: "60px" }}>
+            <Input
+              text={t("Museum / Gallary name")}
+              stateChanger={setName}
+              border={errorName}
+            />
+            <Input
+              text={t("username")}
+              stateChanger={setUsername}
+              border={errorUserName}
+            />
+            <Input
+              text={t("email")}
+              stateChanger={setEmail}
+              border={errorEmail}
+            />
+            <Input
+              type="password"
+              text={t("password")}
+              stateChanger={setPassword}
+              border={errorPassword}
+            />
 
-        {error != "" && (
-          <Text marginTop={"25px"} color={"red-text"} text={error} />
-        )}
+            {error != "" && (
+              <Text marginTop={"25px"} color={"red-text"} text={error} />
+            )}
 
-        <div style={{ marginTop: margin }} />
-        {!pending && <Button text={t("signup")} stateChanger={handleSubmit} />}
-        {pending && <CustomLoadingButton />}
+            <div style={{ marginTop: margin }} />
+            {!pending && (
+              <Button text={t("signup")} stateChanger={handleSubmit} />
+            )}
+            {pending && <CustomLoadingButton />}
 
-        <Text marginTop={"40px"} text={t("Already have an account?")} />
-        <Link text={t("Click here to login")} path="/login" />
+            <Text marginTop={"40px"} text={t("Already have an account?")} />
+            <Link text={t("Click here to login")} path="/login" />
 
-        <div style={{ marginTop: "60px" }} />
-      </div>
+            <div style={{ marginTop: "60px" }} />
+          </div>
+        </>
+      )}
     </>
   );
 }

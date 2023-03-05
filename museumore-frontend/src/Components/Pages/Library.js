@@ -2,7 +2,12 @@ import React, { useState, useEffect } from "react";
 import ReturnButton from "../Layouts/ReturnButton";
 import ItemCard from "../Layouts/ItemCard";
 
+import useScreenOrientation from "react-hook-screen-orientation";
+import Landscape from "./Landscape";
+
 function Library(params) {
+  const orientation = useScreenOrientation();
+
   const gallary = JSON.parse(localStorage.getItem("user"));
 
   const [allItems, setAllItems] = useState([]);
@@ -26,21 +31,26 @@ function Library(params) {
 
   return (
     <>
-      <ReturnButton path="/dashboard" />
-      <div>
-        {itemsList.map((item) => (
-          <ItemCard
-            image={item.target_image}
-            title={item.title}
-            onClick={() => {
-              localStorage.setItem("item", JSON.stringify(item));
-              window.location.replace(
-                `http://localhost:3000/editItem`
-              );
-            }}
-          />
-        ))}
-      </div>
+      {orientation == "landscape-primary" ||
+      orientation == "landscape-secondary" ? (
+        <Landscape />
+      ) : (
+        <>
+          <ReturnButton path="/dashboard" />
+          <div>
+            {itemsList.map((item) => (
+              <ItemCard
+                image={item.target_image}
+                title={item.title}
+                onClick={() => {
+                  localStorage.setItem("item", JSON.stringify(item));
+                  window.location.replace(`http://localhost:3000/editItem`);
+                }}
+              />
+            ))}
+          </div>
+        </>
+      )}
     </>
   );
 }
