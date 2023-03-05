@@ -24,7 +24,6 @@ function Library(params) {
       .catch((err) => console.error(err));
   }, []);
 
-
   return (
     <>
       <ReturnButton path="/dashboard" />
@@ -33,11 +32,12 @@ function Library(params) {
           <ItemCard
             image={item.target_image}
             title={item.title}
-            onClick={() =>
+            onClick={() => {
+              localStorage.setItem("item", JSON.stringify(item));
               window.location.replace(
-                `http://localhost:3000/libraryiteminfo/${item.target_index}`
-              )
-            }
+                `http://localhost:3000/editItem`
+              );
+            }}
           />
         ))}
       </div>

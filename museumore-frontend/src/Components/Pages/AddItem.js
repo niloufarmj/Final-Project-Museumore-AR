@@ -99,17 +99,6 @@ function AddItem() {
     }
   };
 
-  const compile = () => {
-    fetch("http://localhost:8000/compile", {
-      method: "GET",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        navigate("/dashboard");
-      })
-      .catch((err) => console.error(err));
-  };
-
   const imageChange = (obj) => {
     if (obj != null && obj.size / 1024 > 400) {
       setIsImageBig(true);
