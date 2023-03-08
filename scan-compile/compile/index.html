@@ -1,15 +1,16 @@
 <html>
   <head>
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
     <script type="module">
       import { Compiler } from "../compile/dist/mindar-image.prod.js";
 
       let dataList = [],
-        first = false, mindId;
+        first = false,
+        mindId;
       const compiler = new Compiler();
 
       const fetchItems = () => {
-        fetch("http://localhost:8000/api/items/")
+        fetch("http://192.168.43.107:8000/api/items/")
           .then((res) => res.json())
           .then((data) => {
             compileFile(data[data.length - 1].target_image);
@@ -26,23 +27,34 @@
       };
 
       const fetchMindFile = async () => {
-        fetch("http://localhost:8000/api/targetfiles/")
+        fetch("http://192.168.43.107:8000/api/targetfiles/")
           .then((res) => res.json())
           .then(async (data) => {
             if (data.length > 0) {
-              let blob = await fetch(data[0].file).then(r => r.blob());
+              let blob = await fetch(data[0].file).then((r) => r.blob());
               let file = new File([blob], "targets.mind");
               loadMindFile(file);
               mindId = data[0].id;
-            }
-            else first = true;
+            } else first = true;
 
             fetchItems();
           })
           .catch((err) => console.log(err));
       };
+      
 
-      fetchMindFile();
+      // alert(localStorage.getItem("stop"))
+      if (localStorage.getItem("stop") == null || localStorage.getItem("stop") == "false") {
+        alert("1")
+        fetchMindFile();
+      }
+        
+      else {
+        alert("2")
+        localStorage.setItem("stop", false)
+        window.location.replace(`http://192.168.43.107:3000/dashboard`);
+      }
+        
 
       const saveMindFile = (buffer) => {
         var blob = new Blob([buffer]);
@@ -52,31 +64,32 @@
         form_data.append("file", file);
 
         if (first) {
-          fetch("http://localhost:8000/api/targetfiles/", {
+          fetch("http://192.168.43.107:8000/api/targetfiles/", {
             method: "POST",
             body: form_data,
           })
             .then((res) => res.json())
             .then((data) => {
               console.log(data);
-              window.location.replace(`http://localhost:3000/dashboard`);
+
+              localStorage.setItem("stop", true)
+              window.location.replace(`http://192.168.43.107:3000/dashboard`);
             })
             .catch((err) => console.error(err));
         } else {
-          fetch(`http://localhost:8000/api/targetfiles/${mindId}/`, {
+          fetch(`http://192.168.43.107:8000/api/targetfiles/${mindId}/`, {
             method: "PUT",
             body: form_data,
           })
             .then((res) => res.json())
             .then((data) => {
               console.log(data);
-              window.location.replace(`http://localhost:3000/dashboard`);
+              localStorage.setItem("stop", true)
+              window.location.replace(`http://192.168.43.107:3000/dashboard`);
             })
             .catch((err) => console.error(err));
         }
-
       };
-
 
       const loadImage = async (file) => {
         const img = new Image();
@@ -96,19 +109,21 @@
         images.push(await loadImage(file));
 
         let _start = new Date().getTime();
-
+        
         const buffer = await compiler.compileImageTargets(
           images,
           (progress) => {
             // document.getElementById("progress").innerHTML =
-            //   "progress: " + progress.toFixed(2) + "%";            
-              var elem = document.getElementById("myBar");   
-              var width = progress.toFixed(2);      
-              elem.style.width = width + '%'; 
-              elem.innerHTML = width * 1  + '%'; 
+            //   "progress: " + progress.toFixed(2) + "%";
+            
+            var width = progress.toFixed(2);
+            var elem = document.getElementById("myBar");
+            elem.style.width = width + "%";
+            elem.innerHTML = width * 1 + "%";
           }
         );
-        console.log("exec time compile: ", new Date().getTime() - _start);
+
+        alert("exec time compile: ", new Date().getTime() - _start);
 
         dataList.push(buffer); // add final data
         const exportedBuffer = await compiler.exportData(dataList); //make final buffer
@@ -119,10 +134,11 @@
   </head>
   <body>
     <!-- <span id="progress"></span> -->
-    <div class="w3-light-grey" style="margin-left: 10%; margin-right: 10%; width: 80%; margin-top: 50px;">
-      <div id="myBar" class="w3-container w3-green" style="width:20%">20%</div>
+    <div
+      class="w3-light-grey"
+      style="margin-left: 10%; margin-right: 10%; width: 80%; margin-top: 50px"
+    >
+      <div id="myBar" class="w3-container w3-green" style="width: 0%">0%</div>
     </div>
-
   </body>
-
 </html>

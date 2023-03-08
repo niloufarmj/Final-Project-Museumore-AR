@@ -28,7 +28,8 @@ function Home() {
           <div style={{ alignItems: "center" }}>
             <Logo width={100} />
             {/* <Button text={t("scan")} redirectPath={"http://127.0.0.1:8080"} /> */}
-            <Button text={t("scan")} redirectPath={"http://127.0.0.1:5502/scan-compile/scan/index.html"} />
+            {/* <Button text={t("scan")} redirectPath={"http://192.168.1.104:5502/scan-compile/scan/index.html"} /> */}
+            <Button text={t("scan")} redirectPath={"http://192.168.43.107:5502/scan-compile/scan/index.html"} />
             <Text
               marginTop={"50px"}
               text={t("Do you own a museum / gallary?")}

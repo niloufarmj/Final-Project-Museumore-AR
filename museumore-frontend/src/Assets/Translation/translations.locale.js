@@ -78,7 +78,9 @@ export default {
         'play main audio': 'پخش فایل صوتی اصلی',
         'view museum / gallary info': 'مشاهده اطلاعات موزه / گالری',
         'Loading...': 'در حال بررسی',
-        'stop playing': 'توقف پخش'
+        'stop playing': 'توقف پخش',
+        'there is no item': 'درحال حاضر هیچ شیءی',
+        'in the library right now!': 'در مجموعه ثبت نشده است!'
       },
 
       additem: {

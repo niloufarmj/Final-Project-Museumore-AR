@@ -29,12 +29,17 @@ function Login() {
   const orientation = useScreenOrientation();
 
   const fetchGallaries = () => {
-    fetch("http://localhost:8000/api/gallaries/")
+    setError("hanooz naresidm")
+    fetch("http://192.168.43.107:8000/api/gallaries/")
       .then((res) => res.json())
       .then((data) => {
+        setError("alan ok am")
         setGallaries(data);
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        setError(err.message)
+      }
+      )
   };
 
   useEffect(() => {

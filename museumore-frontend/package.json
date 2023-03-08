@@ -2,7 +2,7 @@
   "name": "museumore-frontend",
   "version": "0.1.0",
   "private": true,
-  "proxy": "http://localhost:8000",
+  "proxy": "http://192.168.1.104:8000",
   "dependencies": {
     "@react-three/xr": "^5.1.2",
     "@testing-library/jest-dom": "^5.16.5",
@@ -39,8 +39,7 @@
   },
   "scripts": {
     "build": "react-scripts build",
-    "start": "react-scripts start",
-    "start2": "react-scripts start",
+    "start": "react-scripts  --openssl-legacy-provider start",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

@@ -4,6 +4,9 @@ import ItemCard from "../Layouts/ItemCard";
 
 import useScreenOrientation from "react-hook-screen-orientation";
 import Landscape from "./Landscape";
+import Link from "../Layouts/Link";
+
+import { useTranslation } from "react-i18next";
 
 function Library(params) {
   const orientation = useScreenOrientation();
@@ -13,9 +16,11 @@ function Library(params) {
   const [allItems, setAllItems] = useState([]);
   const [itemsList, setItemsList] = useState([]);
 
+  const { t, i18n } = useTranslation(["iteminfo"]);
+
   useEffect(() => {
     const arr = [];
-    fetch("http://localhost:8000/api/items/")
+    fetch("http://192.168.43.107:8000/api/items/")
       .then((res) => res.json())
       .then((data) => {
         setAllItems(data);
@@ -37,18 +42,25 @@ function Library(params) {
       ) : (
         <>
           <ReturnButton path="/dashboard" />
-          <div>
-            {itemsList.map((item) => (
-              <ItemCard
-                image={item.target_image}
-                title={item.title}
-                onClick={() => {
-                  localStorage.setItem("item", JSON.stringify(item));
-                  window.location.replace(`http://localhost:3000/editItem`);
-                }}
-              />
-            ))}
-          </div>
+          {itemsList.length > 0 ? (
+            <div>
+              {itemsList.map((item) => (
+                <ItemCard
+                  image={item.target_image}
+                  title={item.title}
+                  onClick={() => {
+                    localStorage.setItem("item", JSON.stringify(item));
+                    window.location.replace(`http://192.168.43.107:3000/editItem`);
+                  }}
+                />
+              ))}
+            </div>
+          ) : (
+            <div>
+              <Link marginTop="50%" text={t("there is no item")} />
+              <Link marginTop="5%" text={t("in the library right now!")} />
+            </div>
+          )}
         </>
       )}
     </>

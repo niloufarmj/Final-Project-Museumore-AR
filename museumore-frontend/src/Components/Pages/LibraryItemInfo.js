@@ -25,7 +25,7 @@ function LibraryItemInfo() {
   const orientation = useScreenOrientation();
 
   useEffect(() => {
-    fetch("http://localhost:8000/api/items/")
+    fetch("http://192.168.43.107:8000/api/items/")
       .then((res) => res.json())
       .then((data) => {
         setItems(data);

@@ -83,7 +83,7 @@ function EditItem() {
         data.append("extra_video", "");
       }
 
-      fetch(`http://localhost:8000/api/items/${item.id}/`, {
+      fetch(`http://192.168.43.107:8000/api/items/${item.id}/`, {
         method: "PUT",
         body: data,
       })
@@ -108,7 +108,7 @@ function EditItem() {
   console.log(item);
   return (
     <>
-      <ReturnButton />
+      <ReturnButton redirectPath={"/library"}/>
       <div style={{ alignItems: "center", marginTop: "3%" }}>
         <Image width="65%" left="16%" src={item.target_image} />
 

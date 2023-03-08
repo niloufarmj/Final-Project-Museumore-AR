@@ -1,14 +1,14 @@
 import React from "react";
 import "../../Assets/CSS/button.css";
-import Text from "../Layouts/Text";
+import Link from "../Layouts/Link";
+import rotate_image from "../../Assets/Media/rotate.png";
 
 function Landscape(params) {
   return (
-    <Text
-      marginTop={"150px"}
-      color={"red-text"}
-      text="Please rotate your mobile phone!"
-    />
+    <>
+      <Link marginTop={"12%"} text="Please rotate your mobile phone!" />
+      <img style={{marginLeft: "40%", width: "20%"}} src={rotate_image} />
+    </>
   );
 }
 
