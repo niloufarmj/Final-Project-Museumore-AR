@@ -61,7 +61,7 @@ function ItemInfo() {
           <Text text={item.description} width="80%" />
 
           <div style={{ marginTop: "50px" }} />
-          {item.audio && <PlayAudioButton src={item.audio} />}
+          {item.audio && <PlayAudioButton src={item.audio} name={item.audio_name}/>}
 
           <div style={{ marginTop: "50px" }} />
 
