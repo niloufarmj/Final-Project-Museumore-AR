@@ -12,7 +12,7 @@ var items = [],
 var error;
 
 async function fetchItems() {
-  return fetch("http://192.168.43.107:8000/api/items/")
+  return fetch("http://192.168.1.104:8000/api/items/")
     .then((res) => {
       return res.json();
     })
@@ -24,7 +24,7 @@ async function fetchItems() {
 }
 
 async function fetchTargetFile() {
-  fetch("http://192.168.43.107:8000/api/targetfiles/")
+  fetch("http://192.168.1.104:8000/api/targetfiles/")
     .then((res) => res.json())
     .then(async (data) => {
       if (data.length > 0) {
@@ -132,7 +132,7 @@ function mainFunction() {
         }
       });
       info_btn[i].addEventListener("click", () => {
-        window.location.replace(`http://192.168.43.107:3000/iteminfo/${i}`);
+        window.location.replace(`http://192.168.1.104:3000/iteminfo/${i}`);
       });
     }
   }

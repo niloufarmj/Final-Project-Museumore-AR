@@ -7,11 +7,13 @@ import Landscape from "./Landscape";
 import Link from "../Layouts/Link";
 
 import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 
 function Library(params) {
   const orientation = useScreenOrientation();
 
   const gallary = JSON.parse(localStorage.getItem("user"));
+  const navigate = useNavigate();
 
   const [allItems, setAllItems] = useState([]);
   const [itemsList, setItemsList] = useState([]);
@@ -20,7 +22,7 @@ function Library(params) {
 
   useEffect(() => {
     const arr = [];
-    fetch("http://192.168.43.107:8000/api/items/")
+    fetch("http://192.168.1.104:8000/api/items/")
       .then((res) => res.json())
       .then((data) => {
         setAllItems(data);
@@ -50,7 +52,7 @@ function Library(params) {
                   title={item.title}
                   onClick={() => {
                     localStorage.setItem("item", JSON.stringify(item));
-                    window.location.replace(`http://192.168.43.107:3000/editItem`);
+                    navigate("/editItem")
                   }}
                 />
               ))}

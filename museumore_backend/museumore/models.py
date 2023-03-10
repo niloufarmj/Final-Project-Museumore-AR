@@ -28,6 +28,7 @@ class Item(models.Model):
     title = models.TextField()
     description = models.TextField(blank=True)
     audio = models.FileField(upload_to='audios/', null=True)
+    audio_name = models.TextField(blank=True)
     augmented_video = models.FileField(upload_to='augmented_images_or_videos/', null=True)
     extra_video = models.FileField(upload_to='extra_videos/', null=True)
 

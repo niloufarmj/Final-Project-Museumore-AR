@@ -7,10 +7,11 @@ import React, { useState, useEffect } from "react";
 import AddFileButton from "../Layouts/AddFileButton";
 import TextArea from "../Layouts/TextArea";
 import AddImageButton from "../Layouts/AddImageButton";
-import { json, redirect, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Text from "../Layouts/Text";
 import Image from "../Layouts/Image";
 import RemoveButton from "../Layouts/RemoveButton";
+import PlayAudioButton from "../Layouts/PlayAudioButton";
 
 import { useTranslation } from "react-i18next";
 import VideoArea from "../Layouts/VideoArea";
@@ -28,7 +29,8 @@ function AddItem() {
   const [shownImage, setShownImage] = useState(null);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [audio, setAudio] = useState("");
+  const [audio, setAudio] = useState(null);
+  const [audioName, setAudioName] = useState("");
   const [augmentedVideoOrImage, setAugmentedVideoOrImage] = useState("");
   const [extraVideo, setExtraVideo] = useState(null);
   const [shownVideo, setShownVideo] = useState("");
@@ -43,7 +45,7 @@ function AddItem() {
   const orientation = useScreenOrientation();
 
   const fetchItems = () => {
-    fetch("http://192.168.43.107:8000/api/items/")
+    fetch("http://192.168.1.104:8000/api/items/")
       .then((res) => res.json())
       .then((data) => {
         setItems(data);
@@ -78,7 +80,11 @@ function AddItem() {
       data.append("target_index", items.length);
       data.append("title", title);
       data.append("description", description);
-      data.append("audio", audio);
+      if (audio != null)
+        data.append("audio", audio);
+      else 
+        data.append("audio", "")
+      data.append("audio_name", audioName)
       data.append("augmented_video", augmentedVideoOrImage);
       if (extraVideo != null) {
         data.append("extra_video", extraVideo);
@@ -86,20 +92,15 @@ function AddItem() {
         data.append("extra_video", "");
       }
 
-      fetch("http://192.168.43.107:8000/api/items/", {
+      fetch("http://192.168.1.104:8000/api/items/", {
         method: "POST",
         body: data,
       })
         .then((res) => res.json())
         .then((data) => {
-          // we should redirect to compile html page in here
-
-          console.log("done");
-          // makeTargetFile(new_image)
-          // window.location.replace(`http://127.0.0.1:8081`);
           localStorage.setItem("stop", false)
           window.location.replace(
-            `http://192.168.43.107:5502/scan-compile/compile/index.html`
+            `http://192.168.1.104:5502/scan-compile/compile/index.html`
           );
         })
         .catch((err) => console.error(err));
@@ -120,6 +121,12 @@ function AddItem() {
     setExtraVideo(obj);
     if (obj != null) setShownVideo(URL.createObjectURL(obj));
   };
+
+  const audioChange = (obj) => {
+    setAudio(obj);
+    setAudioName("");
+    if (obj != null) setAudioName(obj.name)
+  }
 
   return (
     <>
@@ -160,7 +167,16 @@ function AddItem() {
 
             <div style={{ marginTop: "3%" }}></div>
 
-            <AddFileButton text={t("add main audio")} stateChanger={setAudio} />
+            {audio == null ? (
+              <AddFileButton text={t("add main audio")} stateChanger={audioChange} />
+            ) : (
+              <>
+                <div style={{ marginTop: "3%" }}></div>
+                <PlayAudioButton src={URL.createObjectURL(audio)} name={audioName} />
+                <RemoveButton stateChanger={audioChange} />
+              </>
+            )}  
+            
 
             <div style={{ marginTop: "1%" }}></div>
 

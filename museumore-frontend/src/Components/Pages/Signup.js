@@ -47,7 +47,7 @@ function Signup() {
         password: password,
       };
       axios
-        .post("http://192.168.43.107:8000/api/gallaries/", item)
+        .post("http://192.168.1.104:8000/api/gallaries/", item)
         .then((response) => {
           setPending(true);
           localStorage.setItem("user", JSON.stringify(response.data));
