@@ -30,7 +30,7 @@ function Login() {
 
   const fetchGallaries = () => {
     setError("hanooz naresidm")
-    fetch("http://192.168.43.107:8000/api/gallaries/")
+    fetch("http://192.168.46.251:8000/api/gallaries/")
       .then((res) => res.json())
       .then((data) => {
         setError("alan ok am")

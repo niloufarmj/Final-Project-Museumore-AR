@@ -43,7 +43,7 @@ function AddItem() {
   const orientation = useScreenOrientation();
 
   const fetchItems = () => {
-    fetch("http://192.168.43.107:8000/api/items/")
+    fetch("http://192.168.46.251:8000/api/items/")
       .then((res) => res.json())
       .then((data) => {
         setItems(data);
@@ -86,7 +86,7 @@ function AddItem() {
         data.append("extra_video", "");
       }
 
-      fetch("http://192.168.43.107:8000/api/items/", {
+      fetch("http://192.168.46.251:8000/api/items/", {
         method: "POST",
         body: data,
       })
@@ -99,7 +99,7 @@ function AddItem() {
           // window.location.replace(`http://127.0.0.1:8081`);
           localStorage.setItem("stop", false)
           window.location.replace(
-            `http://192.168.43.107:5502/scan-compile/compile/index.html`
+            `http://192.168.46.251:5502/scan-compile/compile/index.html`
           );
         })
         .catch((err) => console.error(err));
@@ -107,7 +107,7 @@ function AddItem() {
   };
 
   const imageChange = (obj) => {
-    if (obj != null && obj.size / 1024 > 400) {
+    if (obj != null && obj.size / 1024 > 2000) {
       setIsImageBig(true);
       return;
     }
@@ -166,7 +166,7 @@ function AddItem() {
 
             <AddFileButton
               text={t("add augmented image or video")}
-              class={"disabled"}
+              // class={"disabled"}
               stateChanger={setAugmentedVideoOrImage}
             />
 

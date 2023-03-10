@@ -12,7 +12,7 @@ var items = [],
 var error;
 
 async function fetchItems() {
-  return fetch("http://192.168.43.107:8000/api/items/")
+  return fetch("http://192.168.46.251:8000/api/items/")
     .then((res) => {
       return res.json();
     })
@@ -24,7 +24,7 @@ async function fetchItems() {
 }
 
 async function fetchTargetFile() {
-  fetch("http://192.168.43.107:8000/api/targetfiles/")
+  fetch("http://192.168.46.251:8000/api/targetfiles/")
     .then((res) => res.json())
     .then(async (data) => {
       if (data.length > 0) {
@@ -73,7 +73,8 @@ function mainFunction() {
   for (let i = 0; i < items.length; i++) {
     let play_btn_id = "play-btn" + items[i].target_index;
     let info_btn_id = "info-btn" + items[i].target_index;
-    result =
+    if(items[i].augmented_video == null){
+      result =
       result +
       `
       <a-entity mindar-image-target="targetIndex: ${items[i].target_index}">
@@ -85,6 +86,22 @@ function mainFunction() {
           width="0.2" height="0.2" position="-0.3 0 0"></a-image>
       </a-entity>
     `;
+    }else{
+      result =
+      result +
+      `
+      <a-entity mindar-image-target="targetIndex: ${items[i].target_index}">
+        <a-image id="${play_btn_id}" class="clickable"
+          src="./Assets/play_btn.png"
+          width="0.2" height="0.2" position="0.3 0 0.3"></a-image>
+        <a-image id="${info_btn_id}" class="clickable"
+          src="./Assets/info_btn.png"
+          width="0.2" height="0.2" position="-0.3 0 0.3"></a-image>
+      
+        <a-video src=" `+ items[i].augmented_video+ `" width="1" height="1" position="0 0 0" ></a-video>  
+      </a-entity>`
+    }
+
   }
 
   
@@ -132,7 +149,7 @@ function mainFunction() {
         }
       });
       info_btn[i].addEventListener("click", () => {
-        window.location.replace(`http://192.168.43.107:3000/iteminfo/${i}`);
+        window.location.replace(`http://192.168.46.251:3000/iteminfo/${i}`);
       });
     }
   }

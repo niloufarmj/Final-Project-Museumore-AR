@@ -83,7 +83,7 @@ function EditItem() {
         data.append("extra_video", "");
       }
 
-      fetch(`http://192.168.43.107:8000/api/items/${item.id}/`, {
+      fetch(`http://192.168.46.251:8000/api/items/${item.id}/`, {
         method: "PUT",
         body: data,
       })

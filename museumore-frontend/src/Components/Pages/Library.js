@@ -20,7 +20,7 @@ function Library(params) {
 
   useEffect(() => {
     const arr = [];
-    fetch("http://192.168.43.107:8000/api/items/")
+    fetch("http://192.168.46.251:8000/api/items/")
       .then((res) => res.json())
       .then((data) => {
         setAllItems(data);
@@ -50,7 +50,7 @@ function Library(params) {
                   title={item.title}
                   onClick={() => {
                     localStorage.setItem("item", JSON.stringify(item));
-                    window.location.replace(`http://192.168.43.107:3000/editItem`);
+                    window.location.replace(`http://192.168.46.251:3000/editItem`);
                   }}
                 />
               ))}

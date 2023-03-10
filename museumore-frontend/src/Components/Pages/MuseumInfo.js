@@ -21,7 +21,7 @@ function MuseumInfo() {
   const orientation = useScreenOrientation();
 
   useEffect(() => {
-    fetch(`http://192.168.43.107:8000/api/gallaries/${gallary_id}/`)
+    fetch(`http://192.168.46.251:8000/api/gallaries/${gallary_id}/`)
       .then((res) => res.json())
       .then((data) => {
         setGallary(data);
