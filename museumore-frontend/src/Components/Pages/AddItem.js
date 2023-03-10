@@ -108,7 +108,7 @@ function AddItem() {
   };
 
   const imageChange = (obj) => {
-    if (obj != null && obj.size / 1024 > 400) {
+    if (obj != null && obj.size / 1024 > 2000) {
       setIsImageBig(true);
       return;
     }
@@ -182,7 +182,7 @@ function AddItem() {
 
             <AddFileButton
               text={t("add augmented image or video")}
-              class={"disabled"}
+              // class={"disabled"}
               stateChanger={setAugmentedVideoOrImage}
             />
 
