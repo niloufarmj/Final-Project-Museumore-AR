@@ -10,7 +10,7 @@
       const compiler = new Compiler();
 
       const fetchItems = () => {
-        fetch("http://192.168.1.104:8000/api/items/")
+        fetch("http://172.20.10.10:8000/api/items/")
           .then((res) => res.json())
           .then((data) => {
             compileFile(data[data.length - 1].target_image);
@@ -27,7 +27,7 @@
       };
 
       const fetchMindFile = async () => {
-        fetch("http://192.168.1.104:8000/api/targetfiles/")
+        fetch("http://172.20.10.10:8000/api/targetfiles/")
           .then((res) => res.json())
           .then(async (data) => {
             if (data.length > 0) {
@@ -52,7 +52,7 @@
       else {
         alert("2")
         localStorage.setItem("stop", false)
-        window.location.replace(`http://192.168.1.104:3000/dashboard`);
+        window.location.replace(`http://172.20.10.10:3000/dashboard`);
       }
         
 
@@ -64,7 +64,7 @@
         form_data.append("file", file);
 
         if (first) {
-          fetch("http://192.168.1.104:8000/api/targetfiles/", {
+          fetch("http://172.20.10.10:8000/api/targetfiles/", {
             method: "POST",
             body: form_data,
           })
@@ -73,11 +73,11 @@
               console.log(data);
 
               localStorage.setItem("stop", true)
-              window.location.replace(`http://192.168.1.104:3000/dashboard`);
+              // window.location.replace(`http://172.20.10.10:3000/dashboard`);
             })
             .catch((err) => console.error(err));
         } else {
-          fetch(`http://192.168.1.104:8000/api/targetfiles/${mindId}/`, {
+          fetch(`http://172.20.10.10:8000/api/targetfiles/${mindId}/`, {
             method: "PUT",
             body: form_data,
           })
@@ -85,7 +85,7 @@
             .then((data) => {
               console.log(data);
               localStorage.setItem("stop", true)
-              window.location.replace(`http://192.168.1.104:3000/dashboard`);
+              // window.location.replace(`http://172.20.10.10:3000/dashboard`);
             })
             .catch((err) => console.error(err));
         }

@@ -14,7 +14,7 @@ SECRET_KEY = 'django-insecure-5cjltak&c(b))c7k5o%i84@bn7&9y*#w*%%@0=nv_s&q4n%f+4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.1.104']
+ALLOWED_HOSTS = ['172.20.10.10']
 
 
 # Application definition
@@ -44,12 +44,12 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    "http://192.168.1.104:3000",
+    "http://172.20.10.10:3000",
     "http://localhost:3000",
-    "http://192.168.1.104:5500",
-    "http://192.168.1.104:5501",
-    'http://192.168.1.104:8080',
-    'http://192.168.1.104:5502',
+    "http://172.20.10.10:5500",
+    "http://172.20.10.10:5501",
+    'http://172.20.10.10:8080',
+    'http://172.20.10.10:5502',
     'http://127.0.0.1:5502'
 ]
 
@@ -128,10 +128,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ORIGIN_WHITELIST = [
      'http://localhost:3000',
-     'http://192.168.1.104:5500',
-     'http://192.168.1.104:5501',
-     'http://192.168.1.104:8080',
-     'http://192.168.1.104:5502'
+     'http://172.20.10.10:5500',
+     'http://172.20.10.10:5501',
+     'http://172.20.10.10:8080',
+     'http://172.20.10.10:5502'
 ]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

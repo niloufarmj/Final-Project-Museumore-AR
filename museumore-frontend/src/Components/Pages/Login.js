@@ -29,11 +29,9 @@ function Login() {
   const orientation = useScreenOrientation();
 
   const fetchGallaries = () => {
-    setError("hanooz naresidm")
-    fetch("http://192.168.1.104:8000/api/gallaries/")
+    fetch("http://172.20.10.10:8000/api/gallaries/")
       .then((res) => res.json())
       .then((data) => {
-        setError("alan ok am")
         setGallaries(data);
       })
       .catch((err) => {

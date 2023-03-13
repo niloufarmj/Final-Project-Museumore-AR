@@ -2,7 +2,7 @@
 // const controlOverlay = document.querySelector("#control-overlay");
 // controlOverlay.style.display = "block";
 // returnButton.addEventListener('click', () => {
-//   window.location.replace(`http://192.168.1.104:3000/`);
+//   window.location.replace(`http://172.20.10.10:3000/`);
 //   console.log("here");
 // });
 
@@ -12,7 +12,7 @@ var items = [],
 var error;
 
 async function fetchItems() {
-  return fetch("http://192.168.1.104:8000/api/items/")
+  return fetch("http://172.20.10.10:8000/api/items/")
     .then((res) => {
       return res.json();
     })
@@ -20,20 +20,20 @@ async function fetchItems() {
       items = data;
       fetchTargetFile();
     })
-    .catch((err) => error = err.message)
+    .catch((err) => (error = err.message));
 }
 
 async function fetchTargetFile() {
-  fetch("http://192.168.1.104:8000/api/targetfiles/")
+  fetch("http://172.20.10.10:8000/api/targetfiles/")
     .then((res) => res.json())
     .then(async (data) => {
       if (data.length > 0) {
         target_file = data[0].file;
-        
+
         mainFunction();
       }
     })
-    .catch((err) => error = err.message);
+    .catch((err) => (error = err.message));
 }
 
 fetchItems();
@@ -42,9 +42,7 @@ const insertAfter = (element, htmlString) =>
   element.insertAdjacentHTML("afterend", htmlString);
 
 function mainFunction() {
-  
   let result = ``;
-  
 
   result =
     `<a-scene mindar-image="imageTargetSrc: ` +
@@ -59,24 +57,21 @@ function mainFunction() {
     ` objects: .clickable"></a-camera>
     </a-scene>`;
 
-  
-  
   //insertAfter(controlOverlay, result);
   const body = document.body;
   body.innerHTML = result;
 
   // alert(document.body.innerHTML)
-  
 
   const camera = document.getElementsByTagName("a-camera")[0];
   result = ``;
   for (let i = 0; i < items.length; i++) {
     let play_btn_id = "play-btn" + items[i].target_index;
     let info_btn_id = "info-btn" + items[i].target_index;
-    if(items[i].augmented_video == null){
+    if (items[i].augmented_video == null) {
       result =
-      result +
-      `
+        result +
+        `
       <a-entity mindar-image-target="targetIndex: ${items[i].target_index}">
         <a-image id="${play_btn_id}" class="clickable"
           src="./Assets/play_btn.png"
@@ -86,32 +81,56 @@ function mainFunction() {
           width="0.2" height="0.2" position="-0.3 0 0"></a-image>
       </a-entity>
     `;
-    }else{
-      result =
-      result +
-      `
+      
+    } else {
+      const getMeta = (url, cb) => {
+        const img = new Image();
+        img.onload = () => cb(null, img);
+        img.onerror = (err) => cb(err);
+        img.src = url;
+      };
+
+      // Use like:
+      getMeta(items[i].target_image, (err, img) => {
+        result =
+          result +
+          `
       <a-entity mindar-image-target="targetIndex: ${items[i].target_index}">
         <a-image id="${play_btn_id}" class="clickable"
           src="./Assets/play_btn.png"
-          width="0.2" height="0.2" position="0.3 0 0.3"></a-image>
+          width="0.2" height="0.2" position="0.3 -0.8 0.3"></a-image>
         <a-image id="${info_btn_id}" class="clickable"
           src="./Assets/info_btn.png"
-          width="0.2" height="0.2" position="-0.3 0 0.3"></a-image>
+          width="0.2" height="0.2" position="-0.3 -0.8 0.3"></a-image>
       
-        <a-video src=" `+ items[i].augmented_video+ `" width="1" height="1" position="0 0 0" ></a-video>  
-      </a-entity>`
+        <a-video src=" ` +
+          items[i].augmented_video +
+          `" width="` +
+          img.naturalWidth / img.naturalWidth +
+          `" height="` +
+          img.naturalHeight / img.naturalWidth +
+          `" position="0 0 0" ></a-video>  
+      </a-entity>`;
+        // insertAfter(camera, result);
+        // afterAugment();
+      });
     }
 
+    
   }
+  insertAfter(camera, result);
 
-  
+  afterAugment();
+
   // const asceneTag = document.getElementsByTagName("a-scene")[0];
   // asceneTag.setAttribute("style", "height:10px" );
 
-  insertAfter(camera, result);
-
   // alert(document.body.innerHTML)
+
   
+}
+
+afterAugment = () => {
   var play_btn = new Array();
   var info_btn = new Array();
 
@@ -149,7 +168,7 @@ function mainFunction() {
         }
       });
       info_btn[i].addEventListener("click", () => {
-        window.location.replace(`http://192.168.1.104:3000/iteminfo/${i}`);
+        window.location.replace(`http://172.20.10.10:3000/iteminfo/${i}`);
       });
     }
   }

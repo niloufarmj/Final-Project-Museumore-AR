@@ -83,7 +83,7 @@ function EditInfo() {
     data.append("contact", contact);
     data.append("description", description);
 
-    fetch(`http://192.168.1.104:8000/api/gallaries/${gallary.id}/`, {
+    fetch(`http://172.20.10.10:8000/api/gallaries/${gallary.id}/`, {
       method: "PUT",
       body: data,
     })

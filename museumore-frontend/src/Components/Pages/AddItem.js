@@ -45,7 +45,7 @@ function AddItem() {
   const orientation = useScreenOrientation();
 
   const fetchItems = () => {
-    fetch("http://192.168.1.104:8000/api/items/")
+    fetch("http://172.20.10.10:8000/api/items/")
       .then((res) => res.json())
       .then((data) => {
         setItems(data);
@@ -92,7 +92,7 @@ function AddItem() {
         data.append("extra_video", "");
       }
 
-      fetch("http://192.168.1.104:8000/api/items/", {
+      fetch("http://172.20.10.10:8000/api/items/", {
         method: "POST",
         body: data,
       })
@@ -100,7 +100,7 @@ function AddItem() {
         .then((data) => {
           localStorage.setItem("stop", false)
           window.location.replace(
-            `http://192.168.1.104:5502/scan-compile/compile/index.html`
+            `http://172.20.10.10:5502/scan-compile/compile/index.html`
           );
         })
         .catch((err) => console.error(err));
