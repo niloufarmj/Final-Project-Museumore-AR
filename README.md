@@ -101,6 +101,8 @@ Today, every field has been directly or indirectly affected by technology and it
 
 ## Pages <a name = "pages"></a>
 
+Figma: https://www.figma.com/file/R6v9TTdyeUUAMcnH4GwIbp/museumore?type=design&node-id=0%3A1&mode=design&t=HBOD2qMXpebs5f1b-1
+
 - ## Home <a name = "home"></a>
 <p align="center">
   <img width="30%" src="https://github.com/niloufarmj/museumore-ar-project/blob/main/readme%20assets/Home.png"></img>
