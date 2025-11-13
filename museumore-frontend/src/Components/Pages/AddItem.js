@@ -3,24 +3,24 @@ import Input from "../Layouts/Input";
 import ReturnButton from "../Layouts/ReturnButton";
 import Link from "../Layouts/Link";
 
-import React, { useState, useEffect } from "react";
+import {useState, useEffect} from "react";
 import AddFileButton from "../Layouts/AddFileButton";
 import TextArea from "../Layouts/TextArea";
 import AddImageButton from "../Layouts/AddImageButton";
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import Text from "../Layouts/Text";
 import Image from "../Layouts/Image";
 import RemoveButton from "../Layouts/RemoveButton";
 import PlayAudioButton from "../Layouts/PlayAudioButton";
 
-import { useTranslation } from "react-i18next";
+import {useTranslation} from "react-i18next";
 import VideoArea from "../Layouts/VideoArea";
 import CustomLoadingButton from "../Layouts/CustumLoadingButton";
 
 import useScreenOrientation from "react-hook-screen-orientation";
 import Landscape from "./Landscape";
 
-function AddItem() {
+function AddItem () {
   const gallary = JSON.parse(localStorage.getItem("user"));
   const navigate = useNavigate();
 
@@ -41,7 +41,7 @@ function AddItem() {
 
   const [margin, setMargin] = useState("100px");
 
-  const { t, i18n } = useTranslation(["additem"]);
+  const {t, i18n} = useTranslation(["additem"]);
   const orientation = useScreenOrientation();
 
   const fetchItems = () => {
@@ -82,7 +82,7 @@ function AddItem() {
       data.append("description", description);
       if (audio != null)
         data.append("audio", audio);
-      else 
+      else
         data.append("audio", "")
       data.append("audio_name", audioName)
       data.append("augmented_video", augmentedVideoOrImage);
@@ -131,12 +131,12 @@ function AddItem() {
   return (
     <>
       {orientation == "landscape-primary" ||
-      orientation == "landscape-secondary" ? (
+        orientation == "landscape-secondary" ? (
         <Landscape />
       ) : (
         <>
           <ReturnButton />
-          <div style={{ alignItems: "center", marginTop: "3%" }}>
+          <div style={{alignItems: "center", marginTop: "3%"}}>
             {image == null ? (
               <>
                 <AddImageButton
@@ -161,24 +161,24 @@ function AddItem() {
               </>
             )}
 
-            <div style={{ marginTop: "3%" }}></div>
+            <div style={{marginTop: "3%"}}></div>
 
             <Input text={t("Title")} stateChanger={setTitle} />
 
-            <div style={{ marginTop: "3%" }}></div>
+            <div style={{marginTop: "3%"}}></div>
 
             {audio == null ? (
               <AddFileButton text={t("add main audio")} stateChanger={audioChange} />
             ) : (
               <>
-                <div style={{ marginTop: "3%" }}></div>
+                <div style={{marginTop: "3%"}}></div>
                 <PlayAudioButton src={URL.createObjectURL(audio)} name={audioName} />
                 <RemoveButton stateChanger={audioChange} />
               </>
-            )}  
-            
+            )}
 
-            <div style={{ marginTop: "1%" }}></div>
+
+            <div style={{marginTop: "1%"}}></div>
 
             <AddFileButton
               text={t("add augmented image or video")}
@@ -186,11 +186,11 @@ function AddItem() {
               stateChanger={setAugmentedVideoOrImage}
             />
 
-            <div style={{ marginTop: "3%" }}></div>
+            <div style={{marginTop: "3%"}}></div>
 
             <TextArea text={t("Description")} stateChanger={setDescription} />
 
-            <div style={{ marginTop: "1%" }}></div>
+            <div style={{marginTop: "1%"}}></div>
 
             {extraVideo == null ? (
               <AddFileButton
@@ -199,25 +199,25 @@ function AddItem() {
               />
             ) : (
               <>
-                <div style={{ marginTop: "3%" }}></div>
+                <div style={{marginTop: "3%"}}></div>
                 <VideoArea width="65%" left="16%" src={shownVideo} />
                 <RemoveButton stateChanger={videoChange} />
               </>
             )}
 
-            <div style={{ marginTop: "5%" }}></div>
+            <div style={{marginTop: "5%"}}></div>
 
             {error != "" && (
               <Text marginTop={"25px"} color={"red-text"} text={error} />
             )}
-            <div style={{ marginTop: "10%" }}></div>
+            <div style={{marginTop: "10%"}}></div>
 
             {!pending && (
               <Button text={t("Done")} stateChanger={handleAddItem} />
             )}
             {pending && <CustomLoadingButton text={true} />}
 
-            <div style={{ marginTop: "5%" }}></div>
+            <div style={{marginTop: "5%"}}></div>
           </div>
         </>
       )}

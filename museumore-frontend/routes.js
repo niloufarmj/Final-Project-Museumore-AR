@@ -1,0 +1,31 @@
+import {
+    AboutUs,
+    Home,
+    Login,
+    Signup,
+    Dashboard,
+    AddItem,
+    EditInfo,
+    Library,
+    LibraryItemInfo,
+    EditItem,
+    AdditionalInfo,
+    ItemInfo,
+    MuseumInfo,
+} from "./Components/Pages";
+
+export const routes = [
+    {path: "/", element: <Home />},
+    {path: "/aboutus", element: <AboutUs />},
+    {path: "/login", element: <Login />},
+    {path: "/signup", element: <Signup />},
+    {path: "/dashboard", element: <Dashboard />},
+    {path: "/additem", element: <AddItem />},
+    {path: "/editinfo", element: <EditInfo />},
+    {path: "/library", element: <Library />},
+    {path: "/libraryiteminfo/:index", element: <LibraryItemInfo />},
+    {path: "/editItem", element: <EditItem />},
+    {path: "/additionalinfo", element: <AdditionalInfo />},
+    {path: "/iteminfo/:index", element: <ItemInfo />},
+    {path: "/museuminfo", element: <MuseumInfo />},
+];
